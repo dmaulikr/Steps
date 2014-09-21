@@ -83,6 +83,8 @@ class StepCell: UITableViewCell {
         
         var f = barView.frame
         f.size.height = CGRectGetHeight(bounds)
+        f.size.width = barWidth * CGRectGetWidth(bounds)
+        f.size.width = f.size.width < 8 ? 8 : f.size.width
         barView.frame = f
     }
 

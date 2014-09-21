@@ -178,6 +178,7 @@
 				66D434C719AEAE7100C1C261 /* Frameworks */,
 				66D434C819AEAE7100C1C261 /* Resources */,
 				6636293F19C53FEF0065F988 /* ShellScript */,
+				666DAD4D19C62E3B0087A08F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -276,6 +277,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Crashlytics.framework/run ae0def216849ab79867b572dfd4978083ae3e060 1e94fee7f5ca731b46b1e0ca7c7d3e4cbc10691c71d8815803508bd5999b883c";
+		};
+		666DAD4D19C62E3B0087A08F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

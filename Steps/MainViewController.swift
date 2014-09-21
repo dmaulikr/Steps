@@ -30,7 +30,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             return appDelegate.numberFormatter
         }
     }
-    let lengthFormatter = NSLengthFormatter()
     var daysInTable: UInt = 8
     var stepCounts: [StepInfo]!
     let stepCounter = CMStepCounter()
@@ -40,7 +39,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var numberOfCellsAnimated: CGFloat = 0
     var maxNumberOfCellsVisible: CGFloat {
         get {
-            return ceil((CGRectGetHeight(tableView.frame) - tableView.contentInset.top) / tableView.estimatedRowHeight)
+            var visible = ceil((CGRectGetHeight(tableView.frame) - CGRectGetHeight(headerView.frame)) / tableView.estimatedRowHeight)
+            if visible > CGFloat(daysInTable) {
+                visible = CGFloat(daysInTable)
+            }
+            return visible
         }
     }
     
@@ -136,9 +139,12 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.dataSource = self
         tableView.backgroundColor = blueBackgroundColor
         tableView.registerClass(StepCell.self, forCellReuseIdentifier: cellIdentifier)
-//        tableView.rowHeight = 58
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 60
+        if (UIDevice.currentDevice().systemVersion as NSString).floatValue >= 8.0 {
+            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.estimatedRowHeight = 60
+        } else {
+            tableView.rowHeight = 58
+        }
         tableView.separatorStyle = .None
         view.insertSubview(tableView, belowSubview: headerView)
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(0)-[tableView]-(0)-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["tableView" : tableView]))
@@ -147,14 +153,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         countLabel.isAccessibilityElement = false
         todayLabel.isAccessibilityElement = false
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
-        view.addGestureRecognizer(gestureRecognizer)
-        
         loadHistoricalStepData()
-    }
-    
-    func tapped(gestureRecognizer: UITapGestureRecognizer) {
-        reloadStepData()
     }
     
     deinit {
@@ -274,7 +273,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLayoutSubviews()
         
         if !CMStepCounter.isStepCountingAvailable() {
-            return;
+            return
         }
         
         if !CGRectEqualToRect(gradient.frame, headerView.bounds) {
