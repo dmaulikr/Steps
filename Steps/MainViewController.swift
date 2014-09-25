@@ -231,28 +231,32 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
                 let totalSteps = self.numberOfStepsEarlierToday + newSteps
                 self.numberOfStepsToday = totalSteps
-                self.countLabel.text = totalSteps.formattedString()
+                if self.numberOfCellsAnimated >= self.maxNumberOfCellsVisible {
+                    self.countLabel.text = totalSteps.formattedString()
+                }
                 
-                let stepInfo = self.stepCounts[0]
-                
-                if totalSteps > self.maxNumberOfSteps {
-                    stepInfo.numberOfSteps = totalSteps
-                    self.maxNumberOfSteps = totalSteps
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.tableView.reloadData()
-                    })
-                } else if totalSteps != stepInfo.numberOfSteps {
-                    stepInfo.numberOfSteps = totalSteps
-                    if self.tableView.numberOfRowsInSection(0) > 0 {
+                if self.stepCounts.count > 0 {
+                    let stepInfo = self.stepCounts[0]
+                    
+                    if totalSteps > self.maxNumberOfSteps {
+                        stepInfo.numberOfSteps = totalSteps
+                        self.maxNumberOfSteps = totalSteps
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)
+                            self.tableView.reloadData()
                         })
+                    } else if totalSteps != stepInfo.numberOfSteps {
+                        stepInfo.numberOfSteps = totalSteps
+                        if self.tableView.numberOfRowsInSection(0) > 0 {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)
+                            })
+                        }
                     }
                 }
             })
         }
         
-}
+    }
     
     func stopPedometerUpdatesForToday() {
         stepCounter.stopStepCountingUpdates()
