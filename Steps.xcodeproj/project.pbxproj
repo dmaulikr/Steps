@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6626BD3C19AF9351002120D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6626BD3B19AF9351002120D5 /* QuartzCore.framework */; };
 		6636293E19C53BF00065F988 /* libFlurry_5.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6636293D19C53BF00065F988 /* libFlurry_5.3.0.a */; };
+		663643A919D4C60C00B09687 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 665DD90819B3B00400468DD9 /* CoreMotion.framework */; };
+		663643AB19D4C6F400B09687 /* NSDate+Daybreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665DD90619B3AD8D00468DD9 /* NSDate+Daybreak.swift */; };
 		6649B19919C541490030928B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6649B19819C541490030928B /* SystemConfiguration.framework */; };
 		6649B19B19C541700030928B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6649B19A19C541700030928B /* Security.framework */; };
 		6649B19E19C541950030928B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6649B19D19C541950030928B /* Crashlytics.framework */; };
@@ -17,22 +19,45 @@
 		665DD90719B3AD8D00468DD9 /* NSDate+Daybreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665DD90619B3AD8D00468DD9 /* NSDate+Daybreak.swift */; };
 		665DD90919B3B00400468DD9 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 665DD90819B3B00400468DD9 /* CoreMotion.framework */; };
 		668C45EE19B0BAB40052D06F /* StepCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668C45ED19B0BAB40052D06F /* StepCell.swift */; };
+		66A7564F19D4C2E000A0F0CA /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A7564E19D4C2E000A0F0CA /* NotificationCenter.framework */; };
+		66A7565419D4C2E000A0F0CA /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A7565319D4C2E000A0F0CA /* TodayViewController.swift */; };
+		66A7565919D4C2E000A0F0CA /* Steps Today Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 66A7564C19D4C2E000A0F0CA /* Steps Today Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		66D434D019AEAE7100C1C261 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D434CF19AEAE7100C1C261 /* AppDelegate.swift */; };
-		66D434E319AEAE7200C1C261 /* StepsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D434E219AEAE7200C1C261 /* StepsTests.swift */; };
 		66D434ED19AEBA3000C1C261 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66D434EC19AEBA3000C1C261 /* MainViewController.swift */; };
 		66E45C4419C5394600EAE359 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66E45C4319C5394600EAE359 /* LaunchScreen.xib */; };
 		66F91C6919C4B6A000CD9524 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F91C6819C4B6A000CD9524 /* UICountingLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		66D434DD19AEAE7200C1C261 /* PBXContainerItemProxy */ = {
+		66A7565719D4C2E000A0F0CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 66D434C219AEAE7100C1C261 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 66D434C919AEAE7100C1C261;
-			remoteInfo = Steps;
+			remoteGlobalIDString = 66A7564B19D4C2E000A0F0CA;
+			remoteInfo = "Steps Today Extension";
+		};
+		66A7565A19D4C2E000A0F0CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66D434C219AEAE7100C1C261 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 66A7564B19D4C2E000A0F0CA;
+			remoteInfo = "Steps Today Extension";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		66A7565F19D4C2E000A0F0CA /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				66A7565919D4C2E000A0F0CA /* Steps Today Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6626BD3B19AF9351002120D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -47,12 +72,13 @@
 		665DD90619B3AD8D00468DD9 /* NSDate+Daybreak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Daybreak.swift"; sourceTree = "<group>"; };
 		665DD90819B3B00400468DD9 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		668C45ED19B0BAB40052D06F /* StepCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCell.swift; sourceTree = "<group>"; };
+		66A7564C19D4C2E000A0F0CA /* Steps Today Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Steps Today Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66A7564E19D4C2E000A0F0CA /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		66A7565219D4C2E000A0F0CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66A7565319D4C2E000A0F0CA /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		66D434CA19AEAE7100C1C261 /* Steps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66D434CE19AEAE7100C1C261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66D434CF19AEAE7100C1C261 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		66D434DC19AEAE7200C1C261 /* StepsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StepsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		66D434E119AEAE7200C1C261 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		66D434E219AEAE7200C1C261 /* StepsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsTests.swift; sourceTree = "<group>"; };
 		66D434EC19AEBA3000C1C261 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		66E45C4319C5394600EAE359 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		66F91C6719C4B6A000CD9524 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
@@ -60,6 +86,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		66A7564919D4C2E000A0F0CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				663643A919D4C60C00B09687 /* CoreMotion.framework in Frameworks */,
+				66A7564F19D4C2E000A0F0CA /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66D434C719AEAE7100C1C261 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -70,13 +105,6 @@
 				6626BD3C19AF9351002120D5 /* QuartzCore.framework in Frameworks */,
 				6649B19E19C541950030928B /* Crashlytics.framework in Frameworks */,
 				6636293E19C53BF00065F988 /* libFlurry_5.3.0.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66D434D919AEAE7200C1C261 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,11 +131,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		66A7564D19D4C2E000A0F0CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66A7564E19D4C2E000A0F0CA /* NotificationCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66A7565019D4C2E000A0F0CA /* Steps Today Extension */ = {
+			isa = PBXGroup;
+			children = (
+				66A7565319D4C2E000A0F0CA /* TodayViewController.swift */,
+				66A7565119D4C2E000A0F0CA /* Supporting Files */,
+			);
+			path = "Steps Today Extension";
+			sourceTree = "<group>";
+		};
+		66A7565119D4C2E000A0F0CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				66A7565219D4C2E000A0F0CA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		66D434C119AEAE7100C1C261 = {
 			isa = PBXGroup;
 			children = (
 				66D434CC19AEAE7100C1C261 /* Steps */,
-				66D434DF19AEAE7200C1C261 /* StepsTests */,
+				66A7565019D4C2E000A0F0CA /* Steps Today Extension */,
+				66A7564D19D4C2E000A0F0CA /* Frameworks */,
 				66D434CB19AEAE7100C1C261 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				66D434CA19AEAE7100C1C261 /* Steps.app */,
-				66D434DC19AEAE7200C1C261 /* StepsTests.xctest */,
+				66A7564C19D4C2E000A0F0CA /* Steps Today Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,26 +204,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		66D434DF19AEAE7200C1C261 /* StepsTests */ = {
-			isa = PBXGroup;
-			children = (
-				66D434E219AEAE7200C1C261 /* StepsTests.swift */,
-				66D434E019AEAE7200C1C261 /* Supporting Files */,
-			);
-			path = StepsTests;
-			sourceTree = "<group>";
-		};
-		66D434E019AEAE7200C1C261 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				66D434E119AEAE7200C1C261 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		66A7564B19D4C2E000A0F0CA /* Steps Today Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 66A7565C19D4C2E000A0F0CA /* Build configuration list for PBXNativeTarget "Steps Today Extension" */;
+			buildPhases = (
+				66A7564819D4C2E000A0F0CA /* Sources */,
+				66A7564919D4C2E000A0F0CA /* Frameworks */,
+				66A7564A19D4C2E000A0F0CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Steps Today Extension";
+			productName = "Steps Today Extension";
+			productReference = 66A7564C19D4C2E000A0F0CA /* Steps Today Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		66D434C919AEAE7100C1C261 /* Steps */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66D434E619AEAE7200C1C261 /* Build configuration list for PBXNativeTarget "Steps" */;
@@ -179,33 +233,18 @@
 				66D434C819AEAE7100C1C261 /* Resources */,
 				6636293F19C53FEF0065F988 /* ShellScript */,
 				666DAD4D19C62E3B0087A08F /* ShellScript */,
+				66A7565F19D4C2E000A0F0CA /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				66A7565819D4C2E000A0F0CA /* PBXTargetDependency */,
+				66A7565B19D4C2E000A0F0CA /* PBXTargetDependency */,
 			);
 			name = Steps;
 			productName = Steps;
 			productReference = 66D434CA19AEAE7100C1C261 /* Steps.app */;
 			productType = "com.apple.product-type.application";
-		};
-		66D434DB19AEAE7200C1C261 /* StepsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 66D434E919AEAE7200C1C261 /* Build configuration list for PBXNativeTarget "StepsTests" */;
-			buildPhases = (
-				66D434D819AEAE7200C1C261 /* Sources */,
-				66D434D919AEAE7200C1C261 /* Frameworks */,
-				66D434DA19AEAE7200C1C261 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				66D434DE19AEAE7200C1C261 /* PBXTargetDependency */,
-			);
-			name = StepsTests;
-			productName = StepsTests;
-			productReference = 66D434DC19AEAE7200C1C261 /* StepsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -216,13 +255,13 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Adam Binsz";
 				TargetAttributes = {
+					66A7564B19D4C2E000A0F0CA = {
+						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = BCVA6NEN6F;
+					};
 					66D434C919AEAE7100C1C261 = {
 						CreatedOnToolsVersion = 6.0;
 						DevelopmentTeam = BCVA6NEN6F;
-					};
-					66D434DB19AEAE7200C1C261 = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = 66D434C919AEAE7100C1C261;
 					};
 				};
 			};
@@ -240,25 +279,25 @@
 			projectRoot = "";
 			targets = (
 				66D434C919AEAE7100C1C261 /* Steps */,
-				66D434DB19AEAE7200C1C261 /* StepsTests */,
+				66A7564B19D4C2E000A0F0CA /* Steps Today Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		66A7564A19D4C2E000A0F0CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66D434C819AEAE7100C1C261 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				66E45C4419C5394600EAE359 /* LaunchScreen.xib in Resources */,
 				6649B1A019C5441C0030928B /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		66D434DA19AEAE7200C1C261 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +315,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run ae0def216849ab79867b572dfd4978083ae3e060 1e94fee7f5ca731b46b1e0ca7c7d3e4cbc10691c71d8815803508bd5999b883c";
+			shellScript = "./Steps/Crashlytics.framework/run ae0def216849ab79867b572dfd4978083ae3e060 1e94fee7f5ca731b46b1e0ca7c7d3e4cbc10691c71d8815803508bd5999b883c";
 		};
 		666DAD4D19C62E3B0087A08F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -294,6 +333,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		66A7564819D4C2E000A0F0CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				663643AB19D4C6F400B09687 /* NSDate+Daybreak.swift in Sources */,
+				66A7565419D4C2E000A0F0CA /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		66D434C619AEAE7100C1C261 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -307,25 +355,58 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		66D434D819AEAE7200C1C261 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				66D434E319AEAE7200C1C261 /* StepsTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		66D434DE19AEAE7200C1C261 /* PBXTargetDependency */ = {
+		66A7565819D4C2E000A0F0CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66D434C919AEAE7100C1C261 /* Steps */;
-			targetProxy = 66D434DD19AEAE7200C1C261 /* PBXContainerItemProxy */;
+			target = 66A7564B19D4C2E000A0F0CA /* Steps Today Extension */;
+			targetProxy = 66A7565719D4C2E000A0F0CA /* PBXContainerItemProxy */;
+		};
+		66A7565B19D4C2E000A0F0CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 66A7564B19D4C2E000A0F0CA /* Steps Today Extension */;
+			targetProxy = 66A7565A19D4C2E000A0F0CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		66A7565D19D4C2E000A0F0CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Steps Today Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Steps/Flurry",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		66A7565E19D4C2E000A0F0CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Steps Today Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Steps/Flurry",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		66D434E419AEAE7200C1C261 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -454,43 +535,18 @@
 			};
 			name = Release;
 		};
-		66D434EA19AEAE7200C1C261 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = StepsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Steps.app/Steps";
-			};
-			name = Debug;
-		};
-		66D434EB19AEAE7200C1C261 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = StepsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Steps.app/Steps";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		66A7565C19D4C2E000A0F0CA /* Build configuration list for PBXNativeTarget "Steps Today Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				66A7565D19D4C2E000A0F0CA /* Debug */,
+				66A7565E19D4C2E000A0F0CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		66D434C519AEAE7100C1C261 /* Build configuration list for PBXProject "Steps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -505,15 +561,6 @@
 			buildConfigurations = (
 				66D434E719AEAE7200C1C261 /* Debug */,
 				66D434E819AEAE7200C1C261 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		66D434E919AEAE7200C1C261 /* Build configuration list for PBXNativeTarget "StepsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				66D434EA19AEAE7200C1C261 /* Debug */,
-				66D434EB19AEAE7200C1C261 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
