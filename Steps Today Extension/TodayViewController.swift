@@ -154,10 +154,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             return
         }
         pedometer.startPedometerUpdatesFromDate(NSDate.beginningOfToday(), withHandler: { (pedometerData, error) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.numberOfSteps = pedometerData.numberOfSteps
-                self.countLabel.text = self.numberFormatter.stringFromNumber(self.numberOfSteps)
-            })
+            if let data = pedometerData {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.numberOfSteps = data.numberOfSteps
+                    self.countLabel.text = self.numberFormatter.stringFromNumber(self.numberOfSteps)
+                })
+            } else {
+                self.countLabel.text = "0"
+            }
+            
         })
     }
     
