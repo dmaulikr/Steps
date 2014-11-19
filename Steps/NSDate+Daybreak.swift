@@ -30,15 +30,15 @@ extension NSDate {
     // MARK: Days
     
     class func beginningOfToday() -> NSDate {
-        return NSDate.date().beginningOfDay()
+        return NSDate().beginningOfDay()
     }
     
     class func endOfToday() -> NSDate {
-        return NSDate.date().endOfDay()
+        return NSDate().endOfDay()
     }
     
     class func dateDaysFromNow(days: Int) -> NSDate {
-        return NSDate.date().addDays(days)
+        return NSDate().addDays(days)
     }
     
     func beginningOfDay() -> NSDate {
@@ -71,15 +71,15 @@ extension NSDate {
     // MARK: Weeks
     
     class func beginningOfThisWeek() -> NSDate {
-        return NSDate.date().beginningOfWeek()
+        return NSDate().beginningOfWeek()
     }
     
     class func endOfThisWeek() -> NSDate {
-        return NSDate.date().endOfWeek()
+        return NSDate().endOfWeek()
     }
     
     class func dateWeeksFromNow(weeks: Int) -> NSDate {
-        return NSDate.date().addWeeks(weeks)
+        return NSDate().addWeeks(weeks)
     }
     
     func beginningOfWeek() -> NSDate {
@@ -115,15 +115,15 @@ extension NSDate {
     // MARK: Months
     
     class func beginningOfThisMonth() -> NSDate {
-        return NSDate.date().beginningOfMonth()
+        return NSDate().beginningOfMonth()
     }
     
     class func endOfThisMonth() -> NSDate {
-        return NSDate.date().beginningOfMonth()
+        return NSDate().beginningOfMonth()
     }
     
     class func dateMonthsFromNow(months: Int) -> NSDate {
-        return NSDate.date().addMonths(months)
+        return NSDate().addMonths(months)
     }
     
     func beginningOfMonth() -> NSDate {
@@ -155,15 +155,15 @@ extension NSDate {
     // MARK: Years
     
     class func beginningOfThisYear() -> NSDate {
-        return NSDate.date().beginningOfYear()
+        return NSDate().beginningOfYear()
     }
     
     class func endOfThisYear() -> NSDate {
-        return NSDate.date().endOfYear()
+        return NSDate().endOfYear()
     }
     
     class func dateYearsFromNow(years: Int) -> NSDate {
-        return NSDate.date().addYears(years)
+        return NSDate().addYears(years)
     }
     
     func beginningOfYear() -> NSDate {

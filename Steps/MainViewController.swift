@@ -341,6 +341,6 @@ extension Int {
         numberFormatter.groupingSeparator = NSLocale.autoupdatingCurrentLocale().objectForKey(NSLocaleGroupingSeparator) as NSString
         numberFormatter.groupingSize = 3
         numberFormatter.usesGroupingSeparator = true
-        return numberFormatter.stringFromNumber(self)
+        return numberFormatter.stringFromNumber(self)!
     }
 }

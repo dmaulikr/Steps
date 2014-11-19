@@ -156,7 +156,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         pedometer.startPedometerUpdatesFromDate(NSDate.beginningOfToday(), withHandler: { (pedometerData, error) -> Void in
             if let data = pedometerData {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.numberOfSteps = data.numberOfSteps
+                    self.numberOfSteps = data.numberOfSteps.integerValue
                     self.countLabel.text = self.numberFormatter.stringFromNumber(self.numberOfSteps)
                 })
             } else {
@@ -188,7 +188,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 if let pedometerError = error {
                     completionHandler(NCUpdateResult.Failed)
                 } else {
-                    self.saveSteps(pedometerData.numberOfSteps)
+                    self.saveSteps(pedometerData.numberOfSteps.integerValue)
                     let countString = self.numberFormatter.stringFromNumber(pedometerData.numberOfSteps)
                     if countString != self.countLabel.text {
                         self.countLabel.text = countString
@@ -223,6 +223,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func viewTapped(gestureRecognizer: UIGestureRecognizer) {
         let url = NSURL(string: "stepsadambinsz://")
-        extensionContext?.openURL(url, completionHandler: nil)
+        extensionContext?.openURL(url!, completionHandler: nil)
     }
 }
