@@ -44,7 +44,7 @@ extension NSDate {
     func beginningOfDay() -> NSDate {
         let calendar = NSCalendar.currentCalendar()
         
-        let components = calendar.components(.YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit, fromDate: self)
+        let components = calendar.components([.Year, .Month, .Day] as NSCalendarUnit, fromDate: self)
         
         return calendar.dateFromComponents(components)!
     }
@@ -55,7 +55,7 @@ extension NSDate {
         let components = NSDateComponents()
         components.day = 1
         
-        return calendar.dateByAddingComponents(components, toDate: self.beginningOfDay(), options: nil)!.dateByAddingTimeInterval(-1)
+        return calendar.dateByAddingComponents(components, toDate: self.beginningOfDay(), options: [])!.dateByAddingTimeInterval(-1)
     }
     
     func addDays(days: Int) -> NSDate {
@@ -64,7 +64,7 @@ extension NSDate {
         let components = NSDateComponents()
         components.day = days
         
-        return calendar.dateByAddingComponents(components, toDate: self, options: nil)!
+        return calendar.dateByAddingComponents(components, toDate: self, options: [])!
     }
     
     
@@ -85,7 +85,7 @@ extension NSDate {
     func beginningOfWeek() -> NSDate {
         let calendar = NSCalendar.currentCalendar()
         
-        let components = calendar.components(.YearCalendarUnit | .MonthCalendarUnit | .DayCalendarUnit | .WeekdayCalendarUnit, fromDate: self)
+        let components = calendar.components([.Year, .Month, .Day, .Weekday] as NSCalendarUnit, fromDate: self)
         
         let daysToBeginningOfWeek = components.weekday - calendar.firstWeekday
         components.day -= daysToBeginningOfWeek
@@ -99,7 +99,7 @@ extension NSDate {
         let components = NSDateComponents()
         components.weekOfMonth = 1
         
-        return calendar.dateByAddingComponents(components, toDate: self.beginningOfWeek(), options: nil)!.dateByAddingTimeInterval(-1)
+        return calendar.dateByAddingComponents(components, toDate: self.beginningOfWeek(), options: [])!.dateByAddingTimeInterval(-1)
     }
     
     func addWeeks(weeks: Int) -> NSDate {
@@ -108,7 +108,7 @@ extension NSDate {
         let components = NSDateComponents()
         components.weekOfYear = weeks
         
-        return calendar.dateByAddingComponents(components, toDate: self, options: nil)!
+        return calendar.dateByAddingComponents(components, toDate: self, options: [])!
     }
     
     
@@ -129,7 +129,7 @@ extension NSDate {
     func beginningOfMonth() -> NSDate {
         let calendar = NSCalendar.currentCalendar()
         
-        let components = calendar.components(.YearCalendarUnit | .MonthCalendarUnit, fromDate: self)
+        let components = calendar.components([.Year, .Month], fromDate: self)
         
         return calendar.dateFromComponents(components)!
     }
@@ -140,7 +140,7 @@ extension NSDate {
         let components = NSDateComponents()
         components.month = 1
         
-        return calendar.dateByAddingComponents(components, toDate: self.self.beginningOfMonth(), options: nil)!.dateByAddingTimeInterval(-1)
+        return calendar.dateByAddingComponents(components, toDate: self.self.beginningOfMonth(), options: [])!.dateByAddingTimeInterval(-1)
     }
     
     func addMonths(months: Int) -> NSDate {
@@ -149,7 +149,7 @@ extension NSDate {
         let components = NSDateComponents()
         components.month = months
         
-        return calendar.dateByAddingComponents(components, toDate: self, options: nil)!
+        return calendar.dateByAddingComponents(components, toDate: self, options: [])!
     }
     
     // MARK: Years
@@ -169,7 +169,7 @@ extension NSDate {
     func beginningOfYear() -> NSDate {
         let calendar = NSCalendar.currentCalendar()
         
-        let components = calendar.components(.YearCalendarUnit, fromDate: self)
+        let components = calendar.components(.Year, fromDate: self)
         
         return calendar.dateFromComponents(components)!
     }
@@ -180,7 +180,7 @@ extension NSDate {
         let components = NSDateComponents()
         components.year = 1
         
-        return calendar.dateByAddingComponents(components, toDate: self.self.beginningOfYear(), options: nil)!.dateByAddingTimeInterval(-1)
+        return calendar.dateByAddingComponents(components, toDate: self.self.beginningOfYear(), options: [])!.dateByAddingTimeInterval(-1)
     }
     
     func addYears(years: Int) -> NSDate {
@@ -189,6 +189,6 @@ extension NSDate {
         let components = NSDateComponents()
         components.year = years
         
-        return calendar.dateByAddingComponents(components, toDate: self, options: nil)!
+        return calendar.dateByAddingComponents(components, toDate: self, options: [])!
     }
 }
