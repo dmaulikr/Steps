@@ -41,9 +41,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             effectView.contentView.addSubview(sorryLabel)
             view.addSubview(effectView)
             
-            sorryLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-            effectView.setTranslatesAutoresizingMaskIntoConstraints(false)
-            effectView.contentView.setTranslatesAutoresizingMaskIntoConstraints(false)
+            sorryLabel.translatesAutoresizingMaskIntoConstraints = false
+            effectView.translatesAutoresizingMaskIntoConstraints = false
+            effectView.contentView.translatesAutoresizingMaskIntoConstraints = false
             
             
             let labelInset: CGFloat = 20
@@ -65,7 +65,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         preferredContentSize = CGSizeZero
         
         numberFormatter = NSNumberFormatter()
-        numberFormatter.groupingSeparator = NSLocale.autoupdatingCurrentLocale().objectForKey(NSLocaleGroupingSeparator) as NSString
+        numberFormatter.groupingSeparator = NSLocale.autoupdatingCurrentLocale().objectForKey(NSLocaleGroupingSeparator) as? String ?? ""
         numberFormatter.groupingSize = 3
         numberFormatter.usesGroupingSeparator = true
         
@@ -171,7 +171,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Dispose of any resources that can be recreated.
     }
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)!) {
+    
+    
+    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> ())) {
         // Perform any setup necessary in order to update the view.
 
         // If an error is encountered, use NCUpdateResult.Failed
@@ -185,9 +187,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         pedometer.queryPedometerDataFromDate(NSDate.beginningOfToday(), toDate: NSDate()) { (pedometerData, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if let pedometerError = error {
+                if let _ = error {
                     completionHandler(NCUpdateResult.Failed)
-                } else {
+                }
+                
+                if let pedometerData = pedometerData {
                     self.saveSteps(pedometerData.numberOfSteps.integerValue)
                     let countString = self.numberFormatter.stringFromNumber(pedometerData.numberOfSteps)
                     if countString != self.countLabel.text {
