@@ -13,7 +13,24 @@
 		663CF0941BB111C000C0C630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0931BB111C000C0C630 /* Assets.xcassets */; };
 		663CF0971BB111C000C0C630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */; };
 		663CF0A11BB1128700C0C630 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663CF0A01BB1128700C0C630 /* GradientView.swift */; settings = {ASSET_TAGS = (); }; };
+		66F765D21BB85092005E484A /* DayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F765D11BB85092005E484A /* DayView.xib */; settings = {ASSET_TAGS = (); }; };
+		66F765D41BB85F34005E484A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F765D31BB85F34005E484A /* DayView.swift */; settings = {ASSET_TAGS = (); }; };
+		66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F765D51BB864AD005E484A /* OAStackView.framework */; };
+		66F765DD1BB86551005E484A /* OAStackView.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		66F765D91BB86520005E484A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				66F765DD1BB86551005E484A /* OAStackView.framework.dSYM in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		663CF0891BB111C000C0C630 /* Steps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steps.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +41,10 @@
 		663CF0961BB111C000C0C630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		663CF0981BB111C000C0C630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		663CF0A01BB1128700C0C630 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		66F765D11BB85092005E484A /* DayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayView.xib; sourceTree = "<group>"; };
+		66F765D31BB85F34005E484A /* DayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		66F765D51BB864AD005E484A /* OAStackView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAStackView.framework; path = Carthage/Build/iOS/OAStackView.framework; sourceTree = "<group>"; };
+		66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = OAStackView.framework.dSYM; path = Carthage/Build/iOS/OAStackView.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				663CF08B1BB111C000C0C630 /* Steps */,
+				66F765D71BB864BC005E484A /* Frameworks */,
 				663CF08A1BB111C000C0C630 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,12 +82,23 @@
 				663CF08C1BB111C000C0C630 /* AppDelegate.swift */,
 				663CF08E1BB111C000C0C630 /* ViewController.swift */,
 				663CF0901BB111C000C0C630 /* Main.storyboard */,
+				66F765D11BB85092005E484A /* DayView.xib */,
+				66F765D31BB85F34005E484A /* DayView.swift */,
 				663CF0931BB111C000C0C630 /* Assets.xcassets */,
 				663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */,
 				663CF0981BB111C000C0C630 /* Info.plist */,
 				663CF0A01BB1128700C0C630 /* GradientView.swift */,
 			);
 			path = Steps;
+			sourceTree = "<group>";
+		};
+		66F765D71BB864BC005E484A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */,
+				66F765D51BB864AD005E484A /* OAStackView.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +111,8 @@
 				663CF0851BB111C000C0C630 /* Sources */,
 				663CF0861BB111C000C0C630 /* Frameworks */,
 				663CF0871BB111C000C0C630 /* Resources */,
+				66F765D81BB864DE005E484A /* ShellScript */,
+				66F765D91BB86520005E484A /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -125,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				663CF0971BB111C000C0C630 /* LaunchScreen.storyboard in Resources */,
+				66F765D21BB85092005E484A /* DayView.xib in Resources */,
 				663CF0941BB111C000C0C630 /* Assets.xcassets in Resources */,
 				663CF0921BB111C000C0C630 /* Main.storyboard in Resources */,
 			);
@@ -132,12 +169,30 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		66F765D81BB864DE005E484A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/OAStackView.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		663CF0851BB111C000C0C630 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				663CF08F1BB111C000C0C630 /* ViewController.swift in Sources */,
+				66F765D41BB85F34005E484A /* DayView.swift in Sources */,
 				663CF08D1BB111C000C0C630 /* AppDelegate.swift in Sources */,
 				663CF0A11BB1128700C0C630 /* GradientView.swift in Sources */,
 			);
@@ -250,6 +305,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Steps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adambinsz.Steps;
@@ -261,6 +320,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Steps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adambinsz.Steps;
