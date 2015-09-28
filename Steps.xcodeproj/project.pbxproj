@@ -13,6 +13,10 @@
 		663CF0941BB111C000C0C630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0931BB111C000C0C630 /* Assets.xcassets */; };
 		663CF0971BB111C000C0C630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */; };
 		663CF0A11BB1128700C0C630 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663CF0A01BB1128700C0C630 /* GradientView.swift */; settings = {ASSET_TAGS = (); }; };
+		66A4EADA1BB87CA60085A07A /* Async.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EAD91BB87CA60085A07A /* Async.framework */; };
+		66A4EADC1BB87CC80085A07A /* Async.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */; };
+		66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EADE1BB87E210085A07A /* HealthKit.framework */; };
+		66A4EAE31BB8E1610085A07A /* StepCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A4EAE21BB8E1610085A07A /* StepCount.swift */; settings = {ASSET_TAGS = (); }; };
 		66F765D21BB85092005E484A /* DayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F765D11BB85092005E484A /* DayView.xib */; settings = {ASSET_TAGS = (); }; };
 		66F765D41BB85F34005E484A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F765D31BB85F34005E484A /* DayView.swift */; settings = {ASSET_TAGS = (); }; };
 		66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F765D51BB864AD005E484A /* OAStackView.framework */; };
@@ -27,6 +31,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				66F765DD1BB86551005E484A /* OAStackView.framework.dSYM in CopyFiles */,
+				66A4EADC1BB87CC80085A07A /* Async.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +46,12 @@
 		663CF0961BB111C000C0C630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		663CF0981BB111C000C0C630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		663CF0A01BB1128700C0C630 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		66A4EAD91BB87CA60085A07A /* Async.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Async.framework; path = Carthage/Build/iOS/Async.framework; sourceTree = "<group>"; };
+		66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Async.framework.dSYM; path = Carthage/Build/iOS/Async.framework.dSYM; sourceTree = "<group>"; };
+		66A4EADD1BB87E210085A07A /* Steps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Steps.entitlements; sourceTree = "<group>"; };
+		66A4EADE1BB87E210085A07A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		66A4EAE21BB8E1610085A07A /* StepCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepCount.swift; path = ../StepCount.swift; sourceTree = "<group>"; };
+		66A4EAE41BB99A470085A07A /* Steps-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Steps-Bridging-Header.h"; sourceTree = "<group>"; };
 		66F765D11BB85092005E484A /* DayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayView.xib; sourceTree = "<group>"; };
 		66F765D31BB85F34005E484A /* DayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		66F765D51BB864AD005E484A /* OAStackView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAStackView.framework; path = Carthage/Build/iOS/OAStackView.framework; sourceTree = "<group>"; };
@@ -52,7 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */,
 				66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */,
+				66A4EADA1BB87CA60085A07A /* Async.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,11 +92,13 @@
 		663CF08B1BB111C000C0C630 /* Steps */ = {
 			isa = PBXGroup;
 			children = (
+				66A4EADD1BB87E210085A07A /* Steps.entitlements */,
 				663CF08C1BB111C000C0C630 /* AppDelegate.swift */,
 				663CF08E1BB111C000C0C630 /* ViewController.swift */,
 				663CF0901BB111C000C0C630 /* Main.storyboard */,
 				66F765D11BB85092005E484A /* DayView.xib */,
 				66F765D31BB85F34005E484A /* DayView.swift */,
+				66A4EAE21BB8E1610085A07A /* StepCount.swift */,
 				663CF0931BB111C000C0C630 /* Assets.xcassets */,
 				663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */,
 				663CF0981BB111C000C0C630 /* Info.plist */,
@@ -95,8 +110,12 @@
 		66F765D71BB864BC005E484A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */,
+				66A4EADE1BB87E210085A07A /* HealthKit.framework */,
+				66A4EAD91BB87CA60085A07A /* Async.framework */,
 				66F765D51BB864AD005E484A /* OAStackView.framework */,
+				66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */,
+				66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */,
+				66A4EAE41BB99A470085A07A /* Steps-Bridging-Header.h */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -129,11 +148,18 @@
 		663CF0811BB111C000C0C630 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Adam Binsz";
 				TargetAttributes = {
 					663CF0881BB111C000C0C630 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = BCVA6NEN6F;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -177,6 +203,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/OAStackView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Async.framework",
 			);
 			outputPaths = (
 			);
@@ -195,6 +222,7 @@
 				66F765D41BB85F34005E484A /* DayView.swift in Sources */,
 				663CF08D1BB111C000C0C630 /* AppDelegate.swift in Sources */,
 				663CF0A11BB1128700C0C630 /* GradientView.swift in Sources */,
+				66A4EAE31BB8E1610085A07A /* StepCount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,14 +333,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Steps/Steps.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Steps/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adambinsz.Steps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Steps-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -320,14 +356,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Steps/Steps.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Steps/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adambinsz.Steps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Steps-Bridging-Header.h";
 			};
 			name = Release;
 		};
