@@ -345,7 +345,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.adambinsz.Steps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Steps-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -368,7 +367,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.adambinsz.Steps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Steps-Bridging-Header.h";
 			};
 			name = Release;
 		};
