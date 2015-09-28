@@ -1,0 +1,10 @@
+framework module BRYXGradientView {
+  umbrella header "BRYXGradientView-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module BRYXGradientView.Swift {
+    header "BRYXGradientView-Swift.h"
+}

@@ -1,2 +1,3 @@
 github "duemunk/Async" "1.4"
+github "bryx-inc/BRYXGradientView" "ec9cf48db51cc4fb0114a2d3ab28efccfddbe9e0"
 github "oarrabi/OAStackView" "0.2.0"

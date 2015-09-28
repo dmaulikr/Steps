@@ -10,6 +10,7 @@ import UIKit
 import HealthKit
 import OAStackView
 import Async
+import BRYXGradientView
 
 class ViewController: UIViewController {
 
@@ -40,7 +41,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        stackView.alpha = 0.0
+        headerView.alpha = 0.0
         
         let types: Set<HKObjectType> = [HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!]
         healthStore.requestAuthorizationToShareTypes(nil, readTypes: types) { (authorized, error) -> Void in
