@@ -111,6 +111,15 @@ class ViewController: UIViewController {
         view.layoutIfNeeded()
         
         fetchHistoricalStepCounts()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "timeDidChangeSignificantly",
+            name: AppDelegate.significantTimeChangeNotificationName,
+            object: nil)
+    }
+    
+    func timeDidChangeSignificantly() {
+        fetchHistoricalStepCounts()
     }
     
     private func updateTodayStepCount() {
@@ -142,7 +151,7 @@ class ViewController: UIViewController {
         
         let duration = animated ? 0.88 : 0.0
         UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: [.BeginFromCurrentState], animations: {
-            dayView.barScale = max(CGFloat(stepCount.count) / CGFloat(self.maxStepCount), 0.025)
+            dayView.barScale = max(CGFloat(stepCount.count) / CGFloat(self.maxStepCount), 0.015)
         }, completion: nil)
     }
     
@@ -167,7 +176,12 @@ class ViewController: UIViewController {
         
         let calendar = NSCalendar.currentCalendar()
         guard let quantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount),
-            anchorDate = calendar.nextDateAfterDate(NSDate(), matchingHour: 0, minute: 0, second: 0, options: [.MatchStrictly, .SearchBackwards] as NSCalendarOptions) else { return }
+            anchorDate = calendar.nextDateAfterDate(NSDate(),
+                matchingHour: 0,
+                minute: 0,
+                second: 0,
+                options: [.MatchStrictly] as NSCalendarOptions)
+        else { return }
         
         let intervalComponents = NSDateComponents()
         intervalComponents.day = 1
