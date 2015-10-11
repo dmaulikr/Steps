@@ -86,8 +86,25 @@ typedef int swift_int2  __attribute__((__ext_vector_type__(2)));
 typedef int swift_int3  __attribute__((__ext_vector_type__(3)));
 typedef int swift_int4  __attribute__((__ext_vector_type__(4)));
 #if defined(__has_feature) && __has_feature(modules)
+@import UIKit;
+@import CoreGraphics;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+@class UIColor;
+@class NSCoder;
+@class CAGradientLayer;
+
+SWIFT_CLASS("_TtC16BRYXGradientView12GradientView")
+@interface GradientView : UIView
+@property (nonatomic) UIColor * __nonnull topColor;
+@property (nonatomic) UIColor * __nonnull bottomColor;
+- (nonnull instancetype)initWithTopColor:(UIColor * __nonnull)topColor bottomColor:(UIColor * __nonnull)bottomColor OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * __nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+@property (nonatomic, readonly) CAGradientLayer * __nonnull gradientLayer;
++ (Class __nonnull)layerClass;
+@end
+
 #pragma clang diagnostic pop

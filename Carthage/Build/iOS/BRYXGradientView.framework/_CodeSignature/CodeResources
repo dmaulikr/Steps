@@ -6,66 +6,66 @@
 	<dict>
 		<key>Headers/BRYXGradientView-Swift.h</key>
 		<data>
-		5rKbju6NYpoOkx95zLvq4dg8gTw=
+		6ZgBe1r0FfQC52CluLO6KXc2c6k=
 		</data>
-		<key>Headers/BRYXGradientView-umbrella.h</key>
+		<key>Headers/BRYXGradientView.h</key>
 		<data>
-		i1wLsl9YLxzeX8NRB+MHLySpV0U=
+		L9C4rQIOZgYZnHl+JxJZ+8Vbpiw=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		C/HwTBcyuCzJd93Z94TwqaFDWQs=
+		I2tWpQ1nL7OfkPEgd5YSjLGYRwk=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm.swiftdoc</key>
 		<data>
-		8Tz/3dKjxhb2cAKUcWZudKC4HHQ=
+		G40ZKxZeGbDiufsVP/4VgPLgqGY=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm.swiftmodule</key>
 		<data>
-		tvD96JRCbCquUTFsI7rj7WO/BUg=
+		Dc4cKVciKsHjefVVMWhbC3b0OAQ=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		DCZIQkf+lvFTr0l2uYs90qXYfE4=
+		Fq4/GBaJtuC5ZnCk+gF/L2KS1cY=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		rVqPLmeOhbkDP472TbxVYbX3LLY=
+		F7zGlGSzBjonZE+tN8a1jHdlcSU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		4DaRtnKurRMWnBSuUZetcYcqAuA=
+		SvfgObnjBTKBuxuV1qzZX9Ai9QA=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
 		<key>Headers/BRYXGradientView-Swift.h</key>
 		<data>
-		5rKbju6NYpoOkx95zLvq4dg8gTw=
+		6ZgBe1r0FfQC52CluLO6KXc2c6k=
 		</data>
-		<key>Headers/BRYXGradientView-umbrella.h</key>
+		<key>Headers/BRYXGradientView.h</key>
 		<data>
-		i1wLsl9YLxzeX8NRB+MHLySpV0U=
+		L9C4rQIOZgYZnHl+JxJZ+8Vbpiw=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm.swiftdoc</key>
 		<data>
-		8Tz/3dKjxhb2cAKUcWZudKC4HHQ=
+		G40ZKxZeGbDiufsVP/4VgPLgqGY=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm.swiftmodule</key>
 		<data>
-		tvD96JRCbCquUTFsI7rj7WO/BUg=
+		Dc4cKVciKsHjefVVMWhbC3b0OAQ=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		DCZIQkf+lvFTr0l2uYs90qXYfE4=
+		Fq4/GBaJtuC5ZnCk+gF/L2KS1cY=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		rVqPLmeOhbkDP472TbxVYbX3LLY=
+		F7zGlGSzBjonZE+tN8a1jHdlcSU=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		4DaRtnKurRMWnBSuUZetcYcqAuA=
+		SvfgObnjBTKBuxuV1qzZX9Ai9QA=
 		</data>
 	</dict>
 	<key>rules</key>

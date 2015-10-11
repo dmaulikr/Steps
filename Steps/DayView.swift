@@ -29,14 +29,12 @@ class DayView: UIView {
                 relatedBy: .Equal,
                 toItem: self,
                 attribute: .Width,
-                multiplier: barScale,
+                multiplier: max(barScale, 0.02),
                 constant: 1.0)
             addConstraint(barWidthConstraint)
             
             self.setNeedsLayout()
-            UIView.animateWithDuration(0.88, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: [], animations: {
-                self.layoutIfNeeded()
-            }, completion: nil)
+            self.layoutIfNeeded()
         }
     }
     
@@ -57,5 +55,15 @@ class DayView: UIView {
         view.backgroundColor = UIColor.clearColor()
         view.barScale = 0.0
         return view
+    }
+    
+    func setBarScale(barScale: CGFloat, animated: Bool) {
+        if animated {
+            UIView.animateWithDuration(0.88, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: [], animations: {
+                self.barScale = barScale
+            }, completion: nil)
+        } else {
+            self.barScale = barScale
+        }
     }
 }

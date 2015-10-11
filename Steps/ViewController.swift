@@ -42,9 +42,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        stackView.alpha = 0.0
-        headerView.alpha = 0.0
-        
         let types: Set<HKObjectType> = [HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!]
         healthStore.requestAuthorizationToShareTypes(nil, readTypes: types) { (authorized, error) -> Void in
             
@@ -70,10 +67,15 @@ class ViewController: UIViewController {
             dayViews.append(dayView)
         }
         
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
         fetchStepCounts()
     }
     
-    private func updateTodayStepCount(count: Int) {
+    private func updateTodayStepCount() {
+        guard let count = self.stepCounts.first?.count else { return }
+        
         let countString = numberFormatter.stringFromNumber(count)
         countLabel.text = countString
         
@@ -90,16 +92,35 @@ class ViewController: UIViewController {
         }
     }
     
-    private func layoutChart() {
+    private func layoutChart(animated animated: Bool = false) {
         for (index, stepCount) in stepCounts.enumerate() {
             let dayView = dayViews[index]
             dayView.dayLabel.text = stepCount.dayName
             dayView.countLabel.text = self.numberFormatter.stringFromNumber(stepCount.count)
-            dayView.barScale = CGFloat(stepCount.count) / CGFloat(self.maxStepCount)
+            let barScale = CGFloat(stepCount.count) / CGFloat(self.maxStepCount)
+            dayView.setBarScale(barScale, animated: true)
         }
     }
     
+    private func resetStepCounts() {
+        stepCounts = [StepCount]()
+        let calendar = NSCalendar.currentCalendar()
+        var lastDate = NSDate()
+        for _ in 0..<8 {
+            if let date = calendar.nextDateAfterDate(lastDate, matchingHour: 0, minute: 0, second: 0, options: [.MatchStrictly, .SearchBackwards]) {
+                lastDate = date
+                let stepCount = StepCount(startingDate: date, dayName: dateFormatter.stringFromDate(date))
+                stepCounts.append(stepCount)
+            }
+        }
+        self.layoutChart(animated: false)
+        self.updateTodayStepCount()
+    }
+    
     private func fetchStepCounts() {
+        
+        self.resetStepCounts()
+        
         let calendar = NSCalendar.currentCalendar()
         guard let quantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount),
             anchorDate = calendar.nextDateAfterDate(NSDate(), matchingHour: 0, minute: 0, second: 0, options: [.MatchStrictly, .SearchBackwards] as NSCalendarOptions) else { return }
@@ -108,37 +129,32 @@ class ViewController: UIViewController {
         intervalComponents.day = 1
         
         let query = HKStatisticsCollectionQuery(quantityType: quantityType, quantitySamplePredicate: nil, options: .CumulativeSum, anchorDate: anchorDate, intervalComponents: intervalComponents)
+        
         query.initialResultsHandler = { query, statisticsCollection, error in
+            
             if let error = error {
                 print(error)
+                return
             }
             
-            guard let statisticsCollection = statisticsCollection,
-                startDate = calendar.dateByAddingUnit(.Day, value: -7, toDate: anchorDate, options: []),
-                endDate = calendar.nextDateAfterDate(NSDate(), matchingHour: 23, minute: 59, second: 59, options: [.MatchStrictly]) else { return }
+            guard let statisticsCollection = statisticsCollection else { return }
             
-            var index = 7
-            
-            statisticsCollection.enumerateStatisticsFromDate(startDate, toDate: endDate) { statistics, stop in
-                guard let sumQuantity = statistics.sumQuantity() else { return }
-                let sum = Int(round(sumQuantity.doubleValueForUnit(HKUnit.countUnit())))
-                let dayName = self.dateFormatter.stringFromDate(statistics.startDate)
-                
-                let stepCount = StepCount(dayName: dayName, count: sum)
-                self.stepCounts.insert(stepCount, atIndex: 0)
-            
-                if sum > self.maxStepCount { self.maxStepCount = sum }
-                
-                print(index)
-                if index == 0 {
-                    Async.main {
-                        self.updateTodayStepCount(sum)
-                        self.layoutChart()
-                        return
+            for (index, stepCount) in self.stepCounts.enumerate() {
+                if let statistics = statisticsCollection.statisticsForDate(stepCount.startingDate), sumQuantity = statistics.sumQuantity() {
+                    let sum = Int(floor(sumQuantity.doubleValueForUnit(HKUnit.countUnit())))
+                    stepCount.count = sum
+                    
+                    if sum > self.maxStepCount {
+                        self.maxStepCount = sum
                     }
                 }
                 
-                index--
+                if index == self.stepCounts.count - 1 {
+                    Async.main {
+                        self.updateTodayStepCount()
+                        self.layoutChart(animated: true)
+                    }
+                }
             }
         }
         
@@ -146,7 +162,8 @@ class ViewController: UIViewController {
             statisticsCollection?.enumerateStatisticsFromDate(calendar.nextDateAfterDate(NSDate(), matchingHour: 0, minute: 0, second: 0, options: [.MatchStrictly, .SearchBackwards])!, toDate: NSDate()) { statistics, stop in
                 guard let sumQuantity = statistics.sumQuantity() else { return }
                 Async.main {
-                    self.updateTodayStepCount(Int(round(sumQuantity.doubleValueForUnit(HKUnit.countUnit()))))
+                    self.stepCounts.first?.count = Int(floor(sumQuantity.doubleValueForUnit(HKUnit.countUnit())))
+                    self.updateTodayStepCount()
                 }
             }
         }
@@ -156,5 +173,11 @@ class ViewController: UIViewController {
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+}
+
+extension Array {
+    subscript (safe index: Int) -> Element? {
+        return indices ~= index ? self[index] : nil
     }
 }

@@ -8,7 +8,18 @@
 
 import Foundation
 
-struct StepCount {
+class StepCount: NSObject {
+    let startingDate: NSDate
     let dayName: String
     var count: Int = 0
+    
+    init(startingDate: NSDate, dayName: String, stepCount count: Int = 0) {
+        self.startingDate = startingDate
+        self.dayName = dayName
+        self.count = count
+    }
+    
+    override var description: String {
+        return "StepCount: \(count) on " + dayName + " \(startingDate)"
+    }
 }

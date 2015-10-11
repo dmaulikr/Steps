@@ -31,7 +31,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f3-YD-Ugm">
-                                <rect key="frame" x="0.0" y="20" width="600" height="184.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="184.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzl-eZ-bXW">
                                         <rect key="frame" x="269" y="123.5" width="63.5" height="29"/>
@@ -64,7 +64,7 @@
                             <constraint firstAttribute="trailing" secondItem="3f3-YD-Ugm" secondAttribute="trailing" id="67Y-Zj-00J"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Nhc-sS-wB6" secondAttribute="bottom" id="JVY-KO-X9N"/>
                             <constraint firstItem="Nhc-sS-wB6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Mbp-v6-qfi"/>
-                            <constraint firstItem="3f3-YD-Ugm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="TP9-aN-LWE"/>
+                            <constraint firstItem="3f3-YD-Ugm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="TP9-aN-LWE"/>
                             <constraint firstItem="3f3-YD-Ugm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XJz-KU-4N8"/>
                             <constraint firstAttribute="trailing" secondItem="Nhc-sS-wB6" secondAttribute="trailing" id="e5I-Q6-akm"/>
                             <constraint firstItem="Nhc-sS-wB6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="zaW-iD-qAw"/>

@@ -1,5 +1,5 @@
 framework module BRYXGradientView {
-  umbrella header "BRYXGradientView-umbrella.h"
+  umbrella header "BRYXGradientView.h"
 
   export *
   module * { export * }
