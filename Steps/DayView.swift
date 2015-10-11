@@ -29,7 +29,7 @@ class DayView: UIView {
                 relatedBy: .Equal,
                 toItem: self,
                 attribute: .Width,
-                multiplier: max(barScale, 0.02),
+                multiplier: barScale,
                 constant: 1.0)
             addConstraint(barWidthConstraint)
             
@@ -55,15 +55,5 @@ class DayView: UIView {
         view.backgroundColor = UIColor.clearColor()
         view.barScale = 0.0
         return view
-    }
-    
-    func setBarScale(barScale: CGFloat, animated: Bool) {
-        if animated {
-            UIView.animateWithDuration(0.88, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: [], animations: {
-                self.barScale = barScale
-            }, completion: nil)
-        } else {
-            self.barScale = barScale
-        }
     }
 }

@@ -94,27 +94,32 @@ class ViewController: UIViewController {
         let countString = numberFormatter.stringFromNumber(count)
         countLabel.text = countString
         
-        stepCounts[0].count = count
-        
         guard let dayView = dayViews.first else { return }
         
         dayView.countLabel.text = countString
         if count > maxStepCount {
             maxStepCount = count
-            layoutChart()
-        } else {
-            dayView.barScale = CGFloat(count) / CGFloat(maxStepCount)
         }
+        
+        updateBarAtIndex(0, animated: true)
     }
     
     private func layoutChart(animated animated: Bool = false) {
-        for (index, stepCount) in stepCounts.enumerate() {
-            let dayView = dayViews[index]
-            dayView.dayLabel.text = stepCount.dayName
-            dayView.countLabel.text = self.numberFormatter.stringFromNumber(stepCount.count)
-            let barScale = CGFloat(stepCount.count) / CGFloat(self.maxStepCount)
-            dayView.setBarScale(barScale, animated: true)
+        for index in 0..<stepCounts.count {
+            updateBarAtIndex(index, animated: animated)
         }
+    }
+    
+    private func updateBarAtIndex(index: Int, animated: Bool) {
+        guard let stepCount = stepCounts[safe: index], dayView = dayViews[safe: index] else { return }
+        
+        dayView.dayLabel.text = stepCount.dayName
+        dayView.countLabel.text = self.numberFormatter.stringFromNumber(stepCount.count)
+        
+        let duration = animated ? 0.88 : 0.0
+        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: [.BeginFromCurrentState], animations: {
+            dayView.barScale = CGFloat(stepCount.count) / CGFloat(self.maxStepCount)
+        }, completion: nil)
     }
     
     private func resetStepCounts() {
