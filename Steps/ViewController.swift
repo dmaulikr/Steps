@@ -42,6 +42,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let topColor = UIColor(red: 29.0/255.0, green: 97.0/255.0, blue: 240.0/255.0, alpha: 1.0)
+        let bottomColor = UIColor(red: 25.0/255.0, green: 213.0/255.0, blue: 253.0/255.0, alpha: 1.0)
+        let gradientView = GradientView(topColor: topColor, bottomColor: bottomColor)
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(gradientView, atIndex: 0)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[gradientView]|",
+            options: .DirectionLeadingToTrailing,
+            metrics: nil,
+            views: ["gradientView" : gradientView])
+        )
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[gradientView]|",
+            options: .DirectionLeadingToTrailing,
+            metrics: nil,
+            views: ["gradientView" : gradientView])
+        )
+        
+        
         let types: Set<HKObjectType> = [HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!]
         healthStore.requestAuthorizationToShareTypes(nil, readTypes: types) { (authorized, error) -> Void in
             
@@ -49,8 +66,7 @@ class ViewController: UIViewController {
         
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.alwaysBounceVertical = true
-        view.addSubview(scrollView)
+        view.insertSubview(scrollView, belowSubview: headerView)
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|",
             options: .DirectionLeadingToTrailing,
             metrics: nil,
@@ -69,10 +85,16 @@ class ViewController: UIViewController {
             metrics: nil,
             views: ["stackView" : stackView, "scrollView" : scrollView])
         )
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[stackView(==scrollView)]|",
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[stackView(==scrollView@750)]|",
             options: .DirectionLeadingToTrailing,
             metrics: nil,
             views: ["stackView": stackView, "scrollView": scrollView])
+        )
+        
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[stackView(>=\(54 * 8))]|",
+            options: .DirectionLeadingToTrailing,
+            metrics: nil,
+            views: ["stackView": stackView])
         )
         
         stackView.distribution = .FillEqually
@@ -89,19 +111,18 @@ class ViewController: UIViewController {
     }
     
     private func updateTodayStepCount() {
-        guard let count = self.stepCounts.first?.count else { return }
+        guard let count = self.stepCounts.first?.count, dayView = dayViews.first else { return }
         
         let countString = numberFormatter.stringFromNumber(count)
         countLabel.text = countString
         
-        guard let dayView = dayViews.first else { return }
-        
         dayView.countLabel.text = countString
         if count > maxStepCount {
             maxStepCount = count
+            self.layoutChart()
+        } else {
+            updateBarAtIndex(0, animated: true)
         }
-        
-        updateBarAtIndex(0, animated: true)
     }
     
     private func layoutChart(animated animated: Bool = false) {
@@ -118,7 +139,7 @@ class ViewController: UIViewController {
         
         let duration = animated ? 0.88 : 0.0
         UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: [.BeginFromCurrentState], animations: {
-            dayView.barScale = CGFloat(stepCount.count) / CGFloat(self.maxStepCount)
+            dayView.barScale = max(CGFloat(stepCount.count) / CGFloat(self.maxStepCount), 0.025)
         }, completion: nil)
     }
     
