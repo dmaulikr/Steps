@@ -47,17 +47,32 @@ class ViewController: UIViewController {
             
         }
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[stackView]|",
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.alwaysBounceVertical = true
+        view.addSubview(scrollView)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|",
             options: .DirectionLeadingToTrailing,
             metrics: nil,
-            views: ["stackView" : stackView])
+            views: ["scrollView" : scrollView])
         )
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[headerView][stackView]|",
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[headerView][scrollView]|",
             options: .DirectionLeadingToTrailing,
             metrics: nil,
-            views: ["headerView": headerView, "stackView": stackView])
+            views: ["headerView": headerView, "scrollView": scrollView])
+        )
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(stackView)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[stackView(==scrollView)]|",
+            options: .DirectionLeadingToTrailing,
+            metrics: nil,
+            views: ["stackView" : stackView, "scrollView" : scrollView])
+        )
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[stackView(==scrollView)]|",
+            options: .DirectionLeadingToTrailing,
+            metrics: nil,
+            views: ["stackView": stackView, "scrollView": scrollView])
         )
         
         stackView.distribution = .FillEqually
