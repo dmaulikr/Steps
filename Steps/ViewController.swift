@@ -91,23 +91,26 @@ class ViewController: UIViewController {
             views: ["stackView": stackView, "scrollView": scrollView])
         )
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[stackView(>=\(54 * 8))]|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["stackView": stackView])
-        )
-        
         stackView.distribution = .FillEqually
         for _ in 0...7 {
             let dayView = DayView.loadFromNib()
             stackView.addArrangedSubview(dayView)
             dayViews.append(dayView)
+            
+            dayView.addConstraint(NSLayoutConstraint(item: dayView,
+                attribute: .Height,
+                relatedBy: .GreaterThanOrEqual,
+                toItem: nil,
+                attribute: .NotAnAttribute,
+                multiplier: 1.0,
+                constant: 54)
+            )
         }
         
         view.setNeedsLayout()
         view.layoutIfNeeded()
         
-        fetchStepCounts()
+        fetchHistoricalStepCounts()
     }
     
     private func updateTodayStepCount() {
@@ -119,13 +122,13 @@ class ViewController: UIViewController {
         dayView.countLabel.text = countString
         if count > maxStepCount {
             maxStepCount = count
-            self.layoutChart()
+            self.updateChart()
         } else {
             updateBarAtIndex(0, animated: true)
         }
     }
     
-    private func layoutChart(animated animated: Bool = false) {
+    private func updateChart(animated animated: Bool = false) {
         for index in 0..<stepCounts.count {
             updateBarAtIndex(index, animated: animated)
         }
@@ -154,11 +157,11 @@ class ViewController: UIViewController {
                 stepCounts.append(stepCount)
             }
         }
-        self.layoutChart(animated: false)
+        self.updateChart()
         self.updateTodayStepCount()
     }
     
-    private func fetchStepCounts() {
+    private func fetchHistoricalStepCounts() {
         
         self.resetStepCounts()
         
@@ -178,10 +181,8 @@ class ViewController: UIViewController {
                 return
             }
             
-            guard let statisticsCollection = statisticsCollection else { return }
-            
             for (index, stepCount) in self.stepCounts.enumerate() {
-                if let statistics = statisticsCollection.statisticsForDate(stepCount.startingDate), sumQuantity = statistics.sumQuantity() {
+                if let statistics = statisticsCollection?.statisticsForDate(stepCount.startingDate), sumQuantity = statistics.sumQuantity() {
                     let sum = Int(floor(sumQuantity.doubleValueForUnit(HKUnit.countUnit())))
                     stepCount.count = sum
                     
@@ -193,20 +194,24 @@ class ViewController: UIViewController {
                 if index == self.stepCounts.count - 1 {
                     Async.main {
                         self.updateTodayStepCount()
-                        self.layoutChart(animated: true)
+                        self.updateChart(animated: true)
                     }
                 }
             }
         }
         
         query.statisticsUpdateHandler = { query, statistics, statisticsCollection, error in
-            statisticsCollection?.enumerateStatisticsFromDate(calendar.nextDateAfterDate(NSDate(), matchingHour: 0, minute: 0, second: 0, options: [.MatchStrictly, .SearchBackwards])!, toDate: NSDate()) { statistics, stop in
-                guard let sumQuantity = statistics.sumQuantity() else { return }
-                Async.main {
-                    self.stepCounts.first?.count = Int(floor(sumQuantity.doubleValueForUnit(HKUnit.countUnit())))
-                    self.updateTodayStepCount()
-                }
-            }
+            guard let beginningOfToday = calendar.nextDateAfterDate(NSDate(),
+                matchingHour: 0,
+                minute: 0,
+                second: 0,
+                options: [.MatchStrictly, .SearchBackwards]),
+            statistics = statisticsCollection?.statisticsForDate(beginningOfToday),
+            sumQuantity = statistics.sumQuantity()
+            else { return }
+            
+            self.stepCounts.first?.count = Int(floor(sumQuantity.doubleValueForUnit(HKUnit.countUnit())))
+            Async.main { self.updateTodayStepCount() }
         }
         
         healthStore.executeQuery(query)
