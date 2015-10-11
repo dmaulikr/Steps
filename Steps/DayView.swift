@@ -54,6 +54,14 @@ class DayView: UIView {
         let view = UINib(nibName: "DayView", bundle: nil).instantiateWithOwner(self, options: nil).first as! DayView
         view.backgroundColor = UIColor.clearColor()
         view.barScale = 0.0
+        
+        if UIScreen.mainScreen().bounds.height >= 736 {
+            var font = view.dayLabel.font
+            font = UIFont(name: font.fontName, size: 24)
+            view.dayLabel.font = font
+            view.countLabel.font = font
+        }
+        
         return view
     }
 }
