@@ -6,27 +6,27 @@
 	<dict>
 		<key>Headers/Async-Swift.h</key>
 		<data>
-		5rKbju6NYpoOkx95zLvq4dg8gTw=
+		WD8wJy8UMVJzEhtFzo28USwikYw=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		kVKlbBO1ixJs3hFTv3rzAU9p3lc=
+		eYcR+HXbGHi3qSxf/y1/JGcPIPM=
 		</data>
 		<key>Modules/Async.swiftmodule/arm.swiftdoc</key>
 		<data>
-		HIe9rslvMl5sE1j54SnBv5Ih9Qo=
+		MfK7nIniWJqrEbM+DK9qmadSAi0=
 		</data>
 		<key>Modules/Async.swiftmodule/arm.swiftmodule</key>
 		<data>
-		LpLeA4EuHjZA0uDWlk8Gl/L6P/4=
+		hVZDf4RKqC1CeV+mO5+Lee0Qc0I=
 		</data>
 		<key>Modules/Async.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		vKDJf9IjKDcJG4yK4810WN5oDn0=
+		i4Yyat4Oh1LUaouy98VJOoSJUqE=
 		</data>
 		<key>Modules/Async.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		5eDaHIxdiMOtXoMiVgkO95pzvEI=
+		4sNuuVFj+GpKxVo0ae+QxHYWKFk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -37,23 +37,23 @@
 	<dict>
 		<key>Headers/Async-Swift.h</key>
 		<data>
-		5rKbju6NYpoOkx95zLvq4dg8gTw=
+		WD8wJy8UMVJzEhtFzo28USwikYw=
 		</data>
 		<key>Modules/Async.swiftmodule/arm.swiftdoc</key>
 		<data>
-		HIe9rslvMl5sE1j54SnBv5Ih9Qo=
+		MfK7nIniWJqrEbM+DK9qmadSAi0=
 		</data>
 		<key>Modules/Async.swiftmodule/arm.swiftmodule</key>
 		<data>
-		LpLeA4EuHjZA0uDWlk8Gl/L6P/4=
+		hVZDf4RKqC1CeV+mO5+Lee0Qc0I=
 		</data>
 		<key>Modules/Async.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		vKDJf9IjKDcJG4yK4810WN5oDn0=
+		i4Yyat4Oh1LUaouy98VJOoSJUqE=
 		</data>
 		<key>Modules/Async.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		5eDaHIxdiMOtXoMiVgkO95pzvEI=
+		4sNuuVFj+GpKxVo0ae+QxHYWKFk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

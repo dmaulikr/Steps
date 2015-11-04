@@ -15,12 +15,12 @@
 		66A4EADA1BB87CA60085A07A /* Async.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EAD91BB87CA60085A07A /* Async.framework */; };
 		66A4EADC1BB87CC80085A07A /* Async.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */; };
 		66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EADE1BB87E210085A07A /* HealthKit.framework */; };
-		66A4EAEC1BB9BF950085A07A /* StepCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A4EAEB1BB9BF950085A07A /* StepCount.swift */; settings = {ASSET_TAGS = (); }; };
+		66A4EAEC1BB9BF950085A07A /* StepCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A4EAEB1BB9BF950085A07A /* StepCount.swift */; };
 		66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D27C041BB9C84F00917917 /* BRYXGradientView.framework */; };
-		66D27C071BB9C85700917917 /* BRYXGradientView.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */; settings = {ASSET_TAGS = (); }; };
+		66D27C071BB9C85700917917 /* BRYXGradientView.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */; };
 		66D27C081BB9C86500917917 /* BRYXGradientView.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */; };
-		66F765D21BB85092005E484A /* DayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F765D11BB85092005E484A /* DayView.xib */; settings = {ASSET_TAGS = (); }; };
-		66F765D41BB85F34005E484A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F765D31BB85F34005E484A /* DayView.swift */; settings = {ASSET_TAGS = (); }; };
+		66F765D21BB85092005E484A /* DayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F765D11BB85092005E484A /* DayView.xib */; };
+		66F765D41BB85F34005E484A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F765D31BB85F34005E484A /* DayView.swift */; };
 		66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F765D51BB864AD005E484A /* OAStackView.framework */; };
 		66F765DD1BB86551005E484A /* OAStackView.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */; };
 /* End PBXBuildFile section */

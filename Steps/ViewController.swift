@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import iAd
 import HealthKit
 import OAStackView
 import Async
 import BRYXGradientView
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ADBannerViewDelegate {
 
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var countLabel: UILabel!
     
+    private let scrollView = UIScrollView()
     private let stackView = OAStackView()
     private var dayViews = [DayView]()
     
@@ -24,7 +26,6 @@ class ViewController: UIViewController {
     
     private var stepCounts = [StepCount]()
     private var maxStepCount: Int = 1
-    var todayStepsTimer: NSTimer!
     
     private let numberFormatter: NSNumberFormatter = {
         let numberFormatter = NSNumberFormatter()
@@ -33,14 +34,22 @@ class ViewController: UIViewController {
         numberFormatter.usesGroupingSeparator = true
         return numberFormatter
     }()
-    private let dateFormatter: NSDateFormatter = {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        return dateFormatter
-    }()
+    
+    private let bannerAdView = ADBannerView()
+    private var bannerAdConstraints = [NSLayoutConstraint]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bannerAdView.delegate = self
+        bannerAdView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerAdView)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[adView]|",
+            options: .DirectionLeadingToTrailing,
+            metrics: nil,
+            views: ["adView" : bannerAdView])
+        )
+        setBannerAdHidden(true)
         
         let topColor = UIColor(red: 29.0/255.0, green: 97.0/255.0, blue: 240.0/255.0, alpha: 1.0)
         let bottomColor = UIColor(red: 25.0/255.0, green: 213.0/255.0, blue: 253.0/255.0, alpha: 1.0)
@@ -64,7 +73,7 @@ class ViewController: UIViewController {
             
         }
         
-        let scrollView = UIScrollView()
+        scrollView.indicatorStyle = .White
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.insertSubview(scrollView, belowSubview: headerView)
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|",
@@ -72,7 +81,7 @@ class ViewController: UIViewController {
             metrics: nil,
             views: ["scrollView" : scrollView])
         )
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[headerView][scrollView]|",
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[headerView][scrollView]-(0@750)-|",
             options: .DirectionLeadingToTrailing,
             metrics: nil,
             views: ["headerView": headerView, "scrollView": scrollView])
@@ -110,16 +119,20 @@ class ViewController: UIViewController {
         view.setNeedsLayout()
         view.layoutIfNeeded()
         
-        fetchHistoricalStepCounts()
+        fetchHistoricalStepData()
         
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "timeDidChangeSignificantly",
             name: AppDelegate.significantTimeChangeNotificationName,
             object: nil)
+        
+        
+        let timer = NSTimer(timeInterval: 2.0, target: self, selector: "testBanner", userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
     }
     
     func timeDidChangeSignificantly() {
-        fetchHistoricalStepCounts()
+        fetchHistoricalStepData()
     }
     
     private func updateTodayStepCount() {
@@ -162,7 +175,7 @@ class ViewController: UIViewController {
         for _ in 0..<8 {
             if let date = calendar.nextDateAfterDate(lastDate, matchingHour: 0, minute: 0, second: 0, options: [.MatchStrictly, .SearchBackwards]) {
                 lastDate = date
-                let stepCount = StepCount(startingDate: date, dayName: dateFormatter.stringFromDate(date))
+                let stepCount = StepCount(startingDate: date)
                 stepCounts.append(stepCount)
             }
         }
@@ -170,69 +183,130 @@ class ViewController: UIViewController {
         self.updateTodayStepCount()
     }
     
-    private func fetchHistoricalStepCounts() {
-        
+    private func fetchHistoricalStepData() {
         self.resetStepCounts()
         
-        let calendar = NSCalendar.currentCalendar()
-        guard let quantityType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount),
-            anchorDate = calendar.nextDateAfterDate(NSDate(),
-                matchingHour: 0,
-                minute: 0,
-                second: 0,
-                options: [.MatchStrictly] as NSCalendarOptions)
-        else { return }
         
-        let intervalComponents = NSDateComponents()
-        intervalComponents.day = 1
-        
-        let query = HKStatisticsCollectionQuery(quantityType: quantityType, quantitySamplePredicate: nil, options: .CumulativeSum, anchorDate: anchorDate, intervalComponents: intervalComponents)
-        
-        query.initialResultsHandler = { query, statisticsCollection, error in
+        let stepCountResultsHandler: SumQuantitiesHandler = { dates, sums, error in
             
             if let error = error {
                 print(error)
-                return
             }
             
-            for (index, stepCount) in self.stepCounts.enumerate() {
-                if let statistics = statisticsCollection?.statisticsForDate(stepCount.startingDate), sumQuantity = statistics.sumQuantity() {
-                    let sum = Int(floor(sumQuantity.doubleValueForUnit(HKUnit.countUnit())))
-                    stepCount.count = sum
-                    
-                    if sum > self.maxStepCount {
-                        self.maxStepCount = sum
-                    }
-                }
-                
-                if index == self.stepCounts.count - 1 {
-                    Async.main {
-                        self.updateTodayStepCount()
-                        self.updateChart(animated: true)
-                    }
-                }
+            let integerSums = sums.map { Int(floor($0)) }
+            self.maxStepCount = integerSums.maxElement() ?? 0
+            print(self.maxStepCount)
+            
+            for (index, sum) in integerSums.enumerate() {
+                self.stepCounts[safe: index]?.count = sum
+            }
+            
+            Async.main {
+                self.updateChart(animated: true)
             }
         }
         
-        query.statisticsUpdateHandler = { query, statistics, statisticsCollection, error in
-            guard let beginningOfToday = calendar.nextDateAfterDate(NSDate(),
-                matchingHour: 0,
-                minute: 0,
-                second: 0,
-                options: [.MatchStrictly, .SearchBackwards]),
-            statistics = statisticsCollection?.statisticsForDate(beginningOfToday),
-            sumQuantity = statistics.sumQuantity()
-            else { return }
-            
-            self.stepCounts.first?.count = Int(floor(sumQuantity.doubleValueForUnit(HKUnit.countUnit())))
-            Async.main { self.updateTodayStepCount() }
-        }
-        
-        healthStore.executeQuery(query)
+        let dates = stepCounts.map { $0.startingDate }
+        sumQuantitiesForDates(dates,
+            quantityType: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!,
+            unit: HKUnit.countUnit(),
+            resultsHandler: stepCountResultsHandler,
+            updateHandler: nil)
     }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
+    }
+    
+    typealias SumQuantitiesHandler = ([NSDate], [Double], NSError?) -> ()
+    func sumQuantitiesForDates(dates: [NSDate], quantityType: HKQuantityType, unit: HKUnit, resultsHandler: SumQuantitiesHandler?, updateHandler: SumQuantitiesHandler?) {
+        
+        let anchorDate = NSCalendar.currentCalendar().nextDateAfterDate(NSDate(),
+            matchingHour: 0,
+            minute: 0,
+            second: 0,
+            options: [.MatchStrictly] as NSCalendarOptions)!
+        
+        let intervalComponents = NSDateComponents()
+        intervalComponents.day = 1
+        
+        let query = HKStatisticsCollectionQuery(quantityType: quantityType,
+            quantitySamplePredicate: nil,
+            options: .CumulativeSum,
+            anchorDate: anchorDate,
+            intervalComponents: intervalComponents)
+        
+        let sumStatistics: (HKStatisticsCollection?) -> [Double] = { statisticsCollection in
+            
+            var sums = [Double](count: dates.count, repeatedValue: 0.0)
+            
+            for (index, date) in dates.enumerate() {
+                if let statistics = statisticsCollection?.statisticsForDate(date),
+                    sumQuantity = statistics.sumQuantity() {
+                        
+                    let sum = sumQuantity.doubleValueForUnit(unit)
+                    sums[index] = sum
+                }
+            }
+        
+            return sums
+        }
+        
+        if let resultsHandler = resultsHandler {
+            query.initialResultsHandler = { query, statisticsCollection, error in
+                resultsHandler(dates, sumStatistics(statisticsCollection), error)
+            }
+        }
+        
+        if let updateHandler = updateHandler {
+            query.statisticsUpdateHandler = { query, statistics, statisticsCollection, error in
+                updateHandler(dates, sumStatistics(statisticsCollection), error)
+            }
+        }
+    
+        healthStore.executeQuery(query)
+    }
+    
+    // iAd delegate functions
+    private var bannerHidden = false
+    func setBannerAdHidden(hidden: Bool, animated: Bool = false) {
+        
+        if bannerHidden == hidden { return }
+        
+        view.removeConstraints(bannerAdConstraints)
+        var constraints = [NSLayoutConstraint]()
+        if hidden {
+            constraints.append(NSLayoutConstraint(item: bannerAdView,
+                attribute: .Top,
+                relatedBy: .Equal,
+                toItem: view,
+                attribute: .Bottom,
+                multiplier: 1.0,
+                constant: 0.0))
+        } else {
+            constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:[scrollView][adView]|",
+                options: .DirectionLeadingToTrailing,
+                metrics: nil,
+                views: ["scrollView" : scrollView,
+                    "adView" : bannerAdView]
+            )
+        }
+        bannerAdConstraints = constraints
+        view.addConstraints(bannerAdConstraints)
+        view.setNeedsLayout()
+        
+        let duration = animated ? 1.0 / 3.0 : 0.0
+        UIView.animateWithDuration(duration, delay: 0.0, options: [], animations: { () -> Void in
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        setBannerAdHidden(true, animated: true)
+    }
+    
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        setBannerAdHidden(false, animated: true)
     }
 }
 

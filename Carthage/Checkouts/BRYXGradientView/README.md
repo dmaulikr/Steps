@@ -1,5 +1,7 @@
 # BRYXGradientView
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 A lightweight gradient view for iOS 7+, written in Swift, with support for Auto Layout and Interface Builder.
 
 ## Usage
@@ -28,9 +30,11 @@ Then change the colors in the Attributes inspector:
 
 ![Attributes inspector](https://cloud.githubusercontent.com/assets/1874785/10002010/bf41f130-6072-11e5-92e1-9c5074a52568.png)
 
-
 ## Requirements
-Demo project requires iOS 8+, though BRYXGradientView works on iOS 7+.
+Demo project requires iOS 8+, though BRYXGradientView works on iOS 7+
+
+## Installation
+BRYXGradientView is available through CocoaPods and Carthage.
 
 ## Author
 Adam Binsz, adam@adambinsz.com

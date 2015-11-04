@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/BRYXGradientView-Swift.h</key>
 		<data>
-		6ZgBe1r0FfQC52CluLO6KXc2c6k=
+		YywC9zRmI7yf+Wwp1JgaCLNYX3E=
 		</data>
 		<key>Headers/BRYXGradientView.h</key>
 		<data>
@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		I2tWpQ1nL7OfkPEgd5YSjLGYRwk=
+		VIwkcUsoO2RQ9insIEY7abXvbP8=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm.swiftdoc</key>
 		<data>
-		G40ZKxZeGbDiufsVP/4VgPLgqGY=
+		RRDNq0tUb7M7c95GGWWFttVIe4s=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm.swiftmodule</key>
 		<data>
-		Dc4cKVciKsHjefVVMWhbC3b0OAQ=
+		8awvQYFRzipA4rv3sEOABeumtEU=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		Fq4/GBaJtuC5ZnCk+gF/L2KS1cY=
+		OIL/fl+TK7QMtYsLXTduPlOg4GI=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		F7zGlGSzBjonZE+tN8a1jHdlcSU=
+		Axdx89y3oD1uBeY3mYfXNVAFv8c=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -41,7 +41,7 @@
 	<dict>
 		<key>Headers/BRYXGradientView-Swift.h</key>
 		<data>
-		6ZgBe1r0FfQC52CluLO6KXc2c6k=
+		YywC9zRmI7yf+Wwp1JgaCLNYX3E=
 		</data>
 		<key>Headers/BRYXGradientView.h</key>
 		<data>
@@ -49,19 +49,19 @@
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm.swiftdoc</key>
 		<data>
-		G40ZKxZeGbDiufsVP/4VgPLgqGY=
+		RRDNq0tUb7M7c95GGWWFttVIe4s=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm.swiftmodule</key>
 		<data>
-		Dc4cKVciKsHjefVVMWhbC3b0OAQ=
+		8awvQYFRzipA4rv3sEOABeumtEU=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		Fq4/GBaJtuC5ZnCk+gF/L2KS1cY=
+		OIL/fl+TK7QMtYsLXTduPlOg4GI=
 		</data>
 		<key>Modules/BRYXGradientView.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		F7zGlGSzBjonZE+tN8a1jHdlcSU=
+		Axdx89y3oD1uBeY3mYfXNVAFv8c=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

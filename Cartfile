@@ -1,3 +1,3 @@
 github "oarrabi/OAStackView"
-github "duemunk/Async"
+github "duemunk/Async" "feature/Swift_2.1"
 github "bryx-inc/BRYXGradientView" "master"

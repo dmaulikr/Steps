@@ -7,19 +7,35 @@
 //
 
 import Foundation
+import HealthKit
 
-class StepCount: NSObject {
-    let startingDate: NSDate
-    let dayName: String
-    var count: Int = 0
+class StepCount: CustomStringConvertible, CustomDebugStringConvertible {
     
-    init(startingDate: NSDate, dayName: String, stepCount count: Int = 0) {
-        self.startingDate = startingDate
-        self.dayName = dayName
-        self.count = count
+    private static let dateFormatter: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter
+    }()
+    
+    let startingDate: NSDate
+    var dayName: String {
+        return StepCount.dateFormatter.stringFromDate(startingDate)
     }
     
-    override var description: String {
-        return "StepCount: \(count) on " + dayName + " \(startingDate)"
+    var count: Int = 0
+    var distance: HKQuantity
+    
+    init(startingDate: NSDate, stepCount count: Int = 0, distance: HKQuantity = HKQuantity(unit: HKUnit.meterUnit(), doubleValue: 0)) {
+        self.startingDate = startingDate
+        self.count = count
+        self.distance = distance
+    }
+    
+    var description: String {
+        return "\(count) steps on " + dayName
+    }
+    
+    var debugDescription: String {
+        return "StepCount: \(count) steps on " + dayName + ", \(startingDate)"
     }
 }
