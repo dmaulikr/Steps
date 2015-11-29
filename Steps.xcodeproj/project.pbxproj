@@ -71,7 +71,7 @@
 		66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Async.framework.dSYM; path = Carthage/Build/iOS/Async.framework.dSYM; sourceTree = "<group>"; };
 		66A4EADD1BB87E210085A07A /* Steps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Steps.entitlements; sourceTree = "<group>"; };
 		66A4EADE1BB87E210085A07A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		66B9CBB21BEEC00A00A16E6D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		66D27C041BB9C84F00917917 /* BRYXGradientView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXGradientView.framework; path = Carthage/Build/iOS/BRYXGradientView.framework; sourceTree = "<group>"; };
 		66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = BRYXGradientView.framework.dSYM; path = Carthage/Build/iOS/BRYXGradientView.framework.dSYM; sourceTree = "<group>"; };
@@ -99,10 +99,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		660509651C0BA1AC00012C7F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */,
+				663CF0901BB111C000C0C630 /* Main.storyboard */,
+				66F765D11BB85092005E484A /* DayView.xib */,
+				66F765D31BB85F34005E484A /* DayView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		660509661C0BA1BF00012C7F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				66A4EADD1BB87E210085A07A /* Steps.entitlements */,
+				66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */,
+				663CF0931BB111C000C0C630 /* Assets.xcassets */,
+				663CF0981BB111C000C0C630 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		663CF0801BB111C000C0C630 = {
 			isa = PBXGroup;
 			children = (
-				66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */,
 				663CF08B1BB111C000C0C630 /* Steps */,
 				66F765D71BB864BC005E484A /* Frameworks */,
 				663CF08A1BB111C000C0C630 /* Products */,
@@ -120,20 +141,15 @@
 		663CF08B1BB111C000C0C630 /* Steps */ = {
 			isa = PBXGroup;
 			children = (
-				66A4EADD1BB87E210085A07A /* Steps.entitlements */,
 				663CF08C1BB111C000C0C630 /* AppDelegate.swift */,
 				663CF08E1BB111C000C0C630 /* ViewController.swift */,
 				6689529E1BF1A33100A83654 /* PermissionViewController.swift */,
-				663CF0901BB111C000C0C630 /* Main.storyboard */,
-				66F765D11BB85092005E484A /* DayView.xib */,
-				66F765D31BB85F34005E484A /* DayView.swift */,
 				66B9CBB21BEEC00A00A16E6D /* Settings.swift */,
-				6634D03F1BF7F73E00127F4C /* Extensions.swift */,
 				660509531C0AA3B100012C7F /* Store.swift */,
 				660509631C0BA17700012C7F /* Step.swift */,
-				663CF0931BB111C000C0C630 /* Assets.xcassets */,
-				663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */,
-				663CF0981BB111C000C0C630 /* Info.plist */,
+				6634D03F1BF7F73E00127F4C /* Extensions.swift */,
+				660509651C0BA1AC00012C7F /* Views */,
+				660509661C0BA1BF00012C7F /* Supporting Files */,
 			);
 			path = Steps;
 			sourceTree = "<group>";
