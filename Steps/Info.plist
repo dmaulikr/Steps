@@ -37,5 +37,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Steps needs permission to read step counts from your iPhone. Tap ‘All Categories On’ then ‘Allow’ above.</string>
 </dict>
 </plist>

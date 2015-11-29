@@ -13,99 +13,145 @@ import OAStackView
 import Async
 import BRYXGradientView
 
-class ViewController: UIViewController, ADBannerViewDelegate {
+class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
 
+    @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var stackView: OAStackView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
-    private let scrollView = UIScrollView()
-    private let stackView = OAStackView()
     private var dayViews = [DayView]()
     
-    private let healthStore = HKHealthStore()
+    private var store = Store()
     
-    private var stepCounts = [StepCount]()
-    private var maxStepCount: Int = 1
+    private let dateFormatter: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter
+    }()
     
-    private let numberFormatter: NSNumberFormatter = {
+    private let stepCountFormatter: NSNumberFormatter = {
         let numberFormatter = NSNumberFormatter()
         numberFormatter.locale = NSLocale.currentLocale()
         numberFormatter.numberStyle = .DecimalStyle
         numberFormatter.usesGroupingSeparator = true
+        numberFormatter.maximumFractionDigits = 0
+        numberFormatter.minimumFractionDigits = 0
         return numberFormatter
     }()
     
-    private let bannerAdView = ADBannerView()
-    private var bannerAdConstraints = [NSLayoutConstraint]()
+    private let distanceFormatter: NSNumberFormatter = {
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.locale = NSLocale.currentLocale()
+        numberFormatter.numberStyle = .DecimalStyle
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.minimumFractionDigits = 2
+        numberFormatter.maximumFractionDigits = 2
+        return numberFormatter
+    }()
+    
+
+    private var showDistances: Bool {
+        get {
+            return self.segmentedControl.selectedSegmentIndex > 0
+        }
+    }
+
+    @IBOutlet weak var adView: ADBannerView!
+    @IBOutlet weak var showAdConstraint: NSLayoutConstraint!
+    @IBOutlet weak var hideAdConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        bannerAdView.delegate = self
-        bannerAdView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bannerAdView)
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[adView]|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["adView" : bannerAdView])
-        )
-        setBannerAdHidden(true)
+        segmentedControl.alpha = 0.0
         
-        let topColor = UIColor(red: 29.0/255.0, green: 97.0/255.0, blue: 240.0/255.0, alpha: 1.0)
-        let bottomColor = UIColor(red: 25.0/255.0, green: 213.0/255.0, blue: 253.0/255.0, alpha: 1.0)
-        let gradientView = GradientView(topColor: topColor, bottomColor: bottomColor)
-        gradientView.translatesAutoresizingMaskIntoConstraints = false
-        view.insertSubview(gradientView, atIndex: 0)
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[gradientView]|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["gradientView" : gradientView])
-        )
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[gradientView]|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["gradientView" : gradientView])
-        )
+        store.registerObserver(self)
         
+        gradientView.topColor = UIColor(red: 29.0/255.0, green: 97.0/255.0, blue: 240.0/255.0, alpha: 1.0)
+        gradientView.bottomColor = UIColor(red: 25.0/255.0, green: 213.0/255.0, blue: 253.0/255.0, alpha: 1.0)
         
-        let types: Set<HKObjectType> = [HKSampleType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!]
-        healthStore.requestAuthorizationToShareTypes(nil, readTypes: types) { (authorized, error) -> Void in
-            
-        }
-        
-        scrollView.indicatorStyle = .White
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        view.insertSubview(scrollView, belowSubview: headerView)
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["scrollView" : scrollView])
-        )
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[headerView][scrollView]-(0@750)-|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["headerView": headerView, "scrollView": scrollView])
-        )
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(stackView)
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[stackView(==scrollView)]|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["stackView" : stackView, "scrollView" : scrollView])
-        )
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[stackView(==scrollView@750)]|",
-            options: .DirectionLeadingToTrailing,
-            metrics: nil,
-            views: ["stackView": stackView, "scrollView": scrollView])
-        )
+        segmentedControl.setTitle(Settings.useMetric ? "km" : "mi", forSegmentAtIndex: 1)
         
         stackView.distribution = .FillEqually
-        for _ in 0...7 {
+        
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "userDefaultsDidChange",
+            name: NSUserDefaultsDidChangeNotification,
+            object: nil)
+    
+        for direction in [.Left, .Right] as [UISwipeGestureRecognizerDirection] {
+            let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "viewSwiped:")
+            swipeGestureRecognizer.direction = direction
+            view.addGestureRecognizer(swipeGestureRecognizer)
+        }
+        
+//        let timer = NSTimer(timeInterval: 5.0, target: self, selector: "testAd", userInfo: nil, repeats: true)
+//        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        store.fetchSteps()
+        
+        if Store.authorizationStatusForType(HKQuantityType.stepCount) == .NotDetermined && self.presentedViewController == nil {
+            showPermissionViewController()
+        }
+    }
+    
+    func showPermissionViewController() {
+        let permissionViewController = PermissionViewController.loadFromStoryboard()
+        permissionViewController.modalTransitionStyle = .CrossDissolve
+        presentViewController(permissionViewController, animated: true, completion: nil)
+    }
+    
+    func viewSwiped(gestureRecognizer: UISwipeGestureRecognizer) {
+        var index = segmentedControl.selectedSegmentIndex
+        switch gestureRecognizer.direction {
+        case UISwipeGestureRecognizerDirection.Left:
+           index -= 1
+        case UISwipeGestureRecognizerDirection.Right:
+           index += 1
+        default:
+            break
+        }
+        
+        if index < 0 || index >= segmentedControl.numberOfSegments { return }
+        segmentedControl.selectedSegmentIndex = index
+        self.unitSegmentedControlValueChanged(segmentedControl)
+    }
+    
+    func testAd() {
+        setBannerAdHidden(!bannerHidden, animated: true)
+    }
+    
+    private func updateTodayLabel() {
+        guard let firstStepCount = store.steps?.first else { return }
+        
+        let countString = self.showDistances ? distanceFormatter.stringFromNumber(firstStepCount.distanceInPreferredUnit ?? 0) : stepCountFormatter.stringFromNumber(firstStepCount.count ?? 0)
+        countLabel.text = countString
+    }
+    
+    private var updatingChart = false
+    private func updateChart(animated animated: Bool = false) {
+        guard let stepCounts = store.steps where !updatingChart else { return }
+        segmentedControl.alpha = 1.0
+        updatingChart = true
+        
+        if dayViews.count < stepCounts.count {
+            layoutChart(stepCounts.count)
+        }
+        
+        for index in 0..<stepCounts.count {
+            updateBarAtIndex(index, animated: animated)
+        }
+        updatingChart = false
+    }
+    
+    private func layoutChart(numberOfEntries: Int) {
+        while dayViews.count < numberOfEntries {
             let dayView = DayView.loadFromNib()
-            stackView.addArrangedSubview(dayView)
-            dayViews.append(dayView)
-            
             dayView.addConstraint(NSLayoutConstraint(item: dayView,
                 attribute: .Height,
                 relatedBy: .GreaterThanOrEqual,
@@ -114,189 +160,64 @@ class ViewController: UIViewController, ADBannerViewDelegate {
                 multiplier: 1.0,
                 constant: 54)
             )
+            
+            stackView.addArrangedSubview(dayView)
+            dayViews.append(dayView)
         }
         
         view.setNeedsLayout()
         view.layoutIfNeeded()
-        
-        fetchHistoricalStepData()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "timeDidChangeSignificantly",
-            name: AppDelegate.significantTimeChangeNotificationName,
-            object: nil)
-        
-        
-        let timer = NSTimer(timeInterval: 2.0, target: self, selector: "testBanner", userInfo: nil, repeats: true)
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
-    }
-    
-    func timeDidChangeSignificantly() {
-        fetchHistoricalStepData()
-    }
-    
-    private func updateTodayStepCount() {
-        guard let count = self.stepCounts.first?.count, dayView = dayViews.first else { return }
-        
-        let countString = numberFormatter.stringFromNumber(count)
-        countLabel.text = countString
-        
-        dayView.countLabel.text = countString
-        if count > maxStepCount {
-            maxStepCount = count
-            self.updateChart()
-        } else {
-            updateBarAtIndex(0, animated: true)
-        }
-    }
-    
-    private func updateChart(animated animated: Bool = false) {
-        for index in 0..<stepCounts.count {
-            updateBarAtIndex(index, animated: animated)
-        }
     }
     
     private func updateBarAtIndex(index: Int, animated: Bool) {
-        guard let stepCount = stepCounts[safe: index], dayView = dayViews[safe: index] else { return }
+        guard let stepCounts = store.steps,
+            stepCount = stepCounts[safe: index],
+            dayView = dayViews[safe: index]
+            else { return }
         
-        dayView.dayLabel.text = stepCount.dayName
-        dayView.countLabel.text = self.numberFormatter.stringFromNumber(stepCount.count)
+        dayView.dayLabel.text = dateFormatter.stringFromDate(stepCount.date)
+        dayView.countLabel.text = self.showDistances ? self.distanceFormatter.stringFromNumber(stepCount.distanceInPreferredUnit ?? 0) : self.stepCountFormatter.stringFromNumber(stepCount.count ?? 0)
+        
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
         
         let duration = animated ? 0.88 : 0.0
-        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: [.BeginFromCurrentState], animations: {
-            dayView.barScale = max(CGFloat(stepCount.count) / CGFloat(self.maxStepCount), 0.015)
+        UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: [], animations: {
+            dayView.barScale = max(CGFloat(stepCount.count ??  0) / CGFloat(self.store.maxStepCount), 0.015)
         }, completion: nil)
     }
     
-    private func resetStepCounts() {
-        stepCounts = [StepCount]()
-        let calendar = NSCalendar.currentCalendar()
-        var lastDate = NSDate()
-        for _ in 0..<8 {
-            if let date = calendar.nextDateAfterDate(lastDate, matchingHour: 0, minute: 0, second: 0, options: [.MatchStrictly, .SearchBackwards]) {
-                lastDate = date
-                let stepCount = StepCount(startingDate: date)
-                stepCounts.append(stepCount)
-            }
-        }
-        self.updateChart()
-        self.updateTodayStepCount()
-    }
-    
-    private func fetchHistoricalStepData() {
-        self.resetStepCounts()
-        
-        
-        let stepCountResultsHandler: SumQuantitiesHandler = { dates, sums, error in
-            
-            if let error = error {
-                print(error)
-            }
-            
-            let integerSums = sums.map { Int(floor($0)) }
-            self.maxStepCount = integerSums.maxElement() ?? 0
-            print(self.maxStepCount)
-            
-            for (index, sum) in integerSums.enumerate() {
-                self.stepCounts[safe: index]?.count = sum
-            }
-            
-            Async.main {
-                self.updateChart(animated: true)
-            }
-        }
-        
-        let dates = stepCounts.map { $0.startingDate }
-        sumQuantitiesForDates(dates,
-            quantityType: HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!,
-            unit: HKUnit.countUnit(),
-            resultsHandler: stepCountResultsHandler,
-            updateHandler: nil)
-    }
-
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return .LightContent
     }
     
-    typealias SumQuantitiesHandler = ([NSDate], [Double], NSError?) -> ()
-    func sumQuantitiesForDates(dates: [NSDate], quantityType: HKQuantityType, unit: HKUnit, resultsHandler: SumQuantitiesHandler?, updateHandler: SumQuantitiesHandler?) {
-        
-        let anchorDate = NSCalendar.currentCalendar().nextDateAfterDate(NSDate(),
-            matchingHour: 0,
-            minute: 0,
-            second: 0,
-            options: [.MatchStrictly] as NSCalendarOptions)!
-        
-        let intervalComponents = NSDateComponents()
-        intervalComponents.day = 1
-        
-        let query = HKStatisticsCollectionQuery(quantityType: quantityType,
-            quantitySamplePredicate: nil,
-            options: .CumulativeSum,
-            anchorDate: anchorDate,
-            intervalComponents: intervalComponents)
-        
-        let sumStatistics: (HKStatisticsCollection?) -> [Double] = { statisticsCollection in
-            
-            var sums = [Double](count: dates.count, repeatedValue: 0.0)
-            
-            for (index, date) in dates.enumerate() {
-                if let statistics = statisticsCollection?.statisticsForDate(date),
-                    sumQuantity = statistics.sumQuantity() {
-                        
-                    let sum = sumQuantity.doubleValueForUnit(unit)
-                    sums[index] = sum
-                }
-            }
-        
-            return sums
-        }
-        
-        if let resultsHandler = resultsHandler {
-            query.initialResultsHandler = { query, statisticsCollection, error in
-                resultsHandler(dates, sumStatistics(statisticsCollection), error)
-            }
-        }
-        
-        if let updateHandler = updateHandler {
-            query.statisticsUpdateHandler = { query, statistics, statisticsCollection, error in
-                updateHandler(dates, sumStatistics(statisticsCollection), error)
-            }
-        }
+    @IBAction func unitSegmentedControlValueChanged(sender: UISegmentedControl) {
+        self.updateTodayLabel()
+        self.updateChart()
+    }
     
-        healthStore.executeQuery(query)
+    func userDefaultsDidChange() {
+        if showDistances {
+            self.updateTodayLabel()
+            self.updateChart()
+        }
+        
+        segmentedControl.setTitle(Settings.useMetric ? "km" : "mi", forSegmentAtIndex: 1)
     }
     
     // iAd delegate functions
-    private var bannerHidden = false
+    private var bannerHidden = true
     func setBannerAdHidden(hidden: Bool, animated: Bool = false) {
         
         if bannerHidden == hidden { return }
+        bannerHidden = hidden
         
-        view.removeConstraints(bannerAdConstraints)
-        var constraints = [NSLayoutConstraint]()
-        if hidden {
-            constraints.append(NSLayoutConstraint(item: bannerAdView,
-                attribute: .Top,
-                relatedBy: .Equal,
-                toItem: view,
-                attribute: .Bottom,
-                multiplier: 1.0,
-                constant: 0.0))
-        } else {
-            constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:[scrollView][adView]|",
-                options: .DirectionLeadingToTrailing,
-                metrics: nil,
-                views: ["scrollView" : scrollView,
-                    "adView" : bannerAdView]
-            )
-        }
-        bannerAdConstraints = constraints
-        view.addConstraints(bannerAdConstraints)
+        showAdConstraint.priority = hidden ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
+        hideAdConstraint.priority = hidden ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
         view.setNeedsLayout()
         
-        let duration = animated ? 1.0 / 3.0 : 0.0
-        UIView.animateWithDuration(duration, delay: 0.0, options: [], animations: { () -> Void in
+        let duration = animated ? 0.15 : 0.0
+        UIView.animateWithDuration(duration, delay: 0.0, options: [.BeginFromCurrentState], animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
@@ -308,10 +229,36 @@ class ViewController: UIViewController, ADBannerViewDelegate {
     func bannerViewDidLoadAd(banner: ADBannerView!) {
         setBannerAdHidden(false, animated: true)
     }
-}
-
-extension Array {
-    subscript (safe index: Int) -> Element? {
-        return indices ~= index ? self[index] : nil
+    
+    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        return true
+    }
+    
+    // MARK: - StepsStoreObserver methods
+    func storeDidUpdateType(type: HKObjectType) {
+        Async.main {
+            self.updateTodayLabel()
+            self.updateChart(animated: self.dayViews.count == 0)
+        }
+    }
+    
+    var errorShown = false
+    func storeDidFailUpdatingType(type: HKObjectType, error: NSError) {
+        if let error = (error as ErrorType) as? StoreError where error == .NoDataReturned && !errorShown {
+            errorShown = true
+            let alertController = UIAlertController(title: "Having trouble?", message: "Steps isn't receiving step counts from your iPhone. Open the Settings app, then go to Privacy > Health > Steps and turn on both ‘Steps’ and ‘Walking + Running Distance’.", preferredStyle: UIAlertControllerStyle.Alert)
+            let OKAction = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+                self.store.fetchSteps()
+            })
+            alertController.addAction(OKAction)
+            Async.main { self.presentViewController(alertController, animated: true, completion: nil) }
+        } else if error.domain == HKErrorDomain && self.presentedViewController == nil {
+            Async.main { self.showPermissionViewController() }
+        } else if store.steps != nil && dayViews.count == 0 {
+            Async.main {
+                self.updateTodayLabel()
+                self.updateChart(animated: self.dayViews.count == 0)
+            }
+        }
     }
 }

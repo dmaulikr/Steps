@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660509541C0AA3B100012C7F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660509531C0AA3B100012C7F /* Store.swift */; };
+		660509571C0ABB0B00012C7F /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660509561C0ABB0B00012C7F /* SwiftDate.framework */; };
+		660509591C0ABB1A00012C7F /* SwiftDate.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */; };
+		6605095A1C0ABB2C00012C7F /* SwiftDate.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */; };
+		6634D0401BF7F73E00127F4C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6634D03F1BF7F73E00127F4C /* Extensions.swift */; };
 		663CF08D1BB111C000C0C630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663CF08C1BB111C000C0C630 /* AppDelegate.swift */; };
 		663CF08F1BB111C000C0C630 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663CF08E1BB111C000C0C630 /* ViewController.swift */; };
 		663CF0921BB111C000C0C630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0901BB111C000C0C630 /* Main.storyboard */; };
 		663CF0941BB111C000C0C630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0931BB111C000C0C630 /* Assets.xcassets */; };
 		663CF0971BB111C000C0C630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */; };
+		6689529F1BF1A33100A83654 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689529E1BF1A33100A83654 /* PermissionViewController.swift */; };
 		66A4EADA1BB87CA60085A07A /* Async.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EAD91BB87CA60085A07A /* Async.framework */; };
 		66A4EADC1BB87CC80085A07A /* Async.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */; };
 		66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EADE1BB87E210085A07A /* HealthKit.framework */; };
-		66A4EAEC1BB9BF950085A07A /* StepCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A4EAEB1BB9BF950085A07A /* StepCount.swift */; };
+		66B9CBB11BEEBE2C00A16E6D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */; };
+		66B9CBB31BEEC00A00A16E6D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B9CBB21BEEC00A00A16E6D /* Settings.swift */; };
 		66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D27C041BB9C84F00917917 /* BRYXGradientView.framework */; };
 		66D27C071BB9C85700917917 /* BRYXGradientView.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */; };
 		66D27C081BB9C86500917917 /* BRYXGradientView.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */; };
@@ -35,12 +42,17 @@
 				66F765DD1BB86551005E484A /* OAStackView.framework.dSYM in CopyFiles */,
 				66A4EADC1BB87CC80085A07A /* Async.framework.dSYM in CopyFiles */,
 				66D27C081BB9C86500917917 /* BRYXGradientView.framework.dSYM in CopyFiles */,
+				6605095A1C0ABB2C00012C7F /* SwiftDate.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		660509531C0AA3B100012C7F /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		660509561C0ABB0B00012C7F /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
+		660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftDate.framework.dSYM; path = Carthage/Build/iOS/SwiftDate.framework.dSYM; sourceTree = "<group>"; };
+		6634D03F1BF7F73E00127F4C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		663CF0891BB111C000C0C630 /* Steps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		663CF08C1BB111C000C0C630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		663CF08E1BB111C000C0C630 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,11 +60,13 @@
 		663CF0931BB111C000C0C630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		663CF0961BB111C000C0C630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		663CF0981BB111C000C0C630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6689529E1BF1A33100A83654 /* PermissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
 		66A4EAD91BB87CA60085A07A /* Async.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Async.framework; path = Carthage/Build/iOS/Async.framework; sourceTree = "<group>"; };
 		66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Async.framework.dSYM; path = Carthage/Build/iOS/Async.framework.dSYM; sourceTree = "<group>"; };
 		66A4EADD1BB87E210085A07A /* Steps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Steps.entitlements; sourceTree = "<group>"; };
 		66A4EADE1BB87E210085A07A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		66A4EAEB1BB9BF950085A07A /* StepCount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepCount.swift; sourceTree = "<group>"; };
+		66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		66B9CBB21BEEC00A00A16E6D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		66D27C041BB9C84F00917917 /* BRYXGradientView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXGradientView.framework; path = Carthage/Build/iOS/BRYXGradientView.framework; sourceTree = "<group>"; };
 		66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = BRYXGradientView.framework.dSYM; path = Carthage/Build/iOS/BRYXGradientView.framework.dSYM; sourceTree = "<group>"; };
 		66F765D11BB85092005E484A /* DayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayView.xib; sourceTree = "<group>"; };
@@ -67,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */,
+				660509571C0ABB0B00012C7F /* SwiftDate.framework in Frameworks */,
 				66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */,
 				66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */,
 				66A4EADA1BB87CA60085A07A /* Async.framework in Frameworks */,
@@ -79,6 +94,7 @@
 		663CF0801BB111C000C0C630 = {
 			isa = PBXGroup;
 			children = (
+				66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */,
 				663CF08B1BB111C000C0C630 /* Steps */,
 				66F765D71BB864BC005E484A /* Frameworks */,
 				663CF08A1BB111C000C0C630 /* Products */,
@@ -99,10 +115,13 @@
 				66A4EADD1BB87E210085A07A /* Steps.entitlements */,
 				663CF08C1BB111C000C0C630 /* AppDelegate.swift */,
 				663CF08E1BB111C000C0C630 /* ViewController.swift */,
+				6689529E1BF1A33100A83654 /* PermissionViewController.swift */,
 				663CF0901BB111C000C0C630 /* Main.storyboard */,
 				66F765D11BB85092005E484A /* DayView.xib */,
 				66F765D31BB85F34005E484A /* DayView.swift */,
-				66A4EAEB1BB9BF950085A07A /* StepCount.swift */,
+				66B9CBB21BEEC00A00A16E6D /* Settings.swift */,
+				6634D03F1BF7F73E00127F4C /* Extensions.swift */,
+				660509531C0AA3B100012C7F /* Store.swift */,
 				663CF0931BB111C000C0C630 /* Assets.xcassets */,
 				663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */,
 				663CF0981BB111C000C0C630 /* Info.plist */,
@@ -113,13 +132,15 @@
 		66F765D71BB864BC005E484A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				66D27C041BB9C84F00917917 /* BRYXGradientView.framework */,
 				66A4EADE1BB87E210085A07A /* HealthKit.framework */,
 				66A4EAD91BB87CA60085A07A /* Async.framework */,
+				66D27C041BB9C84F00917917 /* BRYXGradientView.framework */,
 				66F765D51BB864AD005E484A /* OAStackView.framework */,
 				66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */,
-				66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */,
+				660509561C0ABB0B00012C7F /* SwiftDate.framework */,
 				66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */,
+				660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */,
+				66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -194,6 +215,8 @@
 				66D27C071BB9C85700917917 /* BRYXGradientView.framework.dSYM in Resources */,
 				66F765D21BB85092005E484A /* DayView.xib in Resources */,
 				663CF0941BB111C000C0C630 /* Assets.xcassets in Resources */,
+				66B9CBB11BEEBE2C00A16E6D /* Settings.bundle in Resources */,
+				660509591C0ABB1A00012C7F /* SwiftDate.framework.dSYM in Resources */,
 				663CF0921BB111C000C0C630 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +233,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/OAStackView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Async.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BRYXGradientView.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftDate.framework",
 			);
 			outputPaths = (
 			);
@@ -225,9 +249,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				663CF08F1BB111C000C0C630 /* ViewController.swift in Sources */,
-				66A4EAEC1BB9BF950085A07A /* StepCount.swift in Sources */,
+				6689529F1BF1A33100A83654 /* PermissionViewController.swift in Sources */,
+				660509541C0AA3B100012C7F /* Store.swift in Sources */,
 				66F765D41BB85F34005E484A /* DayView.swift in Sources */,
 				663CF08D1BB111C000C0C630 /* AppDelegate.swift in Sources */,
+				66B9CBB31BEEC00A00A16E6D /* Settings.swift in Sources */,
+				6634D0401BF7F73E00127F4C /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +376,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Steps/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adambinsz.Steps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -371,7 +398,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Steps/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.adambinsz.Steps;
 				PRODUCT_NAME = "$(TARGET_NAME)";

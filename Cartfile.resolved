@@ -1,3 +1,4 @@
-github "duemunk/Async" "6cc6b9757e16c038bdddeedb20a6cab925ee5831"
+github "duemunk/Async" "1.6.4"
 github "bryx-inc/BRYXGradientView" "22726526d7287f548711c8631ce87802a4796717"
 github "oarrabi/OAStackView" "0.2.0"
+github "malcommac/SwiftDate" "1.2"

@@ -1,3 +1,4 @@
 github "oarrabi/OAStackView"
-github "duemunk/Async" "feature/Swift_2.1"
+github "duemunk/Async"
 github "bryx-inc/BRYXGradientView" "master"
+github "malcommac/SwiftDate" ~> 1.2

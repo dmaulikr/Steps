@@ -1,5 +1,7 @@
 # Async 
-[![](http://img.shields.io/badge/OS%20X-10.10%2B-blue.svg)]() [![](http://img.shields.io/badge/iOS-8.0%2B-blue.svg)]() [![](http://img.shields.io/badge/Swift-2.1-blue.svg)]() [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage) [![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-4BC51D.svg)](https://github.com/CocoaPods/CocoaPods) [![](http://img.shields.io/badge/operator_overload-nope-green.svg)](https://gist.github.com/duemunk/61e45932dbb1a2ca0954)
+[![](http://img.shields.io/badge/OS%20X-10.10%2B-blue.svg)]() [![](http://img.shields.io/badge/iOS-8.0%2B-blue.svg)]() [![](http://img.shields.io/badge/tvOS-9.0%2B-blue.svg)]() [![](http://img.shields.io/badge/Swift-2.1-blue.svg)]() [![](https://travis-ci.org/duemunk/Async.svg)](https://travis-ci.org/duemunk/Async) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)](https://github.com/Carthage/Carthage) [![CocoaPods compatible](https://img.shields.io/badge/CocoaPods-compatible-4BC51D.svg)](https://github.com/CocoaPods/CocoaPods) [![](http://img.shields.io/badge/operator_overload-nope-green.svg)](https://gist.github.com/duemunk/61e45932dbb1a2ca0954)
+
+
 
 Syntactic sugar in Swift for asynchronous dispatches in Grand Central Dispatch ([GCD](https://developer.apple.com/library/prerelease/ios/documentation/Performance/Reference/GCD_libdispatch_Ref/index.html))
 
@@ -26,7 +28,12 @@ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),
 ### Install
 #### CocoaPods
 ```ruby
-pod 'Async', :git => 'https://github.com/duemunk/Async.git'
+use_frameworks!
+pod "AsyncSwift"
+```
+#### Carthage
+```ruby
+github "duemunk/Async"
 ```
 
 ### Benefits
@@ -139,7 +146,7 @@ dispatch_block_notify(_previousBlock, dispatchQueueForChainingBlock, _chainingBl
 The syntax part of the chaining works by having class methods on the `Async` object e.g. `Async.main {}` which returns a struct. The struct has matching methods e.g. `theStruct.main {}`.
 
 ### Known bugs
-The moderne GCD queues doesn't work as expected on iOS Simulator. See issues [13](https://github.com/duemunk/Async/issues/13), [22](https://github.com/duemunk/Async/issues/22).
+Modern GCD queues don't work as expected in the iOS Simulator. See issues [13](https://github.com/duemunk/Async/issues/13), [22](https://github.com/duemunk/Async/issues/22).
 
 ### Known improvements
 The ```dispatch_block_t``` can't be extended. Workaround used: Wrap ```dispatch_block_t``` in a struct that takes the block as a property.
@@ -151,10 +158,7 @@ Apply.background(100) { i in
 	// Do stuff e.g. println(i)
 }
 ```
-Note that this function returns after the block has been run all 100 times i.e. it is not asynchronous. For asynchronous behaviour, wrap it in a an `Async` block like `Async.main{ Apply.background(100) { ... } }`.
-
-### Legacy support
-For support of iOS 7 and OS X 10.9 check out [Async.legacy](https://github.com/josephlord/Async.legacy). [Joseph Lord](https://github.com/josephlord) works hard to have as high feature parity with **Async** as possible.
+Note that this function returns after the block has been run all 100 times i.e. it is not asynchronous. For asynchronous behaviour, wrap it in a an `Async` block like `Async.background { Apply.background(100) { ... } }`.
 
 ### License
 The MIT License (MIT)
