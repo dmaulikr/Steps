@@ -9,22 +9,6 @@
 import HealthKit
 import SwiftDate
 
-class Step {
-    let date: NSDate
-    var count: Int?
-    var distance: HKQuantity?
-    var distanceInPreferredUnit: Double? {
-        get {
-            let unit = Settings.useMetric ? HKUnit.meterUnitWithMetricPrefix(HKMetricPrefix.Kilo) : HKUnit.mileUnit()
-            return distance?.doubleValueForUnit(unit)
-        }
-    }
-    
-    init(date: NSDate) {
-        self.date = date
-    }
-}
-
 @objc protocol StoreObserver {
     func storeDidUpdateType(type: HKObjectType)
     func storeDidFailUpdatingType(type: HKQuantityType, error: NSError)

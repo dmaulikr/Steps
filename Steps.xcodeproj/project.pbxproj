@@ -13,6 +13,7 @@
 		6605095A1C0ABB2C00012C7F /* SwiftDate.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */; };
 		6605095D1C0B906100012C7F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6605095B1C0B906100012C7F /* Crashlytics.framework */; };
 		6605095E1C0B906100012C7F /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6605095C1C0B906100012C7F /* Fabric.framework */; };
+		660509641C0BA17700012C7F /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660509631C0BA17700012C7F /* Step.swift */; };
 		6634D0401BF7F73E00127F4C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6634D03F1BF7F73E00127F4C /* Extensions.swift */; };
 		663CF08D1BB111C000C0C630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663CF08C1BB111C000C0C630 /* AppDelegate.swift */; };
 		663CF08F1BB111C000C0C630 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663CF08E1BB111C000C0C630 /* ViewController.swift */; };
@@ -56,6 +57,7 @@
 		660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftDate.framework.dSYM; path = Carthage/Build/iOS/SwiftDate.framework.dSYM; sourceTree = "<group>"; };
 		6605095B1C0B906100012C7F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6605095C1C0B906100012C7F /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		660509631C0BA17700012C7F /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		6634D03F1BF7F73E00127F4C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		663CF0891BB111C000C0C630 /* Steps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		663CF08C1BB111C000C0C630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				66B9CBB21BEEC00A00A16E6D /* Settings.swift */,
 				6634D03F1BF7F73E00127F4C /* Extensions.swift */,
 				660509531C0AA3B100012C7F /* Store.swift */,
+				660509631C0BA17700012C7F /* Step.swift */,
 				663CF0931BB111C000C0C630 /* Assets.xcassets */,
 				663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */,
 				663CF0981BB111C000C0C630 /* Info.plist */,
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				663CF08F1BB111C000C0C630 /* ViewController.swift in Sources */,
+				660509641C0BA17700012C7F /* Step.swift in Sources */,
 				6689529F1BF1A33100A83654 /* PermissionViewController.swift in Sources */,
 				660509541C0AA3B100012C7F /* Store.swift in Sources */,
 				66F765D41BB85F34005E484A /* DayView.swift in Sources */,
