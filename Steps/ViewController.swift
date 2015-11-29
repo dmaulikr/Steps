@@ -12,6 +12,7 @@ import HealthKit
 import OAStackView
 import Async
 import BRYXGradientView
+import Crashlytics
 
 class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
 
@@ -202,7 +203,12 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
             self.updateChart()
         }
         
+        var attributes = [String : String]()
+        attributes["from"] = segmentedControl.titleForSegmentAtIndex(1)
         segmentedControl.setTitle(Settings.useMetric ? "km" : "mi", forSegmentAtIndex: 1)
+        attributes["to"] = segmentedControl.titleForSegmentAtIndex(1)
+        
+        Answers.logCustomEventWithName("Unit Change", customAttributes: attributes)
     }
     
     // iAd delegate functions
@@ -223,14 +229,17 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
     }
     
     func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        Answers.logErrorWithName("Ad Error", error: error)
         setBannerAdHidden(true, animated: true)
     }
     
     func bannerViewDidLoadAd(banner: ADBannerView!) {
+        Answers.logCustomEventWithName("Ad Load", customAttributes: nil)
         setBannerAdHidden(false, animated: true)
     }
     
     func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        Answers.logCustomEventWithName("Ad Click", customAttributes: nil)
         return true
     }
     
@@ -243,21 +252,62 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
     }
     
     var errorShown = false
-    func storeDidFailUpdatingType(type: HKObjectType, error: NSError) {
-        if let error = (error as ErrorType) as? StoreError where error == .NoDataReturned && !errorShown {
-            errorShown = true
-            let alertController = UIAlertController(title: "Having trouble?", message: "Steps isn't receiving step counts from your iPhone. Open the Settings app, then go to Privacy > Health > Steps and turn on both ‘Steps’ and ‘Walking + Running Distance’.", preferredStyle: UIAlertControllerStyle.Alert)
+    var alertController: UIAlertController?
+    var alertTypes = [HKQuantityType]()
+    func alertMessageForTypes(types: [HKQuantityType]) -> String {
+        
+        let stepCounts = types.contains(HKQuantityType.stepCount)
+        let distances = types.contains(HKQuantityType.distanceWalkingRunning)
+        
+        var typesString = "step counts"
+        var sectionsString = "‘Steps’"
+        
+        if stepCounts && distances {
+            typesString = "step counts and distances"
+            sectionsString = "both ‘Steps’ and ‘Walking + Running Distance’"
+        } else if distances {
+            typesString = "distances"
+            sectionsString = "‘Walking + Running Distance’"
+        }
+        
+        return "Steps isn't receiving \(typesString) from your iPhone. Open the Settings app, then go to Privacy > Health > Steps and turn on \(sectionsString)."
+    }
+    
+    func showErrorAlertControllerForType(type: HKQuantityType) {
+        if alertController == nil {
+            alertController = UIAlertController(title: "Having trouble?", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
             let OKAction = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
                 self.store.fetchSteps()
+                self.alertController = nil
+                self.alertTypes = [HKQuantityType]()
             })
-            alertController.addAction(OKAction)
-            Async.main { self.presentViewController(alertController, animated: true, completion: nil) }
-        } else if error.domain == HKErrorDomain && self.presentedViewController == nil {
+            
+            alertController?.addAction(OKAction)
+            Async.main { self.presentViewController(self.alertController!, animated: true, completion: nil) }
+        }
+        
+        guard let alertController = alertController else { return }
+        alertTypes.append(type)
+        alertController.message = alertMessageForTypes(alertTypes)
+    }
+    
+    func storeDidFailUpdatingType(type: HKQuantityType, error: NSError) {
+        
+        Answers.logErrorWithName("Steps Update Error", error: error)
+        
+        if error.domain == HKErrorDomain && self.presentedViewController == nil {
             Async.main { self.showPermissionViewController() }
-        } else if store.steps != nil && dayViews.count == 0 {
-            Async.main {
-                self.updateTodayLabel()
-                self.updateChart(animated: self.dayViews.count == 0)
+        } else {
+            if dayViews.count == 0 {
+                Async.main {
+                    self.updateTodayLabel()
+                    self.updateChart(animated: self.dayViews.count == 0)
+                }
+            }
+            
+            if let error = (error as ErrorType) as? StoreError where error == .NoDataReturned && (alertController != nil || !errorShown) {
+                showErrorAlertControllerForType(type)
+                errorShown = true
             }
         }
     }

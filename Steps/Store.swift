@@ -27,7 +27,7 @@ class Step {
 
 @objc protocol StoreObserver {
     func storeDidUpdateType(type: HKObjectType)
-    func storeDidFailUpdatingType(type: HKObjectType, error: NSError)
+    func storeDidFailUpdatingType(type: HKQuantityType, error: NSError)
 }
 
 enum StoreError: ErrorType {

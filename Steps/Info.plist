@@ -19,9 +19,25 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>5001</string>
+	<string>5100</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>ae0def216849ab79867b572dfd4978083ae3e060</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Steps needs permission to read step counts from your iPhone. Turn both categories above on.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -37,7 +53,5 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>NSHealthShareUsageDescription</key>
-	<string>Steps needs permission to read step counts from your iPhone. Tap ‘All Categories On’ then ‘Allow’ above.</string>
 </dict>
 </plist>

@@ -9,6 +9,7 @@
 import UIKit
 import HealthKit
 import BRYXGradientView
+import Crashlytics
 
 class PermissionViewController: UIViewController {
     
@@ -35,40 +36,21 @@ class PermissionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.image = UIImage(named: "logo")
-        
         modalPresentationStyle = .CurrentContext
 
         gradientView.topColor = UIColor(red: 29.0/255.0, green: 97.0/255.0, blue: 240.0/255.0, alpha: 1.0)
         gradientView.bottomColor = UIColor(red: 25.0/255.0, green: 213.0/255.0, blue: 253.0/255.0, alpha: 1.0)
         
-        setDescriptionText()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        setDescriptionText()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        setDescriptionText()
-        imageView.image = UIImage(named: "logo")
-    }
-    
-    func setDescriptionText() {
-        let baseText = "Steps needs permission to read step counts from your iPhone."
-        if Store.authorizationStatusForType(HKQuantityType.stepCount) == .NotDetermined {
-            descriptionLabel.text = baseText
-        } else {
-            descriptionLabel.text = baseText + " Open Settings, go to Health > Steps, and turn on both categories."
-        }
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
+        descriptionLabel.text = "Steps needs permission to read step counts from your iPhone."
     }
     
     @IBAction func confirmButtonPressed(sender: UIButton) {
         let types: Set<HKQuantityType> = [HKQuantityType.stepCount, HKQuantityType.distanceWalkingRunning]
         HKHealthStore().requestAuthorizationToShareTypes(nil, readTypes: types) { authorized, error in
-            print("Authorized?: \(authorized)")
+            if let error = error {
+                Answers.logErrorWithName("Permission Request Error", error: error)
+            }
+            self.imageView.backgroundColor = UIColor.greenColor()
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
