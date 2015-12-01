@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		660509541C0AA3B100012C7F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660509531C0AA3B100012C7F /* Store.swift */; };
 		660509571C0ABB0B00012C7F /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660509561C0ABB0B00012C7F /* SwiftDate.framework */; };
-		660509591C0ABB1A00012C7F /* SwiftDate.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */; };
 		6605095A1C0ABB2C00012C7F /* SwiftDate.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */; };
 		6605095D1C0B906100012C7F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6605095B1C0B906100012C7F /* Crashlytics.framework */; };
 		6605095E1C0B906100012C7F /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6605095C1C0B906100012C7F /* Fabric.framework */; };
@@ -27,7 +26,6 @@
 		66B9CBB11BEEBE2C00A16E6D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */; };
 		66B9CBB31BEEC00A00A16E6D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B9CBB21BEEC00A00A16E6D /* Settings.swift */; };
 		66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D27C041BB9C84F00917917 /* BRYXGradientView.framework */; };
-		66D27C071BB9C85700917917 /* BRYXGradientView.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = 66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */; };
 		66D27C081BB9C86500917917 /* BRYXGradientView.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */; };
 		66F765D21BB85092005E484A /* DayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F765D11BB85092005E484A /* DayView.xib */; };
 		66F765D41BB85F34005E484A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F765D31BB85F34005E484A /* DayView.swift */; };
@@ -241,11 +239,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				663CF0971BB111C000C0C630 /* LaunchScreen.storyboard in Resources */,
-				66D27C071BB9C85700917917 /* BRYXGradientView.framework.dSYM in Resources */,
 				66F765D21BB85092005E484A /* DayView.xib in Resources */,
 				663CF0941BB111C000C0C630 /* Assets.xcassets in Resources */,
 				66B9CBB11BEEBE2C00A16E6D /* Settings.bundle in Resources */,
-				660509591C0ABB1A00012C7F /* SwiftDate.framework.dSYM in Resources */,
 				663CF0921BB111C000C0C630 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
