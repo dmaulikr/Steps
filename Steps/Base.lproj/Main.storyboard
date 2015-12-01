@@ -210,30 +210,7 @@
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="CGs-Hh-85i">
                                 <rect key="frame" x="0.0" y="153.5" width="600" height="446"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mc1-mG-upn" customClass="OAStackView">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="446"/>
-                                        <animations/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
                                 <animations/>
-                                <constraints>
-                                    <constraint firstItem="Mc1-mG-upn" firstAttribute="height" secondItem="CGs-Hh-85i" secondAttribute="height" id="24Y-ke-JXN"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mc1-mG-upn" secondAttribute="trailing" constant="360" id="3U1-mX-MRS"/>
-                                    <constraint firstItem="Mc1-mG-upn" firstAttribute="leading" secondItem="CGs-Hh-85i" secondAttribute="leading" id="5ij-4e-yVX"/>
-                                    <constraint firstItem="Mc1-mG-upn" firstAttribute="width" secondItem="CGs-Hh-85i" secondAttribute="width" id="VNe-3p-hLZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="Mc1-mG-upn" secondAttribute="bottom" id="aqQ-sc-FWn"/>
-                                    <constraint firstAttribute="bottom" secondItem="Mc1-mG-upn" secondAttribute="bottom" constant="310" id="nV1-dc-AfV"/>
-                                    <constraint firstItem="Mc1-mG-upn" firstAttribute="top" secondItem="CGs-Hh-85i" secondAttribute="top" id="nfW-IP-X9F"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mc1-mG-upn" secondAttribute="trailing" id="xsh-g0-vCH"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="3U1-mX-MRS"/>
-                                        <exclude reference="nV1-dc-AfV"/>
-                                    </mask>
-                                </variation>
                             </scrollView>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Rqh-fF-gth">
                                 <rect key="frame" x="60" y="600" width="480" height="66"/>
@@ -274,7 +251,6 @@
                         <outlet property="scrollView" destination="CGs-Hh-85i" id="UJk-h8-251"/>
                         <outlet property="segmentedControl" destination="rvO-A6-CYL" id="4Ng-5j-tIT"/>
                         <outlet property="showAdConstraint" destination="Yty-Lb-KQj" id="dzd-Us-I2o"/>
-                        <outlet property="stackView" destination="Mc1-mG-upn" id="dmq-yf-AYF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

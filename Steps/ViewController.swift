@@ -20,7 +20,7 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var stackView: OAStackView!
+    let stackView = OAStackView()
     @IBOutlet weak var scrollView: UIScrollView!
     
     private var dayViews = [DayView]()
@@ -77,6 +77,8 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
         segmentedControl.setTitle(Settings.useMetric ? "km" : "mi", forSegmentAtIndex: 1)
         
         stackView.distribution = .FillEqually
+        scrollView.addSubview(stackView)
+        NSLayoutConstraint.activateConstraints(stackView.constraintsWithAttributes([.Top, .Left, .Right, .Width, .Bottom], .Equal, to: scrollView))
         
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "userDefaultsDidChange",
