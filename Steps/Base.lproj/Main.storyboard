@@ -154,24 +154,24 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f3-YD-Ugm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="154"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="158"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzl-eZ-bXW">
-                                        <rect key="frame" x="269" y="117" width="63.5" height="29"/>
+                                        <rect key="frame" x="269" y="105" width="63.5" height="29"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="W17-2c-g84">
-                                        <rect key="frame" x="293" y="28" width="15" height="95.5"/>
+                                        <rect key="frame" x="293" y="16" width="15" height="95.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="80"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rvO-A6-CYL">
-                                        <rect key="frame" x="498" y="117" width="97" height="30"/>
+                                        <rect key="frame" x="498" y="105" width="97" height="30"/>
                                         <animations/>
                                         <segments>
                                             <segment title="steps"/>
@@ -194,11 +194,11 @@
                                     <constraint firstAttribute="trailing" secondItem="rvO-A6-CYL" secondAttribute="trailing" constant="16" id="Y6s-fR-ZoN"/>
                                     <constraint firstAttribute="trailing" secondItem="rvO-A6-CYL" secondAttribute="trailing" constant="5" id="Ybe-u5-BRh"/>
                                     <constraint firstItem="rvO-A6-CYL" firstAttribute="centerY" secondItem="Fzl-eZ-bXW" secondAttribute="centerY" id="c6W-zJ-Y9g"/>
-                                    <constraint firstItem="W17-2c-g84" firstAttribute="top" secondItem="3f3-YD-Ugm" secondAttribute="top" constant="28" id="fCa-rm-aYQ"/>
+                                    <constraint firstItem="W17-2c-g84" firstAttribute="top" secondItem="3f3-YD-Ugm" secondAttribute="top" constant="16" id="fCa-rm-aYQ"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="rvO-A6-CYL" secondAttribute="bottom" id="guX-Pp-HyB"/>
                                     <constraint firstItem="Fzl-eZ-bXW" firstAttribute="top" secondItem="W17-2c-g84" secondAttribute="bottom" constant="-6" id="kpH-sU-gyX"/>
                                     <constraint firstItem="rvO-A6-CYL" firstAttribute="centerX" secondItem="3f3-YD-Ugm" secondAttribute="centerX" id="rH6-Zf-0Ox"/>
-                                    <constraint firstAttribute="bottom" secondItem="Fzl-eZ-bXW" secondAttribute="bottom" constant="8" id="yau-gb-1y6"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fzl-eZ-bXW" secondAttribute="bottom" constant="24" id="yau-gb-1y6"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -209,7 +209,7 @@
                                 </variation>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="CGs-Hh-85i">
-                                <rect key="frame" x="0.0" y="153.5" width="600" height="446"/>
+                                <rect key="frame" x="0.0" y="157.5" width="600" height="442"/>
                                 <animations/>
                             </scrollView>
                             <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Rqh-fF-gth">
