@@ -79,6 +79,7 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
         stackView.distribution = .FillEqually
         scrollView.addSubview(stackView)
         NSLayoutConstraint.activateConstraints(stackView.constraintsWithAttributes([.Top, .Left, .Right, .Width, .Bottom], .Equal, to: scrollView))
+        stackView.constraintWithAttribute(.Height, .GreaterThanOrEqual, to: scrollView).active = true
         
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "userDefaultsDidChange",
