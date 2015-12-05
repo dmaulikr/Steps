@@ -25,7 +25,7 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
     
     private var dayViews = [DayView]()
     
-    private var store = Store()
+    private var store = Store(numberOfDays: 8)
     
     private let dateFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()

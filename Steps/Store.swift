@@ -18,7 +18,7 @@ enum StoreError: ErrorType {
     case NoDataReturned
 }
 
-class Store {
+class Store: NSObject {
     static private let healthStore = HKHealthStore()
     static func authorizationStatusForType(type: HKObjectType) -> HKAuthorizationStatus {
         return healthStore.authorizationStatusForType(type)
@@ -33,13 +33,20 @@ class Store {
         }
     }
     var maxStepCount: Int = 0
-    
     private var activeQueries = [HKQuery]()
-    
     private var observers = [WeakContainer<StoreObserver>]()
     
     init(numberOfDays: Int = 8) {
         self.numberOfDays = numberOfDays
+        super.init()
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "significantTimeChange",
+            name: AppDelegate.significantTimeChangeNotificationName,
+            object: nil)
+    }
+    
+    func significantTimeChange() {
+        fetchSteps()
     }
     
     func fetchSteps() {

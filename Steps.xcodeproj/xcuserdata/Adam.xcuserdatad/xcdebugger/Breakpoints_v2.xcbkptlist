@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Steps/ViewController.swift"
-            timestampString = "470768603.88917"
+            filePath = "Steps/Store.swift"
+            timestampString = "471033509.322679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
-            landmarkName = "bannerView(_:didFailToReceiveAdWithError:)"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "fetchSteps()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Steps/ViewController.swift"
-            timestampString = "470768603.88917"
+            filePath = "Steps/Store.swift"
+            timestampString = "471033977.342842"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
-            landmarkName = "bannerViewDidLoadAd(_:)"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "init(numberOfDays:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
