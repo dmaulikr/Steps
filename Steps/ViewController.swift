@@ -133,8 +133,9 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
     private func updateTodayLabel() {
         guard let firstStepCount = store.steps?.first else { return }
         
-        let countString = self.showDistances ? distanceFormatter.stringFromNumber(firstStepCount.distanceInPreferredUnit ?? 0) : stepCountFormatter.stringFromNumber(firstStepCount.count ?? 0)
-        countLabel.text = countString
+        let count: Double = self.showDistances ? (firstStepCount.distanceInPreferredUnit ?? 0) : Double((firstStepCount.count ?? 0))
+        let formatter = self.showDistances ? distanceFormatter : stepCountFormatter
+        countLabel.text = formatter.stringFromNumber(count)
     }
     
     private var updatingChart = false
@@ -189,10 +190,6 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
         UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: [], animations: {
             dayView.barScale = max(CGFloat(stepCount.count ??  0) / CGFloat(self.store.maxStepCount), 0.015)
         }, completion: nil)
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
     
     @IBAction func unitSegmentedControlValueChanged(sender: UISegmentedControl) {
