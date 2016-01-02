@@ -19,6 +19,13 @@
 		663CF0921BB111C000C0C630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0901BB111C000C0C630 /* Main.storyboard */; };
 		663CF0941BB111C000C0C630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0931BB111C000C0C630 /* Assets.xcassets */; };
 		663CF0971BB111C000C0C630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */; };
+		66704B5F1C3829A3008D51FF /* AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66704B5E1C3829A3008D51FF /* AppExtensions.swift */; };
+		66704B601C3829B1008D51FF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6634D03F1BF7F73E00127F4C /* Extensions.swift */; };
+		66704B621C382BA7008D51FF /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EADE1BB87E210085A07A /* HealthKit.framework */; };
+		66704B631C382C4C008D51FF /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660509531C0AA3B100012C7F /* Store.swift */; };
+		66704B641C382C4C008D51FF /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660509631C0BA17700012C7F /* Step.swift */; };
+		66704B651C382C5E008D51FF /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660509561C0ABB0B00012C7F /* SwiftDate.framework */; };
+		66704B661C382CA0008D51FF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B9CBB21BEEC00A00A16E6D /* Settings.swift */; };
 		6689529F1BF1A33100A83654 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689529E1BF1A33100A83654 /* PermissionViewController.swift */; };
 		66902C981C1DD4660020FE95 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66902C971C1DD4660020FE95 /* NotificationCenter.framework */; };
 		66902C9B1C1DD4660020FE95 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66902C9A1C1DD4660020FE95 /* TodayViewController.swift */; };
@@ -89,6 +96,8 @@
 		663CF0931BB111C000C0C630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		663CF0961BB111C000C0C630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		663CF0981BB111C000C0C630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66704B5E1C3829A3008D51FF /* AppExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppExtensions.swift; sourceTree = "<group>"; };
+		66704B611C382BA7008D51FF /* Steps Today Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Steps Today Extension.entitlements"; sourceTree = "<group>"; };
 		6689529E1BF1A33100A83654 /* PermissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
 		66902C961C1DD4660020FE95 /* Steps Today Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Steps Today Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66902C971C1DD4660020FE95 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -129,6 +138,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				66902C981C1DD4660020FE95 /* NotificationCenter.framework in Frameworks */,
+				66704B621C382BA7008D51FF /* HealthKit.framework in Frameworks */,
+				66704B651C382C5E008D51FF /* SwiftDate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +197,7 @@
 				660509531C0AA3B100012C7F /* Store.swift */,
 				660509631C0BA17700012C7F /* Step.swift */,
 				6634D03F1BF7F73E00127F4C /* Extensions.swift */,
+				66704B5E1C3829A3008D51FF /* AppExtensions.swift */,
 				660509651C0BA1AC00012C7F /* Views */,
 				660509661C0BA1BF00012C7F /* Supporting Files */,
 			);
@@ -195,6 +207,7 @@
 		66902C991C1DD4660020FE95 /* Steps Today Extension */ = {
 			isa = PBXGroup;
 			children = (
+				66704B611C382BA7008D51FF /* Steps Today Extension.entitlements */,
 				66902C9A1C1DD4660020FE95 /* TodayViewController.swift */,
 				66902C9C1C1DD4660020FE95 /* MainInterface.storyboard */,
 				66902C9F1C1DD4660020FE95 /* Info.plist */,
@@ -286,6 +299,11 @@
 					66902C951C1DD4660020FE95 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = BCVA6NEN6F;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -382,6 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66704B5F1C3829A3008D51FF /* AppExtensions.swift in Sources */,
 				663CF08F1BB111C000C0C630 /* ViewController.swift in Sources */,
 				660509641C0BA17700012C7F /* Step.swift in Sources */,
 				6689529F1BF1A33100A83654 /* PermissionViewController.swift in Sources */,
@@ -397,6 +416,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66704B661C382CA0008D51FF /* Settings.swift in Sources */,
+				66704B631C382C4C008D51FF /* Store.swift in Sources */,
+				66704B641C382C4C008D51FF /* Step.swift in Sources */,
+				66704B601C3829B1008D51FF /* Extensions.swift in Sources */,
 				66902C9B1C1DD4660020FE95 /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,13 +602,19 @@
 		66902CA31C1DD4660020FE95 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Steps Today Extension/Steps Today Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Steps Today Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adambinsz.Steps.Steps-Today-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -593,13 +622,19 @@
 		66902CA41C1DD4660020FE95 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Steps Today Extension/Steps Today Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Steps Today Extension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.adambinsz.Steps.Steps-Today-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -632,6 +667,7 @@
 				66902CA41C1DD4660020FE95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

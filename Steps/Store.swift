@@ -9,6 +9,8 @@
 import HealthKit
 import SwiftDate
 
+let significantTimeChangeNotificationName = "significantTimeChange"
+
 @objc protocol StoreObserver {
     func storeDidUpdateType(type: HKObjectType)
     func storeDidFailUpdatingType(type: HKQuantityType, error: NSError)
@@ -32,7 +34,7 @@ class Store: NSObject {
             return [Step](stepsDict.values).sort{ $0.date.timeIntervalSinceDate($1.date) > 0 }
         }
     }
-    var maxStepCount: Int = 0
+    private(set) var maxStepCount: Int = 0
     private var activeQueries = [HKQuery]()
     private var observers = [WeakContainer<StoreObserver>]()
     
@@ -41,7 +43,7 @@ class Store: NSObject {
         super.init()
         NSNotificationCenter.defaultCenter().addObserver(self,
             selector: "significantTimeChange",
-            name: AppDelegate.significantTimeChangeNotificationName,
+            name: significantTimeChangeNotificationName,
             object: nil)
     }
     

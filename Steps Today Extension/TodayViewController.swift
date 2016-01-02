@@ -7,18 +7,41 @@
 //
 
 import UIKit
+import HealthKit
 import NotificationCenter
 
-class TodayViewController: UIViewController, NCWidgetProviding {
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view from its nib.
+class TodayViewController: UIViewController, NCWidgetProviding, StoreObserver {
+    
+    private let stepCountFormatter: NSNumberFormatter = {
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.locale = NSLocale.currentLocale()
+        numberFormatter.numberStyle = .DecimalStyle
+        numberFormatter.usesGroupingSeparator = true
+        numberFormatter.maximumFractionDigits = 0
+        numberFormatter.minimumFractionDigits = 0
+        return numberFormatter
+    }()
+    
+    private let store = Store(numberOfDays: 1)
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        store.registerObserver(self)
+        store.fetchSteps()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBOutlet weak var stepsLabel: UILabel?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let types: Set<HKQuantityType> = [HKQuantityType.stepCount, HKQuantityType.distanceWalkingRunning]
+        HKHealthStore().requestAuthorizationToShareTypes(nil, readTypes: types) { authorized, error in
+            print(error)
+            print(authorized)
+        }
+        
+        updateLabel()
     }
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
@@ -31,4 +54,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         completionHandler(NCUpdateResult.NewData)
     }
     
+    private func updateLabel() {
+        self.stepsLabel?.text = stepCountFormatter.stringFromNumber(store.steps?.first?.count ?? 0)
+    }
+    
+    // MARK: - StoreObserver methods
+    func storeDidUpdateType(type: HKObjectType) {
+        updateLabel()
+    }
+    
+    func storeDidFailUpdatingType(type: HKQuantityType, error: NSError) {
+        print(error)
+    }
 }
