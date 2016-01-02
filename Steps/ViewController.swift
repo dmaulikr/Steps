@@ -114,9 +114,9 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
         var index = segmentedControl.selectedSegmentIndex
         switch gestureRecognizer.direction {
         case UISwipeGestureRecognizerDirection.Left:
-           index -= 1
-        case UISwipeGestureRecognizerDirection.Right:
            index += 1
+        case UISwipeGestureRecognizerDirection.Right:
+           index -= 1
         default:
             break
         }
