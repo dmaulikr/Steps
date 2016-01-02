@@ -311,4 +311,8 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
             }
         }
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
+    }
 }
