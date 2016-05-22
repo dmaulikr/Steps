@@ -82,12 +82,12 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
         stackView.constraintWithAttribute(.Height, .GreaterThanOrEqual, to: scrollView).active = true
         
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "userDefaultsDidChange",
+            selector: #selector(ViewController.userDefaultsDidChange),
             name: NSUserDefaultsDidChangeNotification,
             object: nil)
     
         for direction in [.Left, .Right] as [UISwipeGestureRecognizerDirection] {
-            let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "viewSwiped:")
+            let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.viewSwiped(_:)))
             swipeGestureRecognizer.direction = direction
             view.addGestureRecognizer(swipeGestureRecognizer)
         }

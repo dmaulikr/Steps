@@ -40,7 +40,7 @@ class Store: NSObject {
         self.numberOfDays = numberOfDays
         super.init()
         NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: "significantTimeChange",
+            selector: #selector(Store.significantTimeChange),
             name: AppDelegate.significantTimeChangeNotificationName,
             object: nil)
     }
