@@ -89,10 +89,7 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
         NSLayoutConstraint.activateConstraints(stackView.constraintsWithAttributes([.Top, .Left, .Right, .Width, .Bottom], .Equal, to: scrollView))
         stackView.constraintWithAttribute(.Height, .GreaterThanOrEqual, to: scrollView).active = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self,
-            selector: #selector(ViewController.userDefaultsDidChange),
-            name: NSUserDefaultsDidChangeNotification,
-            object: nil)
+        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: Settings.useMetricKey, options: [.New], context: nil)
     
         for direction in [.Left, .Right] as [UISwipeGestureRecognizerDirection] {
             let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.viewSwiped(_:)))
@@ -212,10 +209,18 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
         self.updateChart()
     }
     
-    func userDefaultsDidChange() {
-        if showDistances {
-            self.updateTodayLabel()
-            self.updateChart()
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        guard let path = keyPath where path == Settings.useMetricKey else {
+            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+            return
+        }
+        
+        if self.showDistances {
+            Async.main {
+                self.updateTodayLabel()
+                self.updateChart()
+            }
         }
         
         var attributes = [String : String]()
