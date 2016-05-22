@@ -3,6 +3,7 @@
 # * https://github.com/supermarin/xcpretty#usage
 
 language: objective-c
+osx_image: xcode7.1
 cache: cocoapods
 podfile: Example/Podfile
 before_install:
@@ -11,6 +12,6 @@ before_install:
 install:
 - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
 script:
-- set -o pipefail && xcodebuild test -workspace Example/OAStackView.xcworkspace -scheme "OAStackView-Example" -destination "platform=iOS Simulator,OS=7.1,name=iPhone 5" ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- set -o pipefail && xcodebuild test -workspace Example/OAStackView.xcworkspace -scheme "OAStackView-Example" -destination "platform=iOS Simulator,OS=9.1,name=iPhone 5" ONLY_ACTIVE_ARCH=NO | xcpretty -c
 - set -o pipefail && xcodebuild test -workspace Example/OAStackView.xcworkspace -scheme "OAStackView-Example" -destination "platform=iOS Simulator,OS=8.1,name=iPhone 5" ONLY_ACTIVE_ARCH=NO | xcpretty -c
 - pod lib lint --quick

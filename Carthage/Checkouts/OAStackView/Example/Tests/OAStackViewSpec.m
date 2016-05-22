@@ -23,7 +23,7 @@ describe(@"OAStackView", ^{
       
       stackView = [[OAStackView alloc] initWithArrangedSubviews:views];
       stackView.translatesAutoresizingMaskIntoConstraints = NO;
-      
+      stackView.axis = UILayoutConstraintAxisVertical;
       CGSize size = [stackView systemLayoutSizeFittingSize:CGSizeZero];
       [[theValue(size) should] equal:theValue(CGSizeMake(100, 60))];
     });
@@ -33,7 +33,7 @@ describe(@"OAStackView", ^{
       
       stackView = [[OAStackView alloc] initWithArrangedSubviews:views];
       stackView.translatesAutoresizingMaskIntoConstraints = NO;
-      
+      stackView.axis = UILayoutConstraintAxisVertical;
       CGSize size = [stackView systemLayoutSizeFittingSize:CGSizeZero];
       [[theValue(size) should] equal:theValue(CGSizeMake(100, 60))];
       
@@ -57,6 +57,7 @@ describe(@"OAStackView", ^{
         NSArray *views = @[view1, view2, view3];
         
         stackView = [[OAStackView alloc] initWithArrangedSubviews:views];
+        stackView.axis = UILayoutConstraintAxisVertical;
         stackView.translatesAutoresizingMaskIntoConstraints = NO;
       });
       
@@ -112,6 +113,7 @@ describe(@"OAStackView", ^{
         NSArray *views = @[view1, view2, view3];
         
         stackView = [[OAStackView alloc] initWithArrangedSubviews:views];
+        stackView.axis = UILayoutConstraintAxisVertical;
         stackView.translatesAutoresizingMaskIntoConstraints = NO;
       });
       
@@ -185,6 +187,7 @@ describe(@"OAStackView", ^{
         
         stackView = [[OAStackView alloc] initWithArrangedSubviews:views];
         stackView.translatesAutoresizingMaskIntoConstraints = NO;
+        stackView.axis = UILayoutConstraintAxisVertical;
       });
       
       it(@"Decreases the height when view is hidden", ^{
@@ -330,6 +333,7 @@ describe(@"OAStackView", ^{
         NSArray *views = @[view1, view2, view3];
         
         stackView = [[OAStackView alloc] initWithArrangedSubviews:views];
+        stackView.axis = UILayoutConstraintAxisVertical;
         stackView.translatesAutoresizingMaskIntoConstraints = NO;
       });
       
@@ -434,6 +438,7 @@ describe(@"OAStackView", ^{
         stackView = [[OAStackView alloc] initWithArrangedSubviews:views];
         stackView.translatesAutoresizingMaskIntoConstraints = NO;
         stackView.layoutMarginsRelativeArrangement = YES;
+        stackView.axis = UILayoutConstraintAxisVertical;
         stackView.layoutMargins = UIEdgeInsetsMake(10, 20, 30, 40);
       });
 
@@ -825,7 +830,7 @@ describe(@"OAStackView", ^{
 
           [[theValue(CGRectGetMinX(view1.frame)) should] equal:theValue(0)];
 
-          [[theValue(CGRectGetMinX(view2.frame)) should] equal:theValue(240)];
+          [[theValue(CGRectGetMinX(view2.frame)) should] equal:240 withDelta:10];
 
           [[theValue(CGRectGetMinX(view3.frame)) should] equal:theValue(300)];
         });
@@ -935,6 +940,58 @@ describe(@"OAStackView", ^{
       //Frame origin does not return 0,0 for iOS7, This is not a major issue as the stackview has not been added to a view stack.
       //Matching on the size would be enough to verify this fix
       [[theValue(stackView.frame.size) should] equal:theValue(CGSizeMake(360, 140))];
+    });
+  });
+
+
+  context(@"Arranged Subviews", ^{
+
+    __block UIView *view1, *view2, *view3;
+
+    beforeEach(^{
+      view1 = createView(100, 100);
+      view2 = createView(100, 100);
+      view3 = createView(100, 100);
+
+      stackView = [[OAStackView alloc] init];
+      stackView.translatesAutoresizingMaskIntoConstraints = NO;
+    });
+
+    it(@"Initializes arrangedSubviews to an empty array", ^{
+      [[stackView.arrangedSubviews should] beEmpty];
+    });
+
+    it(@"Initalizes arrangedSubviews to the given views when initialized with arranged subviess", ^{
+      stackView = [[OAStackView alloc] initWithArrangedSubviews:@[view1, view2, view3]];
+      [[stackView.arrangedSubviews should] containObjectsInArray:@[view1, view2, view3]];
+    });
+
+    it(@"Maintains the correct array when adding views", ^{
+      [stackView addArrangedSubview:view1];
+      [[stackView.arrangedSubviews should] containObjectsInArray:@[view1]];
+
+      [stackView addArrangedSubview:view2];
+      [[stackView.arrangedSubviews should] containObjectsInArray:@[view2]];
+
+      [stackView addArrangedSubview:view3];
+      [[stackView.arrangedSubviews should] containObjectsInArray:@[view3]];
+    });
+
+    it(@"Maintains the correct array when removing views", ^{
+      [stackView addArrangedSubview:view1];
+      [stackView addArrangedSubview:view2];
+      [stackView addArrangedSubview:view3];
+
+      [[stackView.arrangedSubviews should] containObjectsInArray:@[view1, view2, view3]];
+
+      [stackView removeArrangedSubview:view2];
+      [[stackView.arrangedSubviews should] containObjectsInArray:@[view1, view3]];
+
+      [stackView removeArrangedSubview:view1];
+      [[stackView.arrangedSubviews should] containObjectsInArray:@[view3]];
+
+      [stackView removeArrangedSubview:view3];
+      [[stackView.arrangedSubviews should] containObjectsInArray:@[]];
     });
   });
 
