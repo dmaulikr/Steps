@@ -77,6 +77,7 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
         segmentedControl.setTitle(Settings.useMetric ? "km" : "mi", forSegmentAtIndex: 1)
         
         stackView.distribution = .FillEqually
+        stackView.axis = .Vertical
         scrollView.addSubview(stackView)
         NSLayoutConstraint.activateConstraints(stackView.constraintsWithAttributes([.Top, .Left, .Right, .Width, .Bottom], .Equal, to: scrollView))
         stackView.constraintWithAttribute(.Height, .GreaterThanOrEqual, to: scrollView).active = true
