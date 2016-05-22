@@ -264,21 +264,6 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
-//
-//    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
-//        Answers.logErrorWithName("Ad Error", error: error)
-//        setBannerAdHidden(true, animated: true)
-//    }
-//    
-//    func bannerViewDidLoadAd(banner: ADBannerView!) {
-//        Answers.logCustomEventWithName("Ad Load", customAttributes: nil)
-//        setBannerAdHidden(false, animated: true)
-//    }
-//    
-//    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
-//        Answers.logCustomEventWithName("Ad Click", customAttributes: nil)
-//        return true
-//    }
     
     // MARK: - StepsStoreObserver methods
     func storeDidUpdateType(type: HKObjectType) {
