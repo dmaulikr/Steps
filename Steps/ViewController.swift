@@ -94,7 +94,7 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
         for direction in [.Left, .Right] as [UISwipeGestureRecognizerDirection] {
             let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.viewSwiped(_:)))
             swipeGestureRecognizer.direction = direction
-            view.addGestureRecognizer(swipeGestureRecognizer)
+            scrollView.addGestureRecognizer(swipeGestureRecognizer)
         }
 
         bannerView.addSubview(adView)
