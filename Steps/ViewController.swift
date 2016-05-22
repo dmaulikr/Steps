@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import iAd
 import HealthKit
 import OAStackView
 import Async
 import BRYXGradientView
 import Crashlytics
+import Appodeal
 
-class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
+class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegate {
 
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var headerView: UIView!
@@ -60,7 +60,14 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
         }
     }
 
-    @IBOutlet weak var adView: ADBannerView!
+    @IBOutlet weak var bannerView: UIView!
+    lazy var adView: AppodealBannerView = {
+        let a = AppodealBannerView.init(size: kAppodealUnitSize_320x50, rootViewController: self)
+        a.constraintWithAttribute(.Height, .Equal, to: kAppodealUnitSize_320x50.height).active = true
+        a.constraintWithAttribute(.Width, .Equal, to: kAppodealUnitSize_320x50.width).active = true
+        a.delegate = self
+        return a
+    }()
     @IBOutlet weak var showAdConstraint: NSLayoutConstraint!
     @IBOutlet weak var hideAdConstraint: NSLayoutConstraint!
     
@@ -92,10 +99,17 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
             swipeGestureRecognizer.direction = direction
             view.addGestureRecognizer(swipeGestureRecognizer)
         }
+
+        bannerView.addSubview(adView)
+        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[adView]-(>=0)-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["adView" : adView]))
+        NSLayoutConstraint.activateConstraints(adView.constraintsWithAttributes([.Top, .Bottom], .Equal, to: bannerView))
+        adView.loadAd()
         
 //        let timer = NSTimer(timeInterval: 5.0, target: self, selector: "testAd", userInfo: nil, repeats: true)
 //        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
+    
+    
     
     override func viewDidAppear(animated: Bool) {
         store.fetchSteps()
@@ -127,9 +141,9 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
         self.unitSegmentedControlValueChanged(segmentedControl)
     }
     
-    func testAd() {
-        setBannerAdHidden(!bannerHidden, animated: true)
-    }
+//    func testAd() {
+//        setBannerAdHidden(!bannerHidden, animated: true)
+//    }
     
     private func updateTodayLabel() {
         guard let firstStepCount = store.steps?.first else { return }
@@ -205,19 +219,36 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
         }
         
         var attributes = [String : String]()
-        attributes["from"] = segmentedControl.titleForSegmentAtIndex(1)
-        segmentedControl.setTitle(Settings.useMetric ? "km" : "mi", forSegmentAtIndex: 1)
-        attributes["to"] = segmentedControl.titleForSegmentAtIndex(1)
+        attributes["from"] = self.segmentedControl.titleForSegmentAtIndex(1)
+        self.segmentedControl.setTitle(Settings.useMetric ? "km" : "mi", forSegmentAtIndex: 1)
+        attributes["to"] = self.segmentedControl.titleForSegmentAtIndex(1)
         
         Answers.logCustomEventWithName("Unit Change", customAttributes: attributes)
+    }
+    
+    func bannerViewDidLoadAd(bannerView: AppodealBannerView!) {
+        Answers.logCustomEventWithName("Appodeal Ad Loaded", customAttributes: nil)
+        setBannerAdHidden(false, animated: true)
+    }
+    
+    func bannerView(bannerView: AppodealBannerView!, didFailToLoadAdWithError error: NSError!) {
+        Answers.logErrorWithName("Appodeal Ad Error", error: error)
+        setBannerAdHidden(true, animated: true)
+    }
+    
+    func bannerViewDidInteract(bannerView: AppodealBannerView!) {
+        Answers.logCustomEventWithName("Appodeal Ad Clicked", customAttributes: nil)
     }
     
     // iAd delegate functions
     private var bannerHidden = true
     func setBannerAdHidden(hidden: Bool, animated: Bool = false) {
-        
+    
         if bannerHidden == hidden { return }
         bannerHidden = hidden
+        
+        adView.setNeedsLayout()
+        adView.layoutIfNeeded()
         
         showAdConstraint.priority = hidden ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
         hideAdConstraint.priority = hidden ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
@@ -228,21 +259,21 @@ class ViewController: UIViewController, ADBannerViewDelegate, StoreObserver {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }
-    
-    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
-        Answers.logErrorWithName("Ad Error", error: error)
-        setBannerAdHidden(true, animated: true)
-    }
-    
-    func bannerViewDidLoadAd(banner: ADBannerView!) {
-        Answers.logCustomEventWithName("Ad Load", customAttributes: nil)
-        setBannerAdHidden(false, animated: true)
-    }
-    
-    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
-        Answers.logCustomEventWithName("Ad Click", customAttributes: nil)
-        return true
-    }
+//
+//    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+//        Answers.logErrorWithName("Ad Error", error: error)
+//        setBannerAdHidden(true, animated: true)
+//    }
+//    
+//    func bannerViewDidLoadAd(banner: ADBannerView!) {
+//        Answers.logCustomEventWithName("Ad Load", customAttributes: nil)
+//        setBannerAdHidden(false, animated: true)
+//    }
+//    
+//    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+//        Answers.logCustomEventWithName("Ad Click", customAttributes: nil)
+//        return true
+//    }
     
     // MARK: - StepsStoreObserver methods
     func storeDidUpdateType(type: HKObjectType) {

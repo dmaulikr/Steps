@@ -8,9 +8,8 @@
 
 import Foundation
 
-let useMetricKey = "useMetric"
-
 struct Settings {
+    static let useMetricKey = "useMetric"
     static var useMetric: Bool {
         if let useMetric = NSUserDefaults.standardUserDefaults().valueForKey(useMetricKey) as? Bool {
             return useMetric
