@@ -98,8 +98,7 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
         }
 
         bannerView.addSubview(adView)
-        NSLayoutConstraint.activateConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|[adView]-(>=0)-|", options: .DirectionLeadingToTrailing, metrics: nil, views: ["adView" : adView]))
-        NSLayoutConstraint.activateConstraints(adView.constraintsWithAttributes([.Top, .Bottom], .Equal, to: bannerView))
+        NSLayoutConstraint.activateConstraints(adView.constraintsWithAttributes([.Top, .Bottom, .CenterX], .Equal, to: bannerView))
         adView.loadAd()
         
 //        let timer = NSTimer(timeInterval: 5.0, target: self, selector: "testAd", userInfo: nil, repeats: true)
