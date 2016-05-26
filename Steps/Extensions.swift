@@ -29,16 +29,20 @@ class WeakContainer<T: AnyObject> {
 }
 
 extension Answers {
-    static func logErrorWithName(name: String, error: NSError) {
+    static func logErrorWithName(name: String, error: NSError?) {
         
-        var attributes: [String : String] = ["domain" : error.domain, "code" : "\(error.code)", "description": error.description, "localizedDescription" : error.localizedDescription]
+        var attributes: [String : String] = [:]
         
-        if let localizedFailureReason = error.localizedFailureReason {
-            attributes["localizedFailureReason"] = localizedFailureReason
-        }
-        
-        if let localizedRecoverySuggestion = error.localizedRecoverySuggestion {
-            attributes["localizedRecoverySuggestion"] = localizedRecoverySuggestion
+        if let error = error {
+            attributes = ["domain" : error.domain, "code" : "\(error.code)", "description": error.description, "localizedDescription" : error.localizedDescription]
+            
+            if let localizedFailureReason = error.localizedFailureReason {
+                attributes["localizedFailureReason"] = localizedFailureReason
+            }
+            
+            if let localizedRecoverySuggestion = error.localizedRecoverySuggestion {
+                attributes["localizedRecoverySuggestion"] = localizedRecoverySuggestion
+            }
         }
         
         logCustomEventWithName(name, customAttributes: attributes)
