@@ -137,7 +137,12 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
     }
     
 //    func testAd() {
-//        setBannerAdHidden(!bannerHidden, animated: true)
+////        setBannerAdHidden(!bannerHidden, animated: true)
+//        if bannerHidden {
+//            bannerViewDidLoadAd(adView)
+//        } else {
+//            bannerView(adView, didFailToLoadAdWithError: nil)
+//        }
 //    }
     
     private func updateTodayLabel() {
