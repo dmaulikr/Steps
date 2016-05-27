@@ -52,7 +52,6 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         numberFormatter.maximumFractionDigits = 2
         return numberFormatter
     }()
-    
 
     private var showDistances: Bool {
         get {
@@ -99,7 +98,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         adView.adUnitID = "ca-app-pub-3773029771274898/8438387761"
         
         let request = GADRequest()
-//        request.testDevices = [kGADSimulatorID /*, "224ddf7740ce4fb20d147d9a7d6d52c9"*/]
+        request.testDevices = [kGADSimulatorID /*, "224ddf7740ce4fb20d147d9a7d6d52c9"*/]
         adView.loadRequest(request)
         
 //        let timer = NSTimer(timeInterval: 2.0, target: self, selector: #selector(ViewController.testAd), userInfo: nil, repeats: true)
