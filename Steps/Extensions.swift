@@ -50,34 +50,44 @@ extension Answers {
 }
 
 extension UIView {
-    func constraintsEqualToSuperview(edgeInsets: UIEdgeInsets = UIEdgeInsetsZero) -> [NSLayoutConstraint] {
+    class func springAnimateWithDuration(duration: NSTimeInterval, animations: () -> (), options: UIViewAnimationOptions = .AllowUserInteraction, completion: ((Bool) -> ())? = nil) {
+        UIView.animateWithDuration(duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: options, animations: animations, completion: completion)
+    }
+    
+    func constraintsEqualToSuperview(edgeInsets: UIEdgeInsets = UIEdgeInsetsZero, priority: UILayoutPriority = 1000) -> [NSLayoutConstraint] {
         self.translatesAutoresizingMaskIntoConstraints = false
         var constraints = [NSLayoutConstraint]()
         if let superview = self.superview {
-            constraints.append(self.constraintWithAttribute(.Leading, .Equal, to: superview, constant: edgeInsets.left))
-            constraints.append(self.constraintWithAttribute(.Trailing, .Equal, to: superview, constant: edgeInsets.right))
-            constraints.append(self.constraintWithAttribute(.Top, .Equal, to: superview, constant: edgeInsets.top))
-            constraints.append(self.constraintWithAttribute(.Bottom, .Equal, to: superview, constant: edgeInsets.bottom))
+            constraints.append(self.constraintWithAttribute(.Leading, .Equal, to: superview, constant: edgeInsets.left, priority: priority))
+            constraints.append(self.constraintWithAttribute(.Trailing, .Equal, to: superview, constant: -edgeInsets.right, priority: priority))
+            constraints.append(self.constraintWithAttribute(.Top, .Equal, to: superview, constant: edgeInsets.top, priority: priority))
+            constraints.append(self.constraintWithAttribute(.Bottom, .Equal, to: superview, constant: -edgeInsets.bottom, priority: priority))
         }
         return constraints
     }
     
-    func constraintWithAttribute(attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, to constant: CGFloat, multiplier: CGFloat = 1.0) -> NSLayoutConstraint {
+    func constraintWithAttribute(attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, to constant: CGFloat, multiplier: CGFloat = 1.0, priority: UILayoutPriority = 1000) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relation, toItem: nil, attribute: .NotAnAttribute, multiplier: multiplier, constant: constant)
+        let constraint =  NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relation, toItem: nil, attribute: .NotAnAttribute, multiplier: multiplier, constant: constant)
+        constraint.priority = priority
+        return constraint
     }
     
-    func constraintWithAttribute(attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, to otherAttribute: NSLayoutAttribute, of item: AnyObject? = nil, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    func constraintWithAttribute(attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, to otherAttribute: NSLayoutAttribute, of item: AnyObject? = nil, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0, priority: UILayoutPriority = 1000) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relation, toItem: item ?? self, attribute: otherAttribute, multiplier: multiplier, constant: constant)
+        let constraint =  NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relation, toItem: item ?? self, attribute: otherAttribute, multiplier: multiplier, constant: constant)
+        constraint.priority = priority
+        return constraint
     }
     
-    func constraintWithAttribute(attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, to item: AnyObject, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> NSLayoutConstraint {
+    func constraintWithAttribute(attribute: NSLayoutAttribute, _ relation: NSLayoutRelation, to item: AnyObject, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0, priority: UILayoutPriority = 1000) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        return NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relation, toItem: item, attribute: attribute, multiplier: multiplier, constant: constant)
+        let constraint = NSLayoutConstraint(item: self, attribute: attribute, relatedBy: relation, toItem: item, attribute: attribute, multiplier: multiplier, constant: constant)
+        constraint.priority = priority
+        return constraint
     }
     
-    func constraintsWithAttributes(attributes: [NSLayoutAttribute], _ relation: NSLayoutRelation, to item: AnyObject, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0) -> [NSLayoutConstraint] {
-        return attributes.map { self.constraintWithAttribute($0, relation, to: item, multiplier: multiplier, constant: constant) }
+    func constraintsWithAttributes(attributes: [NSLayoutAttribute], _ relation: NSLayoutRelation, to item: AnyObject, multiplier: CGFloat = 1.0, constant: CGFloat = 0.0, priority: UILayoutPriority = 1000) -> [NSLayoutConstraint] {
+        return attributes.map { self.constraintWithAttribute($0, relation, to: item, multiplier: multiplier, constant: constant, priority: priority) }
     }
 }
