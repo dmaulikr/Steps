@@ -116,7 +116,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         request.testDevices = [kGADSimulatorID /*, "224ddf7740ce4fb20d147d9a7d6d52c9"*/]
         adView.loadRequest(request)
         
-        Answers.logCustomEventWithName("AdMob Refresh Rate", customAttributes: ["rate" : adRefreshRate.rawValue])
+        Answers.logCustomEventWithName("AdMob Refresh Rate", customAttributes: ["Rate" : adRefreshRate.rawValue])
         
 //        let timer = NSTimer(timeInterval: 2.0, target: self, selector: #selector(ViewController.testAd), userInfo: nil, repeats: true)
 //        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
