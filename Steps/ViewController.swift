@@ -12,9 +12,8 @@ import OAStackView
 import Async
 import BRYXGradientView
 import Crashlytics
-import Appodeal
 
-class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegate {
+class ViewController: UIViewController, StoreObserver {
 
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var headerView: UIView!
@@ -61,13 +60,13 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
     }
 
     @IBOutlet weak var bannerView: UIView!
-    lazy var adView: AppodealBannerView = {
-        let a = AppodealBannerView.init(size: kAppodealUnitSize_320x50, rootViewController: self)
-        a.constraintWithAttribute(.Height, .Equal, to: kAppodealUnitSize_320x50.height).active = true
-        a.constraintWithAttribute(.Width, .Equal, to: kAppodealUnitSize_320x50.width).active = true
-        a.delegate = self
-        return a
-    }()
+//    lazy var adView: AppodealBannerView = {
+//        let a = AppodealBannerView.init(size: kAppodealUnitSize_320x50, rootViewController: self)
+//        a.constraintWithAttribute(.Height, .Equal, to: kAppodealUnitSize_320x50.height).active = true
+//        a.constraintWithAttribute(.Width, .Equal, to: kAppodealUnitSize_320x50.width).active = true
+//        a.delegate = self
+//        return a
+//    }()
     @IBOutlet weak var showAdConstraint: NSLayoutConstraint!
     @IBOutlet weak var hideAdConstraint: NSLayoutConstraint!
     
@@ -97,10 +96,10 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
             scrollView.addGestureRecognizer(swipeGestureRecognizer)
         }
 
-        bannerView.addSubview(adView)
-        bannerView.constraintWithAttribute(.Height, .Equal, to: kAppodealUnitSize_320x50.height).active = true
-        NSLayoutConstraint.activateConstraints(adView.constraintsWithAttributes([.Top, .Bottom, .CenterX], .Equal, to: bannerView))
-        adView.loadAd()
+//        bannerView.addSubview(adView)
+//        bannerView.constraintWithAttribute(.Height, .Equal, to: kAppodealUnitSize_320x50.height).active = true
+//        NSLayoutConstraint.activateConstraints(adView.constraintsWithAttributes([.Top, .Bottom, .CenterX], .Equal, to: bannerView))
+//        adView.loadAd()
         
 //        let timer = NSTimer(timeInterval: 5.0, target: self, selector: #selector(ViewController.testAd), userInfo: nil, repeats: true)
 //        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
@@ -234,19 +233,19 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
         Answers.logCustomEventWithName("Unit Change", customAttributes: attributes)
     }
     
-    func bannerViewDidLoadAd(bannerView: AppodealBannerView!) {
-        Answers.logCustomEventWithName("Appodeal Ad Loaded", customAttributes: nil)
-        setBannerAdHidden(false, animated: true)
-    }
-    
-    func bannerView(bannerView: AppodealBannerView!, didFailToLoadAdWithError error: NSError!) {
-        Answers.logErrorWithName("Appodeal Ad Error", error: error)
-        setBannerAdHidden(true, animated: true)
-    }
-    
-    func bannerViewDidInteract(bannerView: AppodealBannerView!) {
-        Answers.logCustomEventWithName("Appodeal Ad Clicked", customAttributes: nil)
-    }
+//    func bannerViewDidLoadAd(bannerView: AppodealBannerView!) {
+//        Answers.logCustomEventWithName("Appodeal Ad Loaded", customAttributes: nil)
+//        setBannerAdHidden(false, animated: true)
+//    }
+//    
+//    func bannerView(bannerView: AppodealBannerView!, didFailToLoadAdWithError error: NSError!) {
+//        Answers.logErrorWithName("Appodeal Ad Error", error: error)
+//        setBannerAdHidden(true, animated: true)
+//    }
+//    
+//    func bannerViewDidInteract(bannerView: AppodealBannerView!) {
+//        Answers.logCustomEventWithName("Appodeal Ad Clicked", customAttributes: nil)
+//    }
     
     // iAd delegate functions
     private var bannerHidden = true
@@ -255,8 +254,8 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
         if bannerHidden == hidden { return }
         bannerHidden = hidden
         
-        adView.setNeedsLayout()
-        adView.layoutIfNeeded()
+//        adView.setNeedsLayout()
+//        adView.layoutIfNeeded()
         
         showAdConstraint.priority = hidden ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
         hideAdConstraint.priority = hidden ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
