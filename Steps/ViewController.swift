@@ -12,8 +12,9 @@ import OAStackView
 import Async
 import BRYXGradientView
 import Crashlytics
+import GoogleMobileAds
 
-class ViewController: UIViewController, StoreObserver {
+class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GADAdSizeDelegate {
 
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var headerView: UIView!
@@ -60,13 +61,10 @@ class ViewController: UIViewController, StoreObserver {
     }
 
     @IBOutlet weak var bannerView: UIView!
-//    lazy var adView: AppodealBannerView = {
-//        let a = AppodealBannerView.init(size: kAppodealUnitSize_320x50, rootViewController: self)
-//        a.constraintWithAttribute(.Height, .Equal, to: kAppodealUnitSize_320x50.height).active = true
-//        a.constraintWithAttribute(.Width, .Equal, to: kAppodealUnitSize_320x50.width).active = true
-//        a.delegate = self
-//        return a
-//    }()
+    @IBOutlet weak var adView: GADBannerView!
+    @IBOutlet weak var adWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var adHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var showAdConstraint: NSLayoutConstraint!
     @IBOutlet weak var hideAdConstraint: NSLayoutConstraint!
     
@@ -95,13 +93,18 @@ class ViewController: UIViewController, StoreObserver {
             swipeGestureRecognizer.direction = direction
             scrollView.addGestureRecognizer(swipeGestureRecognizer)
         }
-
-//        bannerView.addSubview(adView)
-//        bannerView.constraintWithAttribute(.Height, .Equal, to: kAppodealUnitSize_320x50.height).active = true
-//        NSLayoutConstraint.activateConstraints(adView.constraintsWithAttributes([.Top, .Bottom, .CenterX], .Equal, to: bannerView))
-//        adView.loadAd()
         
-//        let timer = NSTimer(timeInterval: 5.0, target: self, selector: #selector(ViewController.testAd), userInfo: nil, repeats: true)
+        adView.adSize = kGADAdSizeSmartBannerPortrait
+        adView.delegate = self
+        adView.adSizeDelegate = self
+        adView.rootViewController = self
+        adView.adUnitID = "ca-app-pub-3773029771274898/8438387761"
+        
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID, "224ddf7740ce4fb20d147d9a7d6d52c9"]
+        adView.loadRequest(request)
+        
+//        let timer = NSTimer(timeInterval: 2.0, target: self, selector: #selector(ViewController.testAd), userInfo: nil, repeats: true)
 //        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
     
@@ -135,14 +138,17 @@ class ViewController: UIViewController, StoreObserver {
         self.unitSegmentedControlValueChanged(segmentedControl)
     }
     
-//    func testAd() {
-////        setBannerAdHidden(!bannerHidden, animated: true)
-//        if bannerHidden {
-//            bannerViewDidLoadAd(adView)
-//        } else {
-//            bannerView(adView, didFailToLoadAdWithError: nil)
+    func testAd() {
+//        setBannerAdHidden(!bannerHidden, animated: true)
+//        if !bannerHidden {
+//            let size = GADAdSize(size: CGSize(width: CGFloat(rand() % 800), height: CGFloat(rand() % 1000)), flags: 0)
+//            adView(adView, willChangeAdSizeTo: size)
 //        }
-//    }
+        
+//        let request = GADRequest()
+//        request.testDevices = [kGADSimulatorID, "224ddf7740ce4fb20d147d9a7d6d52c9"]
+//        adView.loadRequest(request)
+    }
     
     private func updateTodayLabel() {
         guard let firstStepCount = store.steps?.first else { return }
@@ -233,21 +239,39 @@ class ViewController: UIViewController, StoreObserver {
         Answers.logCustomEventWithName("Unit Change", customAttributes: attributes)
     }
     
-//    func bannerViewDidLoadAd(bannerView: AppodealBannerView!) {
-//        Answers.logCustomEventWithName("Appodeal Ad Loaded", customAttributes: nil)
-//        setBannerAdHidden(false, animated: true)
-//    }
-//    
-//    func bannerView(bannerView: AppodealBannerView!, didFailToLoadAdWithError error: NSError!) {
-//        Answers.logErrorWithName("Appodeal Ad Error", error: error)
-//        setBannerAdHidden(true, animated: true)
-//    }
-//    
-//    func bannerViewDidInteract(bannerView: AppodealBannerView!) {
-//        Answers.logCustomEventWithName("Appodeal Ad Clicked", customAttributes: nil)
-//    }
     
-    // iAd delegate functions
+    // MARK: - GADBannerView delegate methods
+    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+        print(#function)
+        Answers.logCustomEventWithName("AdMob Ad Loaded", customAttributes: nil)
+        setBannerAdHidden(false, animated: true)
+    }
+    
+    func adView(bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
+        print(#function)
+        print(error)
+        Answers.logErrorWithName("AdMob Ad Error", error: error)
+        setBannerAdHidden(true, animated: true)
+    }
+    
+    func adViewWillPresentScreen(bannerView: GADBannerView!) {
+        print(#function)
+        Answers.logCustomEventWithName("AdMob Presenting Screen", customAttributes: nil)
+    }
+    
+    
+    func adViewWillLeaveApplication(bannerView: GADBannerView!) {
+        print(#function)
+        Answers.logCustomEventWithName("AdMob Leaving Application", customAttributes: nil)
+    }
+    
+    func adView(bannerView: GADBannerView, willChangeAdSizeTo size: GADAdSize) {
+        print(#function)
+        print(size)
+        adWidthConstraint.constant = size.size.width
+        adHeightConstraint.constant = size.size.height
+    }
+    
     private var bannerHidden = true
     func setBannerAdHidden(hidden: Bool, animated: Bool = false) {
     

@@ -144,12 +144,36 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="599.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmq-au-76I" userLabel="Banner View">
-                                <rect key="frame" x="0.0" y="600" width="600" height="200"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qmq-au-76I" userLabel="Banner View">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kru-ec-QQo" customClass="GADBannerView">
+                                        <rect key="frame" x="140" y="0.0" width="320" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="998" constant="50" id="hTc-UI-foF"/>
+                                            <constraint firstAttribute="width" priority="998" constant="320" id="pTN-iT-pcY"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" placeholder="YES" id="zOf-MC-TYb"/>
+                                    <constraint firstItem="kru-ec-QQo" firstAttribute="centerX" secondItem="qmq-au-76I" secondAttribute="centerX" id="3IX-jk-tNg"/>
+                                    <constraint firstAttribute="bottom" secondItem="kru-ec-QQo" secondAttribute="bottom" priority="999" id="AiE-dp-pxG"/>
+                                    <constraint firstItem="kru-ec-QQo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qmq-au-76I" secondAttribute="leading" id="DUv-8r-UbB"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="NN9-zb-iW5"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kru-ec-QQo" secondAttribute="trailing" id="ZHX-BM-TDa"/>
+                                    <constraint firstItem="kru-ec-QQo" firstAttribute="centerY" secondItem="qmq-au-76I" secondAttribute="centerY" id="hTm-hd-1Uf"/>
+                                    <constraint firstItem="kru-ec-QQo" firstAttribute="top" secondItem="qmq-au-76I" secondAttribute="top" priority="999" id="kZx-SW-vwB"/>
+                                    <constraint firstAttribute="height" constant="50" id="zOf-MC-TYb"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="zOf-MC-TYb"/>
+                                        <exclude reference="DUv-8r-UbB"/>
+                                        <exclude reference="ZHX-BM-TDa"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f3-YD-Ugm">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
@@ -202,8 +226,8 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="CGs-Hh-85i">
-                                <rect key="frame" x="0.0" y="160" width="600" height="440"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="CGs-Hh-85i">
+                                <rect key="frame" x="0.0" y="160" width="600" height="390"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -227,6 +251,9 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="adHeightConstraint" destination="hTc-UI-foF" id="hfw-Ks-anV"/>
+                        <outlet property="adView" destination="kru-ec-QQo" id="7iQ-dB-k1t"/>
+                        <outlet property="adWidthConstraint" destination="pTN-iT-pcY" id="LWn-gf-aVt"/>
                         <outlet property="bannerView" destination="qmq-au-76I" id="rNm-WN-pMP"/>
                         <outlet property="countLabel" destination="W17-2c-g84" id="ab3-AA-NjE"/>
                         <outlet property="gradientView" destination="zt3-AE-syh" id="O3x-bq-Uqb"/>

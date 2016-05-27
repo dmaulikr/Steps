@@ -19,6 +19,7 @@
 		663CF0921BB111C000C0C630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0901BB111C000C0C630 /* Main.storyboard */; };
 		663CF0941BB111C000C0C630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0931BB111C000C0C630 /* Assets.xcassets */; };
 		663CF0971BB111C000C0C630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */; };
+		6645CAFD1CF8DEE9000864A3 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6645CAFC1CF8DEE9000864A3 /* GoogleMobileAds.framework */; };
 		6689529F1BF1A33100A83654 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689529E1BF1A33100A83654 /* PermissionViewController.swift */; };
 		66A4EADA1BB87CA60085A07A /* Async.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EAD91BB87CA60085A07A /* Async.framework */; };
 		66A4EADC1BB87CC80085A07A /* Async.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */; };
@@ -64,6 +65,7 @@
 		663CF0931BB111C000C0C630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		663CF0961BB111C000C0C630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		663CF0981BB111C000C0C630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6645CAFC1CF8DEE9000864A3 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		6689529E1BF1A33100A83654 /* PermissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
 		66A4EAD91BB87CA60085A07A /* Async.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Async.framework; path = Carthage/Build/iOS/Async.framework; sourceTree = "<group>"; };
 		66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Async.framework.dSYM; path = Carthage/Build/iOS/Async.framework.dSYM; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			files = (
 				6605095E1C0B906100012C7F /* Fabric.framework in Frameworks */,
 				66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */,
+				6645CAFD1CF8DEE9000864A3 /* GoogleMobileAds.framework in Frameworks */,
 				660509571C0ABB0B00012C7F /* SwiftDate.framework in Frameworks */,
 				66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */,
 				66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */,
@@ -111,6 +114,7 @@
 		660509661C0BA1BF00012C7F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6645CAFC1CF8DEE9000864A3 /* GoogleMobileAds.framework */,
 				66A4EADD1BB87E210085A07A /* Steps.entitlements */,
 				66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */,
 				663CF0931BB111C000C0C630 /* Assets.xcassets */,
