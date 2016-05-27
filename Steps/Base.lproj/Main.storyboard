@@ -261,6 +261,7 @@
                         <outlet property="scrollView" destination="CGs-Hh-85i" id="UJk-h8-251"/>
                         <outlet property="segmentedControl" destination="rvO-A6-CYL" id="4Ng-5j-tIT"/>
                         <outlet property="showAdConstraint" destination="MNN-aL-h9F" id="XN1-vT-8uI"/>
+                        <outlet property="todayLabel" destination="Fzl-eZ-bXW" id="icP-Hw-lTq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

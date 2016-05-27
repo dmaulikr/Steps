@@ -33,6 +33,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var todayLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     let stackView = OAStackView()
     @IBOutlet weak var scrollView: UIScrollView!
@@ -83,13 +84,18 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        segmentedControl.alpha = 0.0
-        
         store.registerObserver(self)
+        
+        let todayFormatter = NSDateFormatter()
+        todayFormatter.dateStyle = .ShortStyle
+        todayFormatter.timeStyle = .NoStyle
+        todayFormatter.doesRelativeDateFormatting = true
+        todayLabel.text = todayFormatter.stringFromDate(NSDate())
         
         gradientView.topColor = UIColor(red: 29.0/255.0, green: 97.0/255.0, blue: 240.0/255.0, alpha: 1.0)
         gradientView.bottomColor = UIColor(red: 25.0/255.0, green: 213.0/255.0, blue: 253.0/255.0, alpha: 1.0)
         
+        segmentedControl.alpha = 0.0
         segmentedControl.setTitle(Settings.useMetric ? "km" : "mi", forSegmentAtIndex: 1)
         
         stackView.distribution = .FillEqually
