@@ -14,6 +14,20 @@ import BRYXGradientView
 import Crashlytics
 import GoogleMobileAds
 
+enum AdRefreshRate: String {
+    case Short, Long
+    var adUnitID: String {
+        get {
+            switch self {
+            case .Short:
+                return "ca-app-pub-3773029771274898/8438387761"
+            case .Long:
+                return "ca-app-pub-3773029771274898/7042379768"
+            }
+        }
+    }
+}
+
 class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GADAdSizeDelegate {
 
     @IBOutlet weak var gradientView: GradientView!
@@ -59,6 +73,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         }
     }
 
+    let adRefreshRate: AdRefreshRate = arc4random() % 2 == 0 ? .Long : .Short
     @IBOutlet weak var bannerView: UIView!
     @IBOutlet weak var adView: GADBannerView!
     
@@ -95,11 +110,13 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         adView.delegate = self
         adView.adSizeDelegate = self
         adView.rootViewController = self
-        adView.adUnitID = "ca-app-pub-3773029771274898/8438387761"
+        adView.adUnitID = adRefreshRate.adUnitID
         
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID /*, "224ddf7740ce4fb20d147d9a7d6d52c9"*/]
         adView.loadRequest(request)
+        
+        Answers.logCustomEventWithName("Ad Refresh Rate", customAttributes: ["rate" : "\(adRefreshRate)"])
         
 //        let timer = NSTimer(timeInterval: 2.0, target: self, selector: #selector(ViewController.testAd), userInfo: nil, repeats: true)
 //        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
@@ -246,7 +263,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
     
     func adView(bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
 //        print(#function)
-        print(error)
+//        print(error)
         Answers.logErrorWithName("AdMob Ad Error", error: error)
         setBannerAdHidden(true, animated: true)
     }
