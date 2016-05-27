@@ -240,26 +240,26 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
     
     // MARK: - GADBannerView delegate methods
     func adViewDidReceiveAd(bannerView: GADBannerView!) {
-        print(#function)
+//        print(#function)
         Answers.logCustomEventWithName("AdMob Ad Loaded", customAttributes: nil)
         setBannerAdHidden(false, animated: true)
     }
     
     func adView(bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
-        print(#function)
+//        print(#function)
         print(error)
         Answers.logErrorWithName("AdMob Ad Error", error: error)
         setBannerAdHidden(true, animated: true)
     }
     
     func adViewWillPresentScreen(bannerView: GADBannerView!) {
-        print(#function)
+//        print(#function)
         Answers.logCustomEventWithName("AdMob Presenting Screen", customAttributes: nil)
     }
     
     
     func adViewWillLeaveApplication(bannerView: GADBannerView!) {
-        print(#function)
+//        print(#function)
         Answers.logCustomEventWithName("AdMob Leaving Application", customAttributes: nil)
     }
     
