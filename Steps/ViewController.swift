@@ -62,8 +62,6 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
 
     @IBOutlet weak var bannerView: UIView!
     @IBOutlet weak var adView: GADBannerView!
-    @IBOutlet weak var adWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var adHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var showAdConstraint: NSLayoutConstraint!
     @IBOutlet weak var hideAdConstraint: NSLayoutConstraint!
@@ -101,7 +99,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         adView.adUnitID = "ca-app-pub-3773029771274898/8438387761"
         
         let request = GADRequest()
-        request.testDevices = [kGADSimulatorID, "224ddf7740ce4fb20d147d9a7d6d52c9"]
+//        request.testDevices = [kGADSimulatorID /*, "224ddf7740ce4fb20d147d9a7d6d52c9"*/]
         adView.loadRequest(request)
         
 //        let timer = NSTimer(timeInterval: 2.0, target: self, selector: #selector(ViewController.testAd), userInfo: nil, repeats: true)
@@ -218,7 +216,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
     }
     
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         guard let path = keyPath where path == Settings.useMetricKey else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
             return
@@ -231,7 +229,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
             }
         }
         
-        var attributes = [String : String]()
+        var attributes = [String: String]()
         attributes["from"] = self.segmentedControl.titleForSegmentAtIndex(1)
         self.segmentedControl.setTitle(Settings.useMetric ? "km" : "mi", forSegmentAtIndex: 1)
         attributes["to"] = self.segmentedControl.titleForSegmentAtIndex(1)
@@ -266,10 +264,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
     }
     
     func adView(bannerView: GADBannerView, willChangeAdSizeTo size: GADAdSize) {
-        print(#function)
-        print(size)
-        adWidthConstraint.constant = size.size.width
-        adHeightConstraint.constant = size.size.height
+        Answers.logCustomEventWithName("AdMob Ad Size Change", customAttributes: ["width": size.size.width, "height": size.size.height])
     }
     
     private var bannerHidden = true

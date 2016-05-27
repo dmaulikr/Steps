@@ -148,30 +148,31 @@
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kru-ec-QQo" customClass="GADBannerView">
-                                        <rect key="frame" x="140" y="0.0" width="320" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" priority="998" constant="50" id="hTc-UI-foF"/>
-                                            <constraint firstAttribute="width" priority="998" constant="320" id="pTN-iT-pcY"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="kru-ec-QQo" secondAttribute="trailing" id="1aS-f8-Dj5"/>
                                     <constraint firstItem="kru-ec-QQo" firstAttribute="centerX" secondItem="qmq-au-76I" secondAttribute="centerX" id="3IX-jk-tNg"/>
                                     <constraint firstAttribute="bottom" secondItem="kru-ec-QQo" secondAttribute="bottom" priority="999" id="AiE-dp-pxG"/>
                                     <constraint firstItem="kru-ec-QQo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="qmq-au-76I" secondAttribute="leading" id="DUv-8r-UbB"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="NN9-zb-iW5"/>
+                                    <constraint firstItem="kru-ec-QQo" firstAttribute="top" secondItem="qmq-au-76I" secondAttribute="top" id="NSB-7o-2Wg"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kru-ec-QQo" secondAttribute="trailing" id="ZHX-BM-TDa"/>
+                                    <constraint firstAttribute="height" constant="50" id="bQO-Ji-bio"/>
+                                    <constraint firstAttribute="bottom" secondItem="kru-ec-QQo" secondAttribute="bottom" id="dUc-l3-4uU"/>
                                     <constraint firstItem="kru-ec-QQo" firstAttribute="centerY" secondItem="qmq-au-76I" secondAttribute="centerY" id="hTm-hd-1Uf"/>
                                     <constraint firstItem="kru-ec-QQo" firstAttribute="top" secondItem="qmq-au-76I" secondAttribute="top" priority="999" id="kZx-SW-vwB"/>
-                                    <constraint firstAttribute="height" constant="50" id="zOf-MC-TYb"/>
+                                    <constraint firstItem="kru-ec-QQo" firstAttribute="leading" secondItem="qmq-au-76I" secondAttribute="leading" id="vNS-n1-isA"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="zOf-MC-TYb"/>
+                                        <exclude reference="3IX-jk-tNg"/>
+                                        <exclude reference="AiE-dp-pxG"/>
                                         <exclude reference="DUv-8r-UbB"/>
                                         <exclude reference="ZHX-BM-TDa"/>
+                                        <exclude reference="kZx-SW-vwB"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -251,9 +252,7 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="adHeightConstraint" destination="hTc-UI-foF" id="hfw-Ks-anV"/>
                         <outlet property="adView" destination="kru-ec-QQo" id="7iQ-dB-k1t"/>
-                        <outlet property="adWidthConstraint" destination="pTN-iT-pcY" id="LWn-gf-aVt"/>
                         <outlet property="bannerView" destination="qmq-au-76I" id="rNm-WN-pMP"/>
                         <outlet property="countLabel" destination="W17-2c-g84" id="ab3-AA-NjE"/>
                         <outlet property="gradientView" destination="zt3-AE-syh" id="O3x-bq-Uqb"/>
