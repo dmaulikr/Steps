@@ -144,7 +144,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="599.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmq-au-76I" userLabel="Banner View" customClass="AppodealBannerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmq-au-76I" userLabel="Banner View">
                                 <rect key="frame" x="0.0" y="600" width="600" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
