@@ -57,7 +57,7 @@ class DayView: UIView {
         
         if UIScreen.mainScreen().bounds.height >= 736 {
             var font = view.dayLabel.font
-            font = UIFont(name: font.fontName, size: 26)
+            font = UIFont(name: font.fontName, size: 26) ?? font
             view.dayLabel.font = font
             view.countLabel.font = font
         }
