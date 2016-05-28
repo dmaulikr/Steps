@@ -12,9 +12,23 @@ import OAStackView
 import Async
 import BRYXGradientView
 import Crashlytics
-import Appodeal
+import GoogleMobileAds
 
-class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegate {
+enum AdRefreshRate: String {
+    case Short, Long
+    var adUnitID: String {
+        get {
+            switch self {
+            case .Short:
+                return "ca-app-pub-3773029771274898/8438387761"
+            case .Long:
+                return "ca-app-pub-3773029771274898/7042379768"
+            }
+        }
+    }
+}
+
+class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GADAdSizeDelegate {
 
     @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var headerView: UIView!
@@ -53,7 +67,6 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
         numberFormatter.maximumFractionDigits = 2
         return numberFormatter
     }()
-    
 
     private var showDistances: Bool {
         get {
@@ -61,14 +74,10 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
         }
     }
 
+    let adRefreshRate: AdRefreshRate = arc4random() % 2 == 0 ? .Long : .Short
     @IBOutlet weak var bannerView: UIView!
-    lazy var adView: AppodealBannerView = {
-        let a = AppodealBannerView.init(size: kAppodealUnitSize_320x50, rootViewController: self)
-        a.constraintWithAttribute(.Height, .Equal, to: kAppodealUnitSize_320x50.height).active = true
-        a.constraintWithAttribute(.Width, .Equal, to: kAppodealUnitSize_320x50.width).active = true
-        a.delegate = self
-        return a
-    }()
+    @IBOutlet weak var adView: GADBannerView!
+    
     @IBOutlet weak var showAdConstraint: NSLayoutConstraint!
     @IBOutlet weak var hideAdConstraint: NSLayoutConstraint!
     
@@ -102,13 +111,20 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
             swipeGestureRecognizer.direction = direction
             scrollView.addGestureRecognizer(swipeGestureRecognizer)
         }
-
-        bannerView.addSubview(adView)
-        bannerView.constraintWithAttribute(.Height, .Equal, to: kAppodealUnitSize_320x50.height).active = true
-        NSLayoutConstraint.activateConstraints(adView.constraintsWithAttributes([.Top, .Bottom, .CenterX], .Equal, to: bannerView))
-        adView.loadAd()
         
-//        let timer = NSTimer(timeInterval: 5.0, target: self, selector: #selector(ViewController.testAd), userInfo: nil, repeats: true)
+        adView.adSize = kGADAdSizeSmartBannerPortrait
+        adView.delegate = self
+        adView.adSizeDelegate = self
+        adView.rootViewController = self
+        adView.adUnitID = adRefreshRate.adUnitID
+        
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID /*, "224ddf7740ce4fb20d147d9a7d6d52c9"*/]
+        adView.loadRequest(request)
+        
+        Answers.logCustomEventWithName("AdMob Refresh Rate", customAttributes: ["Rate" : adRefreshRate.rawValue])
+        
+//        let timer = NSTimer(timeInterval: 2.0, target: self, selector: #selector(ViewController.testAd), userInfo: nil, repeats: true)
 //        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
     }
     
@@ -142,14 +158,17 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
         self.unitSegmentedControlValueChanged(segmentedControl)
     }
     
-//    func testAd() {
-////        setBannerAdHidden(!bannerHidden, animated: true)
-//        if bannerHidden {
-//            bannerViewDidLoadAd(adView)
-//        } else {
-//            bannerView(adView, didFailToLoadAdWithError: nil)
+    func testAd() {
+//        setBannerAdHidden(!bannerHidden, animated: true)
+//        if !bannerHidden {
+//            let size = GADAdSize(size: CGSize(width: CGFloat(rand() % 800), height: CGFloat(rand() % 1000)), flags: 0)
+//            adView(adView, willChangeAdSizeTo: size)
 //        }
-//    }
+        
+//        let request = GADRequest()
+//        request.testDevices = [kGADSimulatorID, "224ddf7740ce4fb20d147d9a7d6d52c9"]
+//        adView.loadRequest(request)
+    }
     
     private func updateTodayLabel() {
         guard let firstStepCount = store.steps?.first else { return }
@@ -219,7 +238,7 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
     }
     
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String: AnyObject]?, context: UnsafeMutablePointer<Void>) {
         guard let path = keyPath where path == Settings.useMetricKey else {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
             return
@@ -232,7 +251,7 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
             }
         }
         
-        var attributes = [String : String]()
+        var attributes = [String: String]()
         attributes["from"] = self.segmentedControl.titleForSegmentAtIndex(1)
         self.segmentedControl.setTitle(Settings.useMetric ? "km" : "mi", forSegmentAtIndex: 1)
         attributes["to"] = self.segmentedControl.titleForSegmentAtIndex(1)
@@ -240,29 +259,44 @@ class ViewController: UIViewController, StoreObserver, AppodealBannerViewDelegat
         Answers.logCustomEventWithName("Unit Change", customAttributes: attributes)
     }
     
-    func bannerViewDidLoadAd(bannerView: AppodealBannerView!) {
-        Answers.logCustomEventWithName("Appodeal Ad Loaded", customAttributes: nil)
+    
+    // MARK: - GADBannerView delegate methods
+    func adViewDidReceiveAd(bannerView: GADBannerView!) {
+//        print(#function)
+        Answers.logCustomEventWithName("AdMob Ad Loaded", customAttributes: nil)
         setBannerAdHidden(false, animated: true)
     }
     
-    func bannerView(bannerView: AppodealBannerView!, didFailToLoadAdWithError error: NSError!) {
-        Answers.logErrorWithName("Appodeal Ad Error", error: error)
+    func adView(bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
+//        print(#function)
+//        print(error)
+        Answers.logErrorWithName("AdMob Ad Error", error: error)
         setBannerAdHidden(true, animated: true)
     }
     
-    func bannerViewDidInteract(bannerView: AppodealBannerView!) {
-        Answers.logCustomEventWithName("Appodeal Ad Clicked", customAttributes: nil)
+    func adViewWillPresentScreen(bannerView: GADBannerView!) {
+//        print(#function)
+        Answers.logCustomEventWithName("AdMob Presenting Screen", customAttributes: nil)
     }
     
-    // iAd delegate functions
+    
+    func adViewWillLeaveApplication(bannerView: GADBannerView!) {
+//        print(#function)
+        Answers.logCustomEventWithName("AdMob Leaving Application", customAttributes: nil)
+    }
+    
+    func adView(bannerView: GADBannerView, willChangeAdSizeTo size: GADAdSize) {
+        Answers.logCustomEventWithName("AdMob Ad Size Change", customAttributes: ["width": size.size.width, "height": size.size.height])
+    }
+    
     private var bannerHidden = true
     func setBannerAdHidden(hidden: Bool, animated: Bool = false) {
     
         if bannerHidden == hidden { return }
         bannerHidden = hidden
         
-        adView.setNeedsLayout()
-        adView.layoutIfNeeded()
+//        adView.setNeedsLayout()
+//        adView.layoutIfNeeded()
         
         showAdConstraint.priority = hidden ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
         hideAdConstraint.priority = hidden ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
