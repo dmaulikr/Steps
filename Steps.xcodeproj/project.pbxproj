@@ -26,6 +26,7 @@
 		66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EADE1BB87E210085A07A /* HealthKit.framework */; };
 		66B9CBB11BEEBE2C00A16E6D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */; };
 		66B9CBB31BEEC00A00A16E6D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B9CBB21BEEC00A00A16E6D /* Settings.swift */; };
+		66CC91521CFA4E8A007F8BE8 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC91511CFA4E8A007F8BE8 /* SettingsTableViewController.swift */; };
 		66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D27C041BB9C84F00917917 /* BRYXGradientView.framework */; };
 		66D27C081BB9C86500917917 /* BRYXGradientView.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */; };
 		66F765D21BB85092005E484A /* DayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F765D11BB85092005E484A /* DayView.xib */; };
@@ -103,6 +104,7 @@
 		66A4EADE1BB87E210085A07A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		66B9CBB21BEEC00A00A16E6D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		66CC91511CFA4E8A007F8BE8 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		66D27C041BB9C84F00917917 /* BRYXGradientView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXGradientView.framework; path = Carthage/Build/iOS/BRYXGradientView.framework; sourceTree = "<group>"; };
 		66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = BRYXGradientView.framework.dSYM; path = Carthage/Build/iOS/BRYXGradientView.framework.dSYM; sourceTree = "<group>"; };
 		66E759AE1CF917E700031D6A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				663CF08C1BB111C000C0C630 /* AppDelegate.swift */,
 				663CF08E1BB111C000C0C630 /* ViewController.swift */,
 				6689529E1BF1A33100A83654 /* PermissionViewController.swift */,
+				66CC91511CFA4E8A007F8BE8 /* SettingsTableViewController.swift */,
 				66B9CBB21BEEC00A00A16E6D /* Settings.swift */,
 				660509531C0AA3B100012C7F /* Store.swift */,
 				660509631C0BA17700012C7F /* Step.swift */,
@@ -360,6 +363,7 @@
 				663CF08D1BB111C000C0C630 /* AppDelegate.swift in Sources */,
 				66B9CBB31BEEC00A00A16E6D /* Settings.swift in Sources */,
 				6634D0401BF7F73E00127F4C /* Extensions.swift in Sources */,
+				66CC91521CFA4E8A007F8BE8 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
