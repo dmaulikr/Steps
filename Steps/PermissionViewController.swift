@@ -38,8 +38,8 @@ class PermissionViewController: UIViewController {
         
         modalPresentationStyle = .CurrentContext
 
-        gradientView.topColor = UIColor(red: 29.0/255.0, green: 97.0/255.0, blue: 240.0/255.0, alpha: 1.0)
-        gradientView.bottomColor = UIColor(red: 25.0/255.0, green: 213.0/255.0, blue: 253.0/255.0, alpha: 1.0)
+        gradientView.topColor = UIColor.blueGradientTopColor
+        gradientView.bottomColor = UIColor.blueGradientBottomColor
         
         descriptionLabel.text = "Steps needs permission to read step counts from your iPhone."
     }

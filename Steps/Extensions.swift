@@ -91,3 +91,8 @@ extension UIView {
         return attributes.map { self.constraintWithAttribute($0, relation, to: item, multiplier: multiplier, constant: constant, priority: priority) }
     }
 }
+
+extension UIColor {
+    @nonobjc static let blueGradientTopColor = UIColor(red: 29.0/255.0, green: 97.0/255.0, blue: 240.0/255.0, alpha: 1.0)
+    @nonobjc static let blueGradientBottomColor = UIColor(red: 25.0/255.0, green: 213.0/255.0, blue: 253.0/255.0, alpha: 1.0)
+}

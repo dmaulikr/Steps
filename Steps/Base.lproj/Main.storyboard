@@ -137,14 +137,10 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="GradientView" customModule="BRYXGradientView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zt3-AE-syh" customClass="GradientView" customModule="BRYXGradientView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="599.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmq-au-76I" userLabel="Banner View">
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                 <subviews>
@@ -211,6 +207,9 @@
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="settings"/>
+                                        <connections>
+                                            <segue destination="OXH-uZ-Hze" kind="presentation" id="L6J-ej-7rX"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -247,21 +246,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="zt3-AE-syh" secondAttribute="trailing" id="2xe-O7-mR5"/>
                             <constraint firstAttribute="trailing" secondItem="CGs-Hh-85i" secondAttribute="trailing" id="455-77-Vr3"/>
                             <constraint firstAttribute="trailing" secondItem="3f3-YD-Ugm" secondAttribute="trailing" id="67Y-Zj-00J"/>
                             <constraint firstItem="CGs-Hh-85i" firstAttribute="top" secondItem="3f3-YD-Ugm" secondAttribute="bottom" id="9r4-Gd-ocT"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qmq-au-76I" secondAttribute="bottom" priority="750" id="MNN-aL-h9F" userLabel="Show Ad Constraint"/>
                             <constraint firstItem="CGs-Hh-85i" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Szt-U4-vXa"/>
                             <constraint firstItem="3f3-YD-Ugm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="TP9-aN-LWE"/>
-                            <constraint firstItem="zt3-AE-syh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Vyi-Rm-x1y"/>
                             <constraint firstItem="3f3-YD-Ugm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="XJz-KU-4N8"/>
-                            <constraint firstItem="zt3-AE-syh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-19.5" id="YFB-Fl-rbr"/>
                             <constraint firstItem="qmq-au-76I" firstAttribute="top" secondItem="CGs-Hh-85i" secondAttribute="bottom" id="f3r-vP-FXT"/>
                             <constraint firstItem="qmq-au-76I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jhM-p3-dLX"/>
                             <constraint firstAttribute="trailing" secondItem="qmq-au-76I" secondAttribute="trailing" id="kcm-3v-owz"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qmq-au-76I" secondAttribute="bottom" placeholder="YES" id="uTs-n7-dGl"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zt3-AE-syh" secondAttribute="bottom" id="vrL-8Z-jrO"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qmq-au-76I" secondAttribute="top" priority="751" id="wg9-t4-Tpa" userLabel="Hide Ad Constraint"/>
                         </constraints>
                     </view>
@@ -270,7 +265,6 @@
                         <outlet property="adView" destination="kru-ec-QQo" id="7iQ-dB-k1t"/>
                         <outlet property="bannerView" destination="qmq-au-76I" id="rNm-WN-pMP"/>
                         <outlet property="countLabel" destination="W17-2c-g84" id="ab3-AA-NjE"/>
-                        <outlet property="gradientView" destination="zt3-AE-syh" id="O3x-bq-Uqb"/>
                         <outlet property="headerView" destination="3f3-YD-Ugm" id="lc1-ma-yt4"/>
                         <outlet property="hideAdConstraint" destination="wg9-t4-Tpa" id="Agi-4t-fR7"/>
                         <outlet property="scrollView" destination="CGs-Hh-85i" id="UJk-h8-251"/>
@@ -282,7 +276,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="447" y="434"/>
+            <point key="canvasLocation" x="442" y="389"/>
+        </scene>
+        <!--Settings Table View Controller-->
+        <scene sceneID="Utg-R3-0YP">
+            <objects>
+                <tableViewController id="OXH-uZ-Hze" customClass="SettingsTableViewController" customModule="Steps" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="DXw-TK-3Rv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Efx-Bd-VNc">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Efx-Bd-VNc" id="V2X-g0-TSC">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OXH-uZ-Hze" id="Pnc-TX-8k7"/>
+                            <outlet property="delegate" destination="OXH-uZ-Hze" id="cG5-as-9J1"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4R2-jq-0RW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1152" y="389"/>
         </scene>
     </scenes>
     <resources>
