@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Steps/ViewController.swift"
-            timestampString = "486085881.285568"
+            timestampString = "486088542.044011"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
-            landmarkName = "setBannerAdHidden(_:animated:)"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "adViewWillPresentScreen(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

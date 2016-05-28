@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "Today"; ObjectID = "Fzl-eZ-bXW"; */
+"Fzl-eZ-bXW.text" = "Today";
+
+/* Class = "UILabel"; text = "Steps needs permission to read step counts from your iPhone."; ObjectID = "QcM-Hy-RB0"; */
+"QcM-Hy-RB0.text" = "Steps needs permission to read step counts from your iPhone.";
+
+/* Class = "UILabel"; text = " "; ObjectID = "W17-2c-g84"; */
+"W17-2c-g84.text" = " ";
+
+/* Class = "UILabel"; text = "Steps works only on iPhone 5s, 6, 6 Plus, 6s, and 6s Plus."; ObjectID = "qMc-fE-pId"; */
+"qMc-fE-pId.text" = "Steps works only on iPhone 5s, 6, 6 Plus, 6s, and 6s Plus.";
+
+/* Class = "UISegmentedControl"; rvO-A6-CYL.segmentTitles[0] = "steps"; ObjectID = "rvO-A6-CYL"; */
+"rvO-A6-CYL.segmentTitles[0]" = "steps";
+
+/* Class = "UISegmentedControl"; rvO-A6-CYL.segmentTitles[1] = "km"; ObjectID = "rvO-A6-CYL"; */
+"rvO-A6-CYL.segmentTitles[1]" = "km";
+
+/* Class = "UIButton"; normalTitle = "OK"; ObjectID = "tyu-Lb-j8D"; */
+"tyu-Lb-j8D.normalTitle" = "OK";
