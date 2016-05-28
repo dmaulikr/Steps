@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -144,7 +145,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="599.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qmq-au-76I" userLabel="Banner View">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qmq-au-76I" userLabel="Banner View">
                                 <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kru-ec-QQo" customClass="GADBannerView">
@@ -202,12 +203,24 @@
                                             <action selector="unitSegmentedControlValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="nUW-gG-Wr1"/>
                                         </connections>
                                     </segmentedControl>
+                                    <button opaque="NO" alpha="0.32000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOD-cZ-kUb">
+                                        <rect key="frame" x="8" y="114" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="rOD-cZ-kUb" secondAttribute="height" multiplier="1:1" id="WeD-8n-RuB"/>
+                                            <constraint firstAttribute="width" constant="20" id="pCw-Qi-SdU"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="settings"/>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="rOD-cZ-kUb" firstAttribute="bottom" secondItem="rvO-A6-CYL" secondAttribute="bottom" id="1wd-5s-fgJ"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="W17-2c-g84" secondAttribute="trailing" constant="8" id="9Pz-8h-gyi"/>
                                     <constraint firstItem="W17-2c-g84" firstAttribute="centerX" secondItem="3f3-YD-Ugm" secondAttribute="centerX" id="ErA-eZ-tDg"/>
                                     <constraint firstItem="rvO-A6-CYL" firstAttribute="height" secondItem="Fzl-eZ-bXW" secondAttribute="height" id="KBT-h4-rex"/>
                                     <constraint firstItem="W17-2c-g84" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3f3-YD-Ugm" secondAttribute="leading" constant="8" id="KbC-Ue-H0V"/>
+                                    <constraint firstItem="rOD-cZ-kUb" firstAttribute="leading" secondItem="3f3-YD-Ugm" secondAttribute="leading" constant="8" id="LqJ-hp-sA5"/>
+                                    <constraint firstItem="rOD-cZ-kUb" firstAttribute="baseline" secondItem="Fzl-eZ-bXW" secondAttribute="baseline" id="Pfk-In-sd4"/>
                                     <constraint firstItem="rvO-A6-CYL" firstAttribute="leading" secondItem="3f3-YD-Ugm" secondAttribute="leading" constant="6" id="QH3-Am-QDl"/>
                                     <constraint firstItem="Fzl-eZ-bXW" firstAttribute="centerX" secondItem="3f3-YD-Ugm" secondAttribute="centerX" id="V2b-vN-INA"/>
                                     <constraint firstAttribute="trailing" secondItem="rvO-A6-CYL" secondAttribute="trailing" constant="16" id="Y6s-fR-ZoN"/>
@@ -221,13 +234,14 @@
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="1wd-5s-fgJ"/>
                                         <exclude reference="QH3-Am-QDl"/>
                                         <exclude reference="Y6s-fR-ZoN"/>
                                         <exclude reference="rH6-Zf-0Ox"/>
                                     </mask>
                                 </variation>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="CGs-Hh-85i">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="CGs-Hh-85i">
                                 <rect key="frame" x="0.0" y="160" width="600" height="390"/>
                             </scrollView>
                         </subviews>
@@ -246,6 +260,7 @@
                             <constraint firstItem="qmq-au-76I" firstAttribute="top" secondItem="CGs-Hh-85i" secondAttribute="bottom" id="f3r-vP-FXT"/>
                             <constraint firstItem="qmq-au-76I" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jhM-p3-dLX"/>
                             <constraint firstAttribute="trailing" secondItem="qmq-au-76I" secondAttribute="trailing" id="kcm-3v-owz"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qmq-au-76I" secondAttribute="bottom" placeholder="YES" id="uTs-n7-dGl"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zt3-AE-syh" secondAttribute="bottom" id="vrL-8Z-jrO"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qmq-au-76I" secondAttribute="top" priority="751" id="wg9-t4-Tpa" userLabel="Hide Ad Constraint"/>
                         </constraints>
@@ -260,16 +275,18 @@
                         <outlet property="hideAdConstraint" destination="wg9-t4-Tpa" id="Agi-4t-fR7"/>
                         <outlet property="scrollView" destination="CGs-Hh-85i" id="UJk-h8-251"/>
                         <outlet property="segmentedControl" destination="rvO-A6-CYL" id="4Ng-5j-tIT"/>
+                        <outlet property="settingsButton" destination="rOD-cZ-kUb" id="gZ0-62-a3O"/>
                         <outlet property="showAdConstraint" destination="MNN-aL-h9F" id="XN1-vT-8uI"/>
                         <outlet property="todayLabel" destination="Fzl-eZ-bXW" id="icP-Hw-lTq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="413" y="389"/>
+            <point key="canvasLocation" x="447" y="434"/>
         </scene>
     </scenes>
     <resources>
         <image name="logo" width="482" height="800"/>
+        <image name="settings" width="1079" height="1082"/>
     </resources>
 </document>

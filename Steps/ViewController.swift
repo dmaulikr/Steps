@@ -37,6 +37,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     let stackView = OAStackView()
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var settingsButton: UIButton!
     
     private var dayViews = [DayView]()
     
@@ -121,6 +122,10 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID /*, "224ddf7740ce4fb20d147d9a7d6d52c9"*/]
         adView.loadRequest(request)
+        
+        if let image = settingsButton.currentImage {
+            settingsButton.setImage(image.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        }
         
         Answers.logCustomEventWithName("AdMob Refresh Rate", customAttributes: ["Rate" : adRefreshRate.rawValue])
         
