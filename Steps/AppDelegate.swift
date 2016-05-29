@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let significantTimeChangeNotificationName = "significantTimeChange"
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        Settings.initializeDefaults()
         Fabric.with([Crashlytics.self])
         return true
     }
