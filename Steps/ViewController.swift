@@ -377,8 +377,9 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
             }
             
             if let error = (error as ErrorType) as? StoreError where error == .NoDataReturned && (alertController != nil || !errorShown) {
-                showErrorAlertControllerForType(type)
-                errorShown = true
+                // TODO: Uncomment this
+//                showErrorAlertControllerForType(type)
+//                errorShown = true
             }
         }
     }
