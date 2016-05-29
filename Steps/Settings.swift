@@ -25,7 +25,7 @@ struct Settings {
             return defaults.boolForKey(useMetricKey)
         }
         set {
-            defaults.setBool(useMetric, forKey: useMetricKey)
+            defaults.setBool(newValue, forKey: useMetricKey)
         }
     }
 }
