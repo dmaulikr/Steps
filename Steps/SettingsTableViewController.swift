@@ -11,8 +11,16 @@ import BRYXGradientView
 
 class SettingsTableViewController: UITableViewController {
     
+    @IBOutlet weak var unitSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        unitSwitch.on = Settings.useMetric
+    }
+    
+    @IBAction func unitSwitchChanged(sender: AnyObject) {
+        Settings.useMetric = unitSwitch.on
     }
     
     @IBAction func doneButtonPressed(sender: UIButton) {
