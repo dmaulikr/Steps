@@ -4,7 +4,5 @@
 <dict>
 	<key>com.apple.developer.healthkit</key>
 	<true/>
-	<key>com.apple.external-accessory.wireless-configuration</key>
-	<true/>
 </dict>
 </plist>
