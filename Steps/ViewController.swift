@@ -106,7 +106,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         NSLayoutConstraint.activateConstraints(stackView.constraintsWithAttributes([.Top, .Left, .Right, .Width, .Bottom], .Equal, to: scrollView))
         stackView.constraintWithAttribute(.Height, .GreaterThanOrEqual, to: scrollView).active = true
         
-        NSUserDefaults.standardUserDefaults().addObserver(self, forKeyPath: Settings.useMetricKey, options: [.New], context: nil)
+        Settings.defaults.addObserver(self, forKeyPath: Settings.useMetricKey, options: [.New], context: nil)
     
         for direction in [.Left, .Right] as [UISwipeGestureRecognizerDirection] {
             let swipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ViewController.viewSwiped(_:)))
