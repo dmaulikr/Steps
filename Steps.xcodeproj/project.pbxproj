@@ -13,6 +13,7 @@
 		6605095D1C0B906100012C7F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6605095B1C0B906100012C7F /* Crashlytics.framework */; };
 		6605095E1C0B906100012C7F /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6605095C1C0B906100012C7F /* Fabric.framework */; };
 		660509641C0BA17700012C7F /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660509631C0BA17700012C7F /* Step.swift */; };
+		660C41F01CFB99D3001B33A3 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660C41EF1CFB99D3001B33A3 /* ExternalAccessory.framework */; };
 		6634D0401BF7F73E00127F4C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6634D03F1BF7F73E00127F4C /* Extensions.swift */; };
 		663CF08D1BB111C000C0C630 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663CF08C1BB111C000C0C630 /* AppDelegate.swift */; };
 		663CF08F1BB111C000C0C630 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663CF08E1BB111C000C0C630 /* ViewController.swift */; };
@@ -57,6 +58,7 @@
 		6605095B1C0B906100012C7F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6605095C1C0B906100012C7F /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		660509631C0BA17700012C7F /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		660C41EF1CFB99D3001B33A3 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		6634D03F1BF7F73E00127F4C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		663CF0891BB111C000C0C630 /* Steps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Steps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		663CF08C1BB111C000C0C630 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				660C41F01CFB99D3001B33A3 /* ExternalAccessory.framework in Frameworks */,
 				6605095E1C0B906100012C7F /* Fabric.framework in Frameworks */,
 				66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */,
 				6645CAFD1CF8DEE9000864A3 /* GoogleMobileAds.framework in Frameworks */,
@@ -208,6 +211,7 @@
 		66F765D71BB864BC005E484A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				660C41EF1CFB99D3001B33A3 /* ExternalAccessory.framework */,
 				66A4EAD91BB87CA60085A07A /* Async.framework */,
 				6605095B1C0B906100012C7F /* Crashlytics.framework */,
 				6605095C1C0B906100012C7F /* Fabric.framework */,
@@ -262,6 +266,9 @@
 						DevelopmentTeam = BCVA6NEN6F;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
+								enabled = 1;
+							};
+							com.apple.WAC = {
 								enabled = 1;
 							};
 						};
