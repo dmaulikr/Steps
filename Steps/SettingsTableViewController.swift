@@ -26,11 +26,5 @@ class SettingsTableViewController: UITableViewController {
     @IBAction func doneButtonPressed(sender: UIButton) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        guard (indexPath.section, indexPath.row) == (1, 0) else { return }
-
-    }
 }
 
