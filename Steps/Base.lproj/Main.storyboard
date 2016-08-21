@@ -339,37 +339,28 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Upgrade" footerTitle="Upgrade Steps to unlock the Notification Center widget and remove ads." id="guY-Ob-6x7">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kLf-EQ-Tib">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="EBu-Ho-n7R" detailTextLabel="wzU-Rj-kUC" style="IBUITableViewCellStyleValue1" id="kLf-EQ-Tib">
                                         <rect key="frame" x="0.0" y="207.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="kLf-EQ-Tib" id="eJX-O2-hEi">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kLf-EQ-Tib" id="eJX-O2-hEi">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upgrade" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJx-kd-sjq">
-                                                    <rect key="frame" x="15" y="11" width="67" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Premium" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EBu-Ho-n7R">
+                                                    <rect key="frame" x="15" y="12" width="64.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iX7-BA-GUP">
-                                                    <rect key="frame" x="585" y="22" width="0.0" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="$1.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wzU-Rj-kUC">
+                                                    <rect key="frame" x="544.5" y="12" width="40.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Anq-VX-aNE">
-                                                    <rect key="frame" x="565" y="11" width="20" height="20"/>
-                                                </activityIndicatorView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="iX7-BA-GUP" firstAttribute="centerY" secondItem="eJX-O2-hEi" secondAttribute="centerY" id="2kE-UE-oOr"/>
-                                                <constraint firstItem="dJx-kd-sjq" firstAttribute="centerY" secondItem="eJX-O2-hEi" secondAttribute="centerY" id="4fU-zR-QkT"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Anq-VX-aNE" secondAttribute="trailing" id="MVT-rL-vaw"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="dJx-kd-sjq" secondAttribute="leading" id="RWp-tm-i5c"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="iX7-BA-GUP" secondAttribute="trailing" id="W1w-Wa-1lf"/>
-                                                <constraint firstItem="Anq-VX-aNE" firstAttribute="centerY" secondItem="eJX-O2-hEi" secondAttribute="centerY" id="cLS-qY-Sqg"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -388,10 +379,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="activityIndicator" destination="Anq-VX-aNE" id="pdp-uz-IHJ"/>
-                        <outlet property="priceLabel" destination="iX7-BA-GUP" id="Iwm-hG-j5E"/>
                         <outlet property="unitSwitch" destination="BTJ-sz-Lf0" id="6vW-Ho-U4x"/>
-                        <outlet property="upgradeLabel" destination="dJx-kd-sjq" id="H20-ue-xlt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a0p-td-3Se" userLabel="First Responder" sceneMemberID="firstResponder"/>
