@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A254g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A313a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -25,7 +25,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="249" text="Steps works only on iPhone 5s, 6, 6 Plus, 6s, and 6s Plus." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMc-fE-pId">
-                                <rect key="frame" x="299.5" y="579" width="0.0" height="20.5"/>
+                                <rect key="frame" x="300" y="579" width="0.0" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="250" id="x6T-zL-MNa"/>
                                 </constraints>
@@ -59,7 +59,7 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps needs permission to read step counts from your iPhone." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcM-Hy-RB0">
-                                <rect key="frame" x="17.5" y="291" width="566.5" height="57.5"/>
+                                <rect key="frame" x="17" y="291" width="566.5" height="57.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -289,7 +289,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="tyK-WA-9CS" kind="relationship" relationship="rootViewController" id="Baa-KA-UfA"/>
+                        <segue destination="fnV-u9-He8" kind="relationship" relationship="rootViewController" id="hxP-4j-zOf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8B9-1I-c2N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -297,66 +297,73 @@
             <point key="canvasLocation" x="1152" y="389"/>
         </scene>
         <!--Settings-->
-        <scene sceneID="CV8-If-BK9">
+        <scene sceneID="s39-g6-IxH">
             <objects>
-                <tableViewController id="tyK-WA-9CS" customClass="SettingsTableViewController" customModule="Steps" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="byx-d6-fo8">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fnV-u9-He8" customClass="SettingsViewController" customModule="Steps" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1vZ-lM-SKY"/>
+                        <viewControllerLayoutGuide type="bottom" id="WZM-4P-Otz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LGM-NR-zF6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <sections>
-                            <tableViewSection headerTitle="Units" footerTitle="Use kilometers for distances walked." id="nrt-bj-9Xp">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="llO-z8-tt6">
-                                        <rect key="frame" x="0.0" y="113.5" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="llO-z8-tt6" id="SRe-tN-gZ0">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Metric" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yp1-3O-lTt">
-                                                    <rect key="frame" x="15" y="11" width="84" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTJ-sz-Lf0">
-                                                    <rect key="frame" x="536" y="6" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="unitSwitchChanged:" destination="tyK-WA-9CS" eventType="valueChanged" id="0kA-9w-bha"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="yp1-3O-lTt" firstAttribute="centerY" secondItem="SRe-tN-gZ0" secondAttribute="centerY" id="1Ds-xU-hJ5"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="BTJ-sz-Lf0" secondAttribute="trailing" id="B1j-1M-aBH"/>
-                                                <constraint firstItem="BTJ-sz-Lf0" firstAttribute="centerY" secondItem="SRe-tN-gZ0" secondAttribute="centerY" id="kDa-P2-PNq"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="yp1-3O-lTt" secondAttribute="leading" id="uMP-yL-wKI"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="tyK-WA-9CS" id="gOF-kI-wyM"/>
-                            <outlet property="delegate" destination="tyK-WA-9CS" id="fuO-oq-fb4"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="X9C-Jf-RdH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="SpB-55-yIG">
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="gwy-bZ-fCR">
+                                <rect key="frame" x="0.0" y="64" width="600" height="474"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="fnV-u9-He8" id="ktu-pf-g3q"/>
+                                    <outlet property="delegate" destination="fnV-u9-He8" id="STs-8m-dHj"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iRn-EH-RVs">
+                                <rect key="frame" x="0.0" y="538" width="600" height="62"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpf-Ie-W6G">
+                                        <rect key="frame" x="261" y="16" width="78" height="30"/>
+                                        <state key="normal" title="Need help?"/>
+                                        <connections>
+                                            <action selector="helpButtonPressed:" destination="fnV-u9-He8" eventType="touchUpInside" id="9cF-6k-zep"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="cpf-Ie-W6G" firstAttribute="centerY" secondItem="iRn-EH-RVs" secondAttribute="centerY" id="SrN-7f-eZl"/>
+                                    <constraint firstAttribute="bottom" secondItem="cpf-Ie-W6G" secondAttribute="bottom" constant="16" id="bil-bb-E8j"/>
+                                    <constraint firstItem="cpf-Ie-W6G" firstAttribute="centerX" secondItem="iRn-EH-RVs" secondAttribute="centerX" id="eMm-Kv-k3R"/>
+                                    <constraint firstItem="cpf-Ie-W6G" firstAttribute="top" secondItem="iRn-EH-RVs" secondAttribute="top" constant="16" id="xFK-Bk-2Lm"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iRn-EH-RVs" firstAttribute="leading" secondItem="LGM-NR-zF6" secondAttribute="leading" id="FDk-Z7-RTH"/>
+                            <constraint firstItem="gwy-bZ-fCR" firstAttribute="top" secondItem="1vZ-lM-SKY" secondAttribute="bottom" id="HmA-1M-672"/>
+                            <constraint firstAttribute="trailing" secondItem="gwy-bZ-fCR" secondAttribute="trailing" id="SiM-Hh-Uan"/>
+                            <constraint firstItem="WZM-4P-Otz" firstAttribute="top" secondItem="iRn-EH-RVs" secondAttribute="bottom" id="SyI-aE-duw"/>
+                            <constraint firstItem="iRn-EH-RVs" firstAttribute="top" secondItem="gwy-bZ-fCR" secondAttribute="bottom" id="Vli-Ew-eqX"/>
+                            <constraint firstItem="gwy-bZ-fCR" firstAttribute="leading" secondItem="LGM-NR-zF6" secondAttribute="leading" id="XOF-RM-Nrm"/>
+                            <constraint firstAttribute="trailing" secondItem="iRn-EH-RVs" secondAttribute="trailing" id="xhG-20-aGX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="Ofd-mH-ETA">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="iDg-hz-s1J">
                             <connections>
-                                <action selector="doneButtonPressed:" destination="tyK-WA-9CS" id="rQD-fw-E53"/>
+                                <action selector="doneButtonPressed:" destination="fnV-u9-He8" id="S0h-zT-CbS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="unitSwitch" destination="BTJ-sz-Lf0" id="6vW-Ho-U4x"/>
+                        <outlet property="footerView" destination="iRn-EH-RVs" id="bqr-72-XUu"/>
+                        <outlet property="helpButton" destination="cpf-Ie-W6G" id="VNe-cN-bzo"/>
+                        <outlet property="tableView" destination="gwy-bZ-fCR" id="DTK-CZ-M1O"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a0p-td-3Se" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oo8-A7-761" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1845" y="389"/>
+            <point key="canvasLocation" x="1833" y="397"/>
         </scene>
     </scenes>
     <resources>
