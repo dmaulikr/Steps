@@ -132,10 +132,6 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         
 //        let timer = NSTimer(timeInterval: 2.0, target: self, selector: #selector(ViewController.testAd), userInfo: nil, repeats: true)
 //        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
-        
-        Async.main(after: 1.0) {
-            self.performSegueWithIdentifier("ShowSettings", sender: nil)
-        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -381,9 +377,8 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
             }
             
             if let error = (error as ErrorType) as? StoreError where error == .NoDataReturned && (alertController != nil || !errorShown) {
-                // TODO: Uncomment this
-//                showErrorAlertControllerForType(type)
-//                errorShown = true
+                showErrorAlertControllerForType(type)
+                errorShown = true
             }
         }
     }
