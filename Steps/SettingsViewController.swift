@@ -65,6 +65,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return "Units"
     }
     
+    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "Use metric units for distances walked."
+    }
+    
     func metricSwitchValueChanged(sender: UISwitch) {
         Settings.useMetric = sender.on
     }
