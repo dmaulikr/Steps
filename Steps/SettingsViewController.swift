@@ -8,8 +8,9 @@
 
 import UIKit
 import BRYXGradientView
+import MessageUI
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerView: UIView!
@@ -29,11 +30,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         footerView.backgroundColor = tableView.backgroundColor
         
         unitSwitch.on = Settings.useMetric
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        tableView.reloadData()
+        
+        helpButton.titleLabel?.lineBreakMode = .ByWordWrapping
+        helpButton.titleLabel?.textAlignment = .Center
+        if !MFMailComposeViewController.canSendMail() {  helpButton.enabled = false }
     }
     
     @IBAction func unitSwitchChanged(sender: AnyObject) {
@@ -69,10 +69,16 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         Settings.useMetric = sender.on
     }
     
-    @IBAction func helpButtonPressed(sender: AnyObject) {
+    @IBAction func helpButtonPressed(sender: UIButton) {
+        guard MFMailComposeViewController.canSendMail() else { return }
         
+        let mailVC = MFMailComposeViewController()
+        mailVC.delegate = self
+        mailVC.setToRecipients(["adam@adambinsz.com"])
+        mailVC.setSubject("Steps Help")
+        mailVC.setMessageBody("I'm having trouble with Steps:\n", isHTML: false)
         
-        
+        self.presentViewController(mailVC, animated: true, completion: nil)
     }
 }
 

@@ -323,6 +323,11 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpf-Ie-W6G">
                                         <rect key="frame" x="261" y="16" width="78" height="30"/>
                                         <state key="normal" title="Need help?"/>
+                                        <state key="disabled">
+                                            <string key="title">Need help?
+Email adam@adambinsz.com.</string>
+                                            <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="helpButtonPressed:" destination="fnV-u9-He8" eventType="touchUpInside" id="9cF-6k-zep"/>
                                         </connections>
