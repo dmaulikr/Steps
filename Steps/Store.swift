@@ -32,7 +32,9 @@ class Store: NSObject {
             return [Step](stepsDict.values).sort{ $0.date.timeIntervalSinceDate($1.date) > 0 }
         }
     }
-    var maxStepCount: Int = 0
+    var maxStepCount: Int {
+        get { return stepsDict?.values.map{ $0.count ?? 0 }.maxElement() ?? 0 }
+    }
     private var activeQueries = [HKQuery]()
     private var observers = [WeakContainer<StoreObserver>]()
     
@@ -52,7 +54,6 @@ class Store: NSObject {
     func fetchSteps() {
         guard numberOfDays > 0 else { return }
         
-        maxStepCount = 0
         stopActiveQueries()
         stepsDict = [NSDate : Step]()
         
@@ -97,8 +98,6 @@ class Store: NSObject {
                 guard let sum = statisticsCollection?.statisticsForDate(date)?.sumQuantity()?.doubleValueForUnit(HKUnit.countUnit()) else { continue }
                 let roundedSum = Int(floor(sum))
                 self.stepsDict?[date]?.count = roundedSum
-                
-                self.maxStepCount = max(self.maxStepCount, roundedSum)
             }
         }
         
