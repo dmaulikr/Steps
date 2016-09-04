@@ -58,6 +58,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.label.text = "Use Metric"
         cell.cellSwitch.on = Settings.useMetric
         cell.cellSwitch.addTarget(self, action: #selector(SettingsViewController.metricSwitchValueChanged(_:)), forControlEvents: .ValueChanged)
+        cell.selectionStyle = .None
         return cell
     }
     
