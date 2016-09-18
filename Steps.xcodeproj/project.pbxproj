@@ -26,6 +26,7 @@
 		66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EADE1BB87E210085A07A /* HealthKit.framework */; };
 		66B9CBB31BEEC00A00A16E6D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B9CBB21BEEC00A00A16E6D /* Settings.swift */; };
 		66CC91521CFA4E8A007F8BE8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC91511CFA4E8A007F8BE8 /* SettingsViewController.swift */; };
+		66EF8B431D8F4EBD00D55C9C /* AdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EF8B421D8F4EBD00D55C9C /* AdViewController.swift */; };
 		66F765D21BB85092005E484A /* DayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F765D11BB85092005E484A /* DayView.xib */; };
 		66F765D41BB85F34005E484A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F765D31BB85F34005E484A /* DayView.swift */; };
 /* End PBXBuildFile section */
@@ -114,6 +115,7 @@
 		66E759BE1CF919F000031D6A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		66E759BF1CF919F500031D6A /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		66E759C01CF919FA00031D6A /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		66EF8B421D8F4EBD00D55C9C /* AdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdViewController.swift; sourceTree = "<group>"; };
 		66F765D11BB85092005E484A /* DayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayView.xib; sourceTree = "<group>"; };
 		66F765D31BB85F34005E484A /* DayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -179,6 +181,7 @@
 			children = (
 				663CF08C1BB111C000C0C630 /* AppDelegate.swift */,
 				663CF08E1BB111C000C0C630 /* ViewController.swift */,
+				66EF8B421D8F4EBD00D55C9C /* AdViewController.swift */,
 				6689529E1BF1A33100A83654 /* PermissionViewController.swift */,
 				66CC91511CFA4E8A007F8BE8 /* SettingsViewController.swift */,
 				66B9CBB21BEEC00A00A16E6D /* Settings.swift */,
@@ -339,6 +342,7 @@
 				6689529F1BF1A33100A83654 /* PermissionViewController.swift in Sources */,
 				660509541C0AA3B100012C7F /* Store.swift in Sources */,
 				66F765D41BB85F34005E484A /* DayView.swift in Sources */,
+				66EF8B431D8F4EBD00D55C9C /* AdViewController.swift in Sources */,
 				663CF08D1BB111C000C0C630 /* AppDelegate.swift in Sources */,
 				66B9CBB31BEEC00A00A16E6D /* Settings.swift in Sources */,
 				6634D0401BF7F73E00127F4C /* Extensions.swift in Sources */,
