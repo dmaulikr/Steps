@@ -18,14 +18,14 @@ class PermissionViewController: UIViewController {
     @IBOutlet weak var gradientView: GradientView!
     
     static func loadFromStoryboard() -> PermissionViewController {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PermissionViewController") as! PermissionViewController
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PermissionViewController") as! PermissionViewController
     }
     
-    private override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    fileprivate override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    private init() {
+    fileprivate init() {
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -36,7 +36,7 @@ class PermissionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        modalPresentationStyle = .CurrentContext
+        modalPresentationStyle = .currentContext
 
         gradientView.topColor = UIColor.blueGradientTopColor
         gradientView.bottomColor = UIColor.blueGradientBottomColor
@@ -44,18 +44,18 @@ class PermissionViewController: UIViewController {
         descriptionLabel.text = "Steps needs permission to read step counts from your iPhone."
     }
     
-    @IBAction func confirmButtonPressed(sender: UIButton) {
+    @IBAction func confirmButtonPressed(_ sender: UIButton) {
         let types: Set<HKQuantityType> = [HKQuantityType.stepCount, HKQuantityType.distanceWalkingRunning]
-        HKHealthStore().requestAuthorizationToShareTypes(nil, readTypes: types) { authorized, error in
+        HKHealthStore().requestAuthorization(toShare: nil, read: types) { authorized, error in
             if let error = error {
-                Answers.logErrorWithName("Permission Request Error", error: error)
+                Answers.logErrorWithName("Permission Request Error", error: error as NSError?)
             }
-            self.imageView.backgroundColor = UIColor.greenColor()
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.imageView.backgroundColor = UIColor.green
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
 }

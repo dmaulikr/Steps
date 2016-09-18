@@ -1,6 +1,6 @@
 {
   "name": "AsyncSwift",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "summary": "Syntactic sugar in Swift for asynchronous dispatches in Grand Central Dispatch",
   "homepage": "https://github.com/duemunk/Async",
   "license": {
@@ -12,7 +12,8 @@
   "platforms": {
     "osx": "10.10",
     "ios": "8.0",
-    "tvos": "9.0"
+    "tvos": "9.0",
+    "watchos": "2.0"
   },
   "source": {
     "git": "https://github.com/duemunk/Async.git",

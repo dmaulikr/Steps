@@ -25,28 +25,28 @@ class SwitchCell: UITableViewCell {
         contentView.preservesSuperviewLayoutMargins = true
         
         contentView.addSubview(label)
-        label.constraintWithAttribute(.CenterY, .Equal, to: contentView, priority: 999).active = true
-        label.constraintWithAttribute(.Leading, .Equal, to: .LeadingMargin, of: contentView).active = true
-        label.constraintWithAttribute(.Top, .Equal, to: .TopMargin, of: contentView).active = true
-        label.constraintWithAttribute(.Bottom, .Equal, to: .BottomMargin, of: contentView).active = true
-        label.setContentCompressionResistancePriority(1000, forAxis: .Vertical)
+        label.constraintWithAttribute(.centerY, .equal, to: contentView, priority: 999).isActive = true
+        label.constraintWithAttribute(.leading, .equal, to: .leadingMargin, of: contentView).isActive = true
+        label.constraintWithAttribute(.top, .equal, to: .topMargin, of: contentView).isActive = true
+        label.constraintWithAttribute(.bottom, .equal, to: .bottomMargin, of: contentView).isActive = true
+        label.setContentCompressionResistancePriority(1000, for: .vertical)
         
         contentView.addSubview(cellSwitch)
-        cellSwitch.constraintWithAttribute(.CenterY, .Equal, to: contentView).active = true
-        cellSwitch.constraintWithAttribute(.Trailing, .Equal, to: .TrailingMargin, of: contentView).active = true
-        cellSwitch.constraintWithAttribute(.Top, .GreaterThanOrEqual, to: .TopMargin, of: contentView).active = true
-        cellSwitch.constraintWithAttribute(.Bottom, .LessThanOrEqual, to: .BottomMargin, of: contentView).active = true
+        cellSwitch.constraintWithAttribute(.centerY, .equal, to: contentView).isActive = true
+        cellSwitch.constraintWithAttribute(.trailing, .equal, to: .trailingMargin, of: contentView).isActive = true
+        cellSwitch.constraintWithAttribute(.top, .greaterThanOrEqual, to: .topMargin, of: contentView).isActive = true
+        cellSwitch.constraintWithAttribute(.bottom, .lessThanOrEqual, to: .bottomMargin, of: contentView).isActive = true
         
-        label.constraintWithAttribute(.Trailing, .Equal, to: .Leading, of: cellSwitch, constant: -8).active = true
+        label.constraintWithAttribute(.trailing, .equal, to: .leading, of: cellSwitch, constant: -8).isActive = true
         
-        cellSwitch.addTarget(self, action: #selector(SwitchCell.cellSwitchValueChanged(_:)), forControlEvents: .ValueChanged)
+        cellSwitch.addTarget(self, action: #selector(SwitchCell.cellSwitchValueChanged(_:)), for: .valueChanged)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func cellSwitchValueChanged(sender: UISwitch) {
+    func cellSwitchValueChanged(_ sender: UISwitch) {
         /* no-op */
     }
     

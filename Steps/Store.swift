@@ -10,40 +10,40 @@ import HealthKit
 import SwiftDate
 
 @objc protocol StoreObserver {
-    func storeDidUpdateType(type: HKObjectType)
-    func storeDidFailUpdatingType(type: HKQuantityType, error: NSError)
+    func storeDidUpdateType(_ type: HKObjectType)
+    func storeDidFailUpdatingType(_ type: HKQuantityType, error: NSError)
 }
 
-enum StoreError: ErrorType {
-    case NoDataReturned
+enum StoreError: Error {
+    case noDataReturned
 }
 
 class Store: NSObject {
-    static private let healthStore = HKHealthStore()
-    static func authorizationStatusForType(type: HKObjectType) -> HKAuthorizationStatus {
-        return healthStore.authorizationStatusForType(type)
+    static fileprivate let healthStore = HKHealthStore()
+    static func authorizationStatusForType(_ type: HKObjectType) -> HKAuthorizationStatus {
+        return healthStore.authorizationStatus(for: type)
     }
     
-    private let numberOfDays: Int
-    private var stepsDict: [NSDate : Step]?
+    fileprivate let numberOfDays: Int
+    fileprivate var stepsDict: [Date : Step]?
     var steps: [Step]? {
         get {
             guard let stepsDict = stepsDict else { return nil }
-            return [Step](stepsDict.values).sort{ $0.date.timeIntervalSinceDate($1.date) > 0 }
+            return [Step](stepsDict.values).sorted{ $0.date.timeIntervalSince($1.date as Date) > 0 }
         }
     }
     var maxStepCount: Int {
-        get { return stepsDict?.values.map{ $0.count ?? 0 }.maxElement() ?? 0 }
+        get { return stepsDict?.values.map{ $0.count ?? 0 }.max() ?? 0 }
     }
-    private var activeQueries = [HKQuery]()
-    private var observers = [WeakContainer<StoreObserver>]()
+    fileprivate var activeQueries = [HKQuery]()
+    fileprivate var observers = [WeakContainer<StoreObserver>]()
     
     init(numberOfDays: Int = 8) {
         self.numberOfDays = numberOfDays
         super.init()
-        NSNotificationCenter.defaultCenter().addObserver(self,
+        NotificationCenter.default.addObserver(self,
             selector: #selector(Store.significantTimeChange),
-            name: AppDelegate.significantTimeChangeNotificationName,
+            name: NSNotification.Name(rawValue: AppDelegate.significantTimeChangeNotificationName),
             object: nil)
     }
     
@@ -55,10 +55,10 @@ class Store: NSObject {
         guard numberOfDays > 0 else { return }
         
         stopActiveQueries()
-        stepsDict = [NSDate : Step]()
+        stepsDict = [Date : Step]()
         
-        let today = NSDate().beginningOfDay
-        var dates = (0..<numberOfDays).map{ today.add(days: -$0) }
+        let today = Date.today()
+        var dates = (0..<numberOfDays).map{ today.add(days: -1 * $0) }
         
         for index in 0..<numberOfDays {
             let date = today.add(days: -index)
@@ -67,21 +67,21 @@ class Store: NSObject {
         }
         
         let stepsQuery = self.stepsQuery(dates)
-        Store.healthStore.executeQuery(stepsQuery)
+        Store.healthStore.execute(stepsQuery)
         activeQueries.append(stepsQuery)
         
         let distancesQuery = self.distancesQuery(dates)
-        Store.healthStore.executeQuery(distancesQuery)
+        Store.healthStore.execute(distancesQuery)
         activeQueries.append(distancesQuery)
     }
     
-    private func stepsQuery(dates: [NSDate]) -> HKQuery {
+    fileprivate func stepsQuery(_ dates: [Date]) -> HKQuery {
         let stepCountHandler: DailySumHandler = { dates, statisticsCollection, error in
             
             defer {
                 if error != nil || statisticsCollection == nil || statisticsCollection!.statistics().count == 0 {
                     for observer in self.observers {
-                        observer.value?.storeDidFailUpdatingType(HKQuantityType.stepCount, error: error ?? StoreError.NoDataReturned as NSError)
+                        observer.value?.storeDidFailUpdatingType(HKQuantityType.stepCount, error: error as NSError? ?? StoreError.noDataReturned as NSError)
                     }
                 } else {
                     for observer in self.observers {
@@ -95,7 +95,7 @@ class Store: NSObject {
                     self.stepsDict?[date] = Step(date: date)
                 }
                 
-                guard let sum = statisticsCollection?.statisticsForDate(date)?.sumQuantity()?.doubleValueForUnit(HKUnit.countUnit()) else { continue }
+                guard let sum = statisticsCollection?.statistics(for: date)?.sumQuantity()?.doubleValue(for: HKUnit.count()) else { continue }
                 let roundedSum = Int(floor(sum))
                 self.stepsDict?[date]?.count = roundedSum
             }
@@ -104,13 +104,13 @@ class Store: NSObject {
         return HKQuery.dailySumQueryForQuantityType(HKQuantityType.stepCount, dates: dates, resultsHandler: stepCountHandler, updateHandler: stepCountHandler, errorHandler: nil)
     }
     
-    private func distancesQuery(dates: [NSDate]) -> HKQuery {
+    fileprivate func distancesQuery(_ dates: [Date]) -> HKQuery {
         let distanceHandler: DailySumHandler = { dates, statisticsCollection, error in
             
             defer {
                 if error != nil || statisticsCollection == nil || statisticsCollection!.statistics().count == 0 {
                     for observer in self.observers {
-                        observer.value?.storeDidFailUpdatingType(HKQuantityType.distanceWalkingRunning, error: error ?? StoreError.NoDataReturned as NSError)
+                        observer.value?.storeDidFailUpdatingType(HKQuantityType.distanceWalkingRunning, error: error as NSError? ?? StoreError.noDataReturned as NSError)
                     }
                 } else {
                     for observer in self.observers {
@@ -124,7 +124,7 @@ class Store: NSObject {
                     self.stepsDict?[date] = Step(date: date)
                 }
                 
-                guard let sumQuantity = statisticsCollection?.statisticsForDate(date)?.sumQuantity() else { continue }
+                guard let sumQuantity = statisticsCollection?.statistics(for: date)?.sumQuantity() else { continue }
                 self.stepsDict?[date]?.distance = sumQuantity
             }
         }
@@ -134,12 +134,12 @@ class Store: NSObject {
     
     func stopActiveQueries() {
         for query in activeQueries {
-            Store.healthStore.stopQuery(query)
+            Store.healthStore.stop(query)
         }
     }
     
     // MARK: - StepsStoreObserver management methods
-    func registerObserver(observer: StoreObserver) {
+    func registerObserver(_ observer: StoreObserver) {
         for existing in observers {
             if existing.value === observer {
                 return
@@ -149,35 +149,35 @@ class Store: NSObject {
         observers.append(WeakContainer(value: observer))
     }
     
-    func unregisterObserver(observer: StoreObserver) {
-        for (index, existing) in observers.enumerate() {
+    func unregisterObserver(_ observer: StoreObserver) {
+        for (index, existing) in observers.enumerated() {
             if existing.value === observer {
-                observers.removeAtIndex(index)
+                observers.remove(at: index)
                 return
             }
         }
     }
 }
 
-private typealias DailySumHandler = ((dates: [NSDate], statisticsCollection: HKStatisticsCollection?, error: NSError?) -> ())
+private typealias DailySumHandler = ((_ dates: [Date], _ statisticsCollection: HKStatisticsCollection?, _ error: Error?) -> ())
 
 private extension HKQuery {
-    static func dailySumQueryForQuantityType(quantityType: HKQuantityType, dates: [NSDate], resultsHandler: DailySumHandler?, updateHandler: DailySumHandler?, errorHandler: ((error: ErrorType) -> ())?) -> HKQuery {
+    static func dailySumQueryForQuantityType(_ quantityType: HKQuantityType, dates: [Date], resultsHandler: DailySumHandler?, updateHandler: DailySumHandler?, errorHandler: ((_ error: Error) -> ())?) -> HKQuery {
         
-        let sortedDates = dates.sort{ $0.timeIntervalSinceDate($1) > 0 }
+        let sortedDates = dates.sorted{ $0.timeIntervalSince($1) > 0 }
         
-        let intervalComponents = NSDateComponents()
+        var intervalComponents = DateComponents()
         intervalComponents.day = 1
         
-        let predicate = HKQuery.predicateForSamplesWithStartDate(sortedDates.last, endDate: sortedDates.first?.endOfDay, options: [])
-        let query = HKStatisticsCollectionQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: [.CumulativeSum], anchorDate: NSDate().beginningOfDay, intervalComponents: intervalComponents)
-
+        let predicate = HKQuery.predicateForSamples(withStart: sortedDates.last, end: sortedDates.first?.endOf(component: .day), options: [])
+        let query = HKStatisticsCollectionQuery(quantityType: quantityType, quantitySamplePredicate: predicate, options: [.cumulativeSum], anchorDate: Date().startOf(component: .day), intervalComponents: intervalComponents)
+        
         query.initialResultsHandler = { query, statisticsCollection, error in
-            resultsHandler?(dates: dates, statisticsCollection: statisticsCollection, error: error)
+            resultsHandler?(dates, statisticsCollection, error)
         }
         
         query.statisticsUpdateHandler = { query, statistics, statisticsCollection, error in
-            updateHandler?(dates: dates, statisticsCollection: statisticsCollection, error: error)
+            updateHandler?(dates, statisticsCollection, error)
         }
         
         return query

@@ -18,17 +18,18 @@ class DayView: UIView {
     
     var barScale: CGFloat = 0.0 {
         didSet {
-            if barScale > 1.0 { barScale = 1.0 }
+            barScale = min(barScale, 1.0)
+            barScale = barScale.isNaN ? 0.0 : barScale
             
             if barWidthConstraint != nil {
                 removeConstraint(barWidthConstraint)
             }
             
             barWidthConstraint = NSLayoutConstraint(item: barView,
-                attribute: .Width,
-                relatedBy: .Equal,
+                attribute: .width,
+                relatedBy: .equal,
                 toItem: self,
-                attribute: .Width,
+                attribute: .width,
                 multiplier: barScale,
                 constant: 1.0)
             addConstraint(barWidthConstraint)
@@ -38,11 +39,11 @@ class DayView: UIView {
         }
     }
     
-    private init() {
+    fileprivate init() {
         super.init(frame: CGRect.zero)
     }
     
-    override private init(frame: CGRect) {
+    override fileprivate init(frame: CGRect) {
         super.init(frame: frame)
     }
 
@@ -51,13 +52,13 @@ class DayView: UIView {
     }
     
     class func loadFromNib() -> DayView {
-        let view = UINib(nibName: "DayView", bundle: nil).instantiateWithOwner(self, options: nil).first as! DayView
-        view.backgroundColor = UIColor.clearColor()
+        let view = UINib(nibName: "DayView", bundle: nil).instantiate(withOwner: self, options: nil).first as! DayView
+        view.backgroundColor = UIColor.clear
         view.barScale = 0.0
         
-        if UIScreen.mainScreen().bounds.height >= 736 {
+        if UIScreen.main.bounds.height >= 736 {
             var font = view.dayLabel.font
-            font = UIFont(name: font.fontName, size: 26) ?? font
+            font = UIFont(name: (font?.fontName)!, size: 26) ?? font
             view.dayLabel.font = font
             view.countLabel.font = font
         }

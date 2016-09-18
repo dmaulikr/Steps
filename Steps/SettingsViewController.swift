@@ -22,59 +22,59 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerClass(SwitchCell.self, forCellReuseIdentifier: "SwitchCell")
+        tableView.register(SwitchCell.self, forCellReuseIdentifier: "SwitchCell")
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44
         
         footerView.backgroundColor = tableView.backgroundColor
         
-        unitSwitch.on = Settings.useMetric
+        unitSwitch.isOn = Settings.useMetric
         
-        helpButton.titleLabel?.lineBreakMode = .ByWordWrapping
-        helpButton.titleLabel?.textAlignment = .Center
-        if !MFMailComposeViewController.canSendMail() {  helpButton.enabled = false }
+        helpButton.titleLabel?.lineBreakMode = .byWordWrapping
+        helpButton.titleLabel?.textAlignment = .center
+        if !MFMailComposeViewController.canSendMail() {  helpButton.isEnabled = false }
     }
     
-    @IBAction func unitSwitchChanged(sender: AnyObject) {
-        Settings.useMetric = unitSwitch.on
+    @IBAction func unitSwitchChanged(_ sender: AnyObject) {
+        Settings.useMetric = unitSwitch.isOn
     }
     
-    @IBAction func doneButtonPressed(sender: UIButton) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let c = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let c = tableView.dequeueReusableCell(withIdentifier: "SwitchCell", for: indexPath)
         guard let cell = c as? SwitchCell else { return c }
         cell.label.text = "Use Metric"
-        cell.cellSwitch.on = Settings.useMetric
-        cell.cellSwitch.addTarget(self, action: #selector(SettingsViewController.metricSwitchValueChanged(_:)), forControlEvents: .ValueChanged)
-        cell.selectionStyle = .None
+        cell.cellSwitch.isOn = Settings.useMetric
+        cell.cellSwitch.addTarget(self, action: #selector(SettingsViewController.metricSwitchValueChanged(_:)), for: .valueChanged)
+        cell.selectionStyle = .none
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Units"
     }
     
-    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return "Use metric units for distances walked."
     }
     
-    func metricSwitchValueChanged(sender: UISwitch) {
-        Settings.useMetric = sender.on
+    func metricSwitchValueChanged(_ sender: UISwitch) {
+        Settings.useMetric = sender.isOn
     }
     
-    @IBAction func helpButtonPressed(sender: UIButton) {
+    @IBAction func helpButtonPressed(_ sender: UIButton) {
         guard MFMailComposeViewController.canSendMail() else { return }
         
         let mailVC = MFMailComposeViewController()
@@ -83,7 +83,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         mailVC.setSubject("Steps Help")
         mailVC.setMessageBody("I'm having trouble with Steps:\n", isHTML: false)
         
-        self.presentViewController(mailVC, animated: true, completion: nil)
+        self.present(mailVC, animated: true, completion: nil)
     }
 }
 
