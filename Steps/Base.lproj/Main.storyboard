@@ -104,11 +104,11 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="QdT-FB-okP"/>
                                 <exclude reference="28C-0x-RoB"/>
                                 <exclude reference="AV7-4K-jk9"/>
                                 <exclude reference="nDi-Bn-tHb"/>
                                 <exclude reference="sb1-Cb-dbP"/>
+                                <exclude reference="QdT-FB-okP"/>
                             </mask>
                         </variation>
                     </view>
@@ -305,9 +305,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpf-Ie-W6G">
                                         <state key="normal" title="Need help?"/>
-                                        <state key="disabled">
-                                            <string key="title">Need help?
-Email adam@adambinsz.com</string>
+                                        <state key="disabled" title="Email adam@adambinsz.com for help.">
                                             <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                         </state>
                                         <connections>
