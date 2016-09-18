@@ -345,21 +345,18 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
     }
     
     func showErrorAlertControllerForType(_ type: HKQuantityType) {
-        if alertController == nil {
-            alertController = UIAlertController(title: "Having trouble?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            let OKAction = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
-                self.store.fetchSteps()
-                self.alertController = nil
-                self.alertTypes = [HKQuantityType]()
-            })
-            
-            alertController?.addAction(OKAction)
-            DispatchQueue.main.sync { self.present(self.alertController!, animated: true, completion: nil) }
-        }
-        
-        guard let alertController = alertController else { return }
+        guard self.alertController == nil else { return }
+        let alertController = UIAlertController(title: "Having trouble?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+        let OKAction = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+            self.store.fetchSteps()
+            self.alertController = nil
+            self.alertTypes = [HKQuantityType]()
+        })
+        alertController.addAction(OKAction)
         alertTypes.append(type)
         alertController.message = alertMessageForTypes(alertTypes)
+        self.alertController = alertController
+        DispatchQueue.main.sync { self.present(alertController, animated: true, completion: nil) }
     }
     
     func storeDidFailUpdatingType(_ type: HKQuantityType, error: NSError) {
