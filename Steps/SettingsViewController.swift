@@ -9,6 +9,7 @@
 import UIKit
 import BRYXGradientView
 import MessageUI
+import Crashlytics
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
     
@@ -34,6 +35,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         helpButton.titleLabel?.lineBreakMode = .byWordWrapping
         helpButton.titleLabel?.textAlignment = .center
         if !MFMailComposeViewController.canSendMail() {  helpButton.isEnabled = false }
+        
+        Answers.logCustomEvent(withName: "Settings Loaded", customAttributes: nil)
+        Answers.logCustomEvent(withName: "Can Send Mail", customAttributes: ["canSendMail" : helpButton.isEnabled])
     }
     
     @IBAction func unitSwitchChanged(_ sender: AnyObject) {
