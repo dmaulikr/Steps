@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660109B31D8F471600C7F208 /* BRYXGradientView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660109B01D8F471600C7F208 /* BRYXGradientView.framework */; };
+		660109B41D8F471600C7F208 /* OAStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660109B11D8F471600C7F208 /* OAStackView.framework */; };
+		660109B51D8F471600C7F208 /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660109B21D8F471600C7F208 /* SwiftDate.framework */; };
+		660109B91D8F4C7300C7F208 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660109B81D8F4C7300C7F208 /* GoogleMobileAds.framework */; };
 		660509541C0AA3B100012C7F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660509531C0AA3B100012C7F /* Store.swift */; };
-		660509571C0ABB0B00012C7F /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660509561C0ABB0B00012C7F /* SwiftDate.framework */; };
-		6605095A1C0ABB2C00012C7F /* SwiftDate.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */; };
 		6605095D1C0B906100012C7F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6605095B1C0B906100012C7F /* Crashlytics.framework */; };
 		6605095E1C0B906100012C7F /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6605095C1C0B906100012C7F /* Fabric.framework */; };
 		660509641C0BA17700012C7F /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660509631C0BA17700012C7F /* Step.swift */; };
@@ -19,19 +21,13 @@
 		663CF0921BB111C000C0C630 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0901BB111C000C0C630 /* Main.storyboard */; };
 		663CF0941BB111C000C0C630 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0931BB111C000C0C630 /* Assets.xcassets */; };
 		663CF0971BB111C000C0C630 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 663CF0951BB111C000C0C630 /* LaunchScreen.storyboard */; };
-		6645CAFD1CF8DEE9000864A3 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6645CAFC1CF8DEE9000864A3 /* GoogleMobileAds.framework */; };
+		6661C6C91D76228B00AD0C3A /* SwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6661C6C81D76228B00AD0C3A /* SwitchCell.swift */; };
 		6689529F1BF1A33100A83654 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689529E1BF1A33100A83654 /* PermissionViewController.swift */; };
-		66A4EADA1BB87CA60085A07A /* Async.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EAD91BB87CA60085A07A /* Async.framework */; };
-		66A4EADC1BB87CC80085A07A /* Async.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */; };
 		66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EADE1BB87E210085A07A /* HealthKit.framework */; };
-		66B9CBB11BEEBE2C00A16E6D /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */; };
 		66B9CBB31BEEC00A00A16E6D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B9CBB21BEEC00A00A16E6D /* Settings.swift */; };
-		66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D27C041BB9C84F00917917 /* BRYXGradientView.framework */; };
-		66D27C081BB9C86500917917 /* BRYXGradientView.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */; };
+		66CC91521CFA4E8A007F8BE8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC91511CFA4E8A007F8BE8 /* SettingsViewController.swift */; };
 		66F765D21BB85092005E484A /* DayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F765D11BB85092005E484A /* DayView.xib */; };
 		66F765D41BB85F34005E484A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F765D31BB85F34005E484A /* DayView.swift */; };
-		66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F765D51BB864AD005E484A /* OAStackView.framework */; };
-		66F765DD1BB86551005E484A /* OAStackView.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,19 +37,17 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				66F765DD1BB86551005E484A /* OAStackView.framework.dSYM in CopyFiles */,
-				66A4EADC1BB87CC80085A07A /* Async.framework.dSYM in CopyFiles */,
-				66D27C081BB9C86500917917 /* BRYXGradientView.framework.dSYM in CopyFiles */,
-				6605095A1C0ABB2C00012C7F /* SwiftDate.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		660109B01D8F471600C7F208 /* BRYXGradientView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXGradientView.framework; path = Carthage/Build/iOS/BRYXGradientView.framework; sourceTree = "<group>"; };
+		660109B11D8F471600C7F208 /* OAStackView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAStackView.framework; path = Carthage/Build/iOS/OAStackView.framework; sourceTree = "<group>"; };
+		660109B21D8F471600C7F208 /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
+		660109B81D8F4C7300C7F208 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		660509531C0AA3B100012C7F /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		660509561C0ABB0B00012C7F /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
-		660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftDate.framework.dSYM; path = Carthage/Build/iOS/SwiftDate.framework.dSYM; sourceTree = "<group>"; };
 		6605095B1C0B906100012C7F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6605095C1C0B906100012C7F /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		660509631C0BA17700012C7F /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
@@ -65,7 +59,6 @@
 		663CF0931BB111C000C0C630 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		663CF0961BB111C000C0C630 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		663CF0981BB111C000C0C630 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6645CAFC1CF8DEE9000864A3 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		666078661CF91A6400C23163 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		666078671CF91A6400C23163 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		666078681CF91A6700C23163 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -96,15 +89,12 @@
 		666078811CF91A9300C23163 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Main.strings; sourceTree = "<group>"; };
 		666078821CF91A9500C23163 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		666078831CF91A9600C23163 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
+		6661C6C81D76228B00AD0C3A /* SwitchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchCell.swift; sourceTree = "<group>"; };
 		6689529E1BF1A33100A83654 /* PermissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
-		66A4EAD91BB87CA60085A07A /* Async.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Async.framework; path = Carthage/Build/iOS/Async.framework; sourceTree = "<group>"; };
-		66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Async.framework.dSYM; path = Carthage/Build/iOS/Async.framework.dSYM; sourceTree = "<group>"; };
 		66A4EADD1BB87E210085A07A /* Steps.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Steps.entitlements; sourceTree = "<group>"; };
 		66A4EADE1BB87E210085A07A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		66B9CBB21BEEC00A00A16E6D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		66D27C041BB9C84F00917917 /* BRYXGradientView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXGradientView.framework; path = Carthage/Build/iOS/BRYXGradientView.framework; sourceTree = "<group>"; };
-		66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = BRYXGradientView.framework.dSYM; path = Carthage/Build/iOS/BRYXGradientView.framework.dSYM; sourceTree = "<group>"; };
+		66CC91511CFA4E8A007F8BE8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		66E759AE1CF917E700031D6A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		66E759AF1CF9187200031D6A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		66E759B01CF9187700031D6A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -126,8 +116,6 @@
 		66E759C01CF919FA00031D6A /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		66F765D11BB85092005E484A /* DayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayView.xib; sourceTree = "<group>"; };
 		66F765D31BB85F34005E484A /* DayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
-		66F765D51BB864AD005E484A /* OAStackView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAStackView.framework; path = Carthage/Build/iOS/OAStackView.framework; sourceTree = "<group>"; };
-		66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = OAStackView.framework.dSYM; path = Carthage/Build/iOS/OAStackView.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,14 +123,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				660109B91D8F4C7300C7F208 /* GoogleMobileAds.framework in Frameworks */,
+				660109B31D8F471600C7F208 /* BRYXGradientView.framework in Frameworks */,
+				660109B41D8F471600C7F208 /* OAStackView.framework in Frameworks */,
+				660109B51D8F471600C7F208 /* SwiftDate.framework in Frameworks */,
 				6605095E1C0B906100012C7F /* Fabric.framework in Frameworks */,
-				66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */,
-				6645CAFD1CF8DEE9000864A3 /* GoogleMobileAds.framework in Frameworks */,
-				660509571C0ABB0B00012C7F /* SwiftDate.framework in Frameworks */,
 				66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */,
-				66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */,
 				6605095D1C0B906100012C7F /* Crashlytics.framework in Frameworks */,
-				66A4EADA1BB87CA60085A07A /* Async.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,9 +150,7 @@
 		660509661C0BA1BF00012C7F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6645CAFC1CF8DEE9000864A3 /* GoogleMobileAds.framework */,
 				66A4EADD1BB87E210085A07A /* Steps.entitlements */,
-				66B9CBB01BEEBE2C00A16E6D /* Settings.bundle */,
 				663CF0931BB111C000C0C630 /* Assets.xcassets */,
 				663CF0981BB111C000C0C630 /* Info.plist */,
 			);
@@ -195,10 +180,12 @@
 				663CF08C1BB111C000C0C630 /* AppDelegate.swift */,
 				663CF08E1BB111C000C0C630 /* ViewController.swift */,
 				6689529E1BF1A33100A83654 /* PermissionViewController.swift */,
+				66CC91511CFA4E8A007F8BE8 /* SettingsViewController.swift */,
 				66B9CBB21BEEC00A00A16E6D /* Settings.swift */,
 				660509531C0AA3B100012C7F /* Store.swift */,
 				660509631C0BA17700012C7F /* Step.swift */,
 				6634D03F1BF7F73E00127F4C /* Extensions.swift */,
+				6661C6C81D76228B00AD0C3A /* SwitchCell.swift */,
 				660509651C0BA1AC00012C7F /* Views */,
 				660509661C0BA1BF00012C7F /* Supporting Files */,
 			);
@@ -208,17 +195,13 @@
 		66F765D71BB864BC005E484A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				66A4EAD91BB87CA60085A07A /* Async.framework */,
+				660109B81D8F4C7300C7F208 /* GoogleMobileAds.framework */,
+				660109B01D8F471600C7F208 /* BRYXGradientView.framework */,
+				660109B11D8F471600C7F208 /* OAStackView.framework */,
+				660109B21D8F471600C7F208 /* SwiftDate.framework */,
 				6605095B1C0B906100012C7F /* Crashlytics.framework */,
 				6605095C1C0B906100012C7F /* Fabric.framework */,
 				66A4EADE1BB87E210085A07A /* HealthKit.framework */,
-				66D27C041BB9C84F00917917 /* BRYXGradientView.framework */,
-				66F765D51BB864AD005E484A /* OAStackView.framework */,
-				660509561C0ABB0B00012C7F /* SwiftDate.framework */,
-				66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */,
-				66A4EADB1BB87CC80085A07A /* Async.framework.dSYM */,
-				660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */,
-				66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -254,12 +237,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Adam Binsz";
 				TargetAttributes = {
 					663CF0881BB111C000C0C630 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = BCVA6NEN6F;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
 								enabled = 1;
@@ -294,7 +278,6 @@
 				663CF0971BB111C000C0C630 /* LaunchScreen.storyboard in Resources */,
 				66F765D21BB85092005E484A /* DayView.xib in Resources */,
 				663CF0941BB111C000C0C630 /* Assets.xcassets in Resources */,
-				66B9CBB11BEEBE2C00A16E6D /* Settings.bundle in Resources */,
 				663CF0921BB111C000C0C630 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,7 +318,6 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/OAStackView.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Async.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BRYXGradientView.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SwiftDate.framework",
 			);
@@ -360,6 +342,8 @@
 				663CF08D1BB111C000C0C630 /* AppDelegate.swift in Sources */,
 				66B9CBB31BEEC00A00A16E6D /* Settings.swift in Sources */,
 				6634D0401BF7F73E00127F4C /* Extensions.swift in Sources */,
+				66CC91521CFA4E8A007F8BE8 /* SettingsViewController.swift in Sources */,
+				6661C6C91D76228B00AD0C3A /* SwitchCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +423,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BITCODE_GENERATION_MODE = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -448,8 +433,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -484,6 +471,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BITCODE_GENERATION_MODE = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -493,8 +481,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -543,6 +533,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -572,6 +563,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

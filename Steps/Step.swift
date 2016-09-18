@@ -9,17 +9,17 @@
 import HealthKit
 
 class Step {
-    let date: NSDate
+    let date: Date
     var count: Int?
     var distance: HKQuantity?
     var distanceInPreferredUnit: Double? {
         get {
-            let unit = Settings.useMetric ? HKUnit.meterUnitWithMetricPrefix(HKMetricPrefix.Kilo) : HKUnit.mileUnit()
-            return distance?.doubleValueForUnit(unit)
+            let unit = Settings.useMetric ? HKUnit.meterUnit(with: HKMetricPrefix.kilo) : HKUnit.mile()
+            return distance?.doubleValue(for: unit)
         }
     }
     
-    init(date: NSDate) {
+    init(date: Date) {
         self.date = date
     }
 }

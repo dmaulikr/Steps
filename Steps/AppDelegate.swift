@@ -17,13 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     static let significantTimeChangeNotificationName = "significantTimeChange"
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Settings.initializeDefaults()
         Fabric.with([Crashlytics.self])
         return true
     }
     
-    func applicationSignificantTimeChange(application: UIApplication) {
-        NSNotificationCenter.defaultCenter().postNotificationName(AppDelegate.significantTimeChangeNotificationName, object: nil)
+    func applicationSignificantTimeChange(_ application: UIApplication) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: AppDelegate.significantTimeChangeNotificationName), object: nil)
     }
 
 

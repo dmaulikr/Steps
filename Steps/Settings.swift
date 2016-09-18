@@ -9,14 +9,23 @@
 import Foundation
 
 struct Settings {
+    
+    static let defaults = UserDefaults.standard
+    
+    static func initializeDefaults() {
+        if defaults.value(forKey: useMetricKey) == nil {
+            let useMetric = ((Locale.current as NSLocale).object(forKey: NSLocale.Key.usesMetricSystem) as? Bool) ?? false
+            defaults.set(useMetric, forKey: useMetricKey)
+        }
+    }
+    
     static let useMetricKey = "useMetric"
     static var useMetric: Bool {
-        if let useMetric = NSUserDefaults.standardUserDefaults().valueForKey(useMetricKey) as? Bool {
-            return useMetric
-        } else {
-            let useMetric = (NSLocale.currentLocale().objectForKey(NSLocaleUsesMetricSystem) as? Bool) ?? false
-            NSUserDefaults.standardUserDefaults().setBool(useMetric, forKey: useMetricKey)
-            return useMetric
+        get {
+            return defaults.bool(forKey: useMetricKey)
+        }
+        set {
+            defaults.set(newValue, forKey: useMetricKey)
         }
     }
 }
