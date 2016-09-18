@@ -13,7 +13,21 @@ import BRYXGradientView
 import Crashlytics
 import GoogleMobileAds
 
-class ViewController: AdViewController, StoreObserver {
+enum AdRefreshRate: String {
+    case Short, Long
+    var adUnitID: String {
+        get {
+            switch self {
+            case .Short:
+                return "ca-app-pub-3773029771274898/8438387761"
+            case .Long:
+                return "ca-app-pub-3773029771274898/7042379768"
+            }
+        }
+    }
+}
+
+class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GADAdSizeDelegate {
 
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var countLabel: UILabel!
@@ -58,6 +72,13 @@ class ViewController: AdViewController, StoreObserver {
             return self.segmentedControl.selectedSegmentIndex > 0
         }
     }
+
+    let adRefreshRate: AdRefreshRate = arc4random() % 2 == 0 ? .Long : .Short
+    @IBOutlet weak var bannerView: UIView!
+    @IBOutlet weak var adView: GADBannerView!
+    
+    @IBOutlet weak var showAdConstraint: NSLayoutConstraint!
+    @IBOutlet weak var hideAdConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +112,12 @@ class ViewController: AdViewController, StoreObserver {
             swipeGestureRecognizer.direction = direction
             scrollView.addGestureRecognizer(swipeGestureRecognizer)
         }
+        
+        adView.adSize = kGADAdSizeSmartBannerPortrait
+        adView.delegate = self
+        adView.adSizeDelegate = self
+        adView.rootViewController = self
+        adView.adUnitID = adRefreshRate.adUnitID
         
         let request = GADRequest()
         request.testDevices = [kGADSimulatorID /*, "224ddf7740ce4fb20d147d9a7d6d52c9"*/]
@@ -236,6 +263,55 @@ class ViewController: AdViewController, StoreObserver {
         attributes["to"] = self.segmentedControl.titleForSegment(at: 1)
         
         Answers.logCustomEvent(withName: "Unit Change", customAttributes: attributes)
+    }
+    
+    
+    // MARK: - GADBannerView delegate methods
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
+//        print(#function)
+        Answers.logCustomEvent(withName: "AdMob Ad Loaded", customAttributes: nil)
+        setBannerAdHidden(false, animated: true)
+    }
+    
+    func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
+//        print(#function)
+//        print(error)
+        Answers.logErrorWithName("AdMob Ad Error", error: error)
+        setBannerAdHidden(true, animated: true)
+    }
+    
+    func adViewWillPresentScreen(_ bannerView: GADBannerView!) {
+//        print(#function)
+        Answers.logCustomEvent(withName: "AdMob Presenting Screen", customAttributes: nil)
+    }
+    
+    
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView!) {
+//        print(#function)
+        Answers.logCustomEvent(withName: "AdMob Leaving Application", customAttributes: nil)
+    }
+    
+    func adView(_ bannerView: GADBannerView, willChangeAdSizeTo size: GADAdSize) {
+        Answers.logCustomEvent(withName: "AdMob Ad Size Change", customAttributes: ["width": size.size.width, "height": size.size.height])
+    }
+    
+    fileprivate var bannerHidden = true
+    func setBannerAdHidden(_ hidden: Bool, animated: Bool = false) {
+    
+        if bannerHidden == hidden { return }
+        bannerHidden = hidden
+        
+//        adView.setNeedsLayout()
+//        adView.layoutIfNeeded()
+        
+        showAdConstraint.priority = hidden ? UILayoutPriorityDefaultLow : UILayoutPriorityDefaultHigh
+        hideAdConstraint.priority = hidden ? UILayoutPriorityDefaultHigh : UILayoutPriorityDefaultLow
+        view.setNeedsLayout()
+        
+        let duration = animated ? 0.15 : 0.0
+        UIView.animate(withDuration: duration, delay: 0.0, options: [.beginFromCurrentState], animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
     // MARK: - StepsStoreObserver methods
