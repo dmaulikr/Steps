@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		660109B31D8F471600C7F208 /* BRYXGradientView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660109B01D8F471600C7F208 /* BRYXGradientView.framework */; };
+		660109B41D8F471600C7F208 /* OAStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660109B11D8F471600C7F208 /* OAStackView.framework */; };
+		660109B51D8F471600C7F208 /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660109B21D8F471600C7F208 /* SwiftDate.framework */; };
 		660509541C0AA3B100012C7F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660509531C0AA3B100012C7F /* Store.swift */; };
-		660509571C0ABB0B00012C7F /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660509561C0ABB0B00012C7F /* SwiftDate.framework */; };
-		6605095A1C0ABB2C00012C7F /* SwiftDate.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */; };
 		6605095D1C0B906100012C7F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6605095B1C0B906100012C7F /* Crashlytics.framework */; };
 		6605095E1C0B906100012C7F /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6605095C1C0B906100012C7F /* Fabric.framework */; };
 		660509641C0BA17700012C7F /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 660509631C0BA17700012C7F /* Step.swift */; };
@@ -25,12 +26,8 @@
 		66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66A4EADE1BB87E210085A07A /* HealthKit.framework */; };
 		66B9CBB31BEEC00A00A16E6D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B9CBB21BEEC00A00A16E6D /* Settings.swift */; };
 		66CC91521CFA4E8A007F8BE8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CC91511CFA4E8A007F8BE8 /* SettingsViewController.swift */; };
-		66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D27C041BB9C84F00917917 /* BRYXGradientView.framework */; };
-		66D27C081BB9C86500917917 /* BRYXGradientView.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */; };
 		66F765D21BB85092005E484A /* DayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66F765D11BB85092005E484A /* DayView.xib */; };
 		66F765D41BB85F34005E484A /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66F765D31BB85F34005E484A /* DayView.swift */; };
-		66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66F765D51BB864AD005E484A /* OAStackView.framework */; };
-		66F765DD1BB86551005E484A /* OAStackView.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,18 +37,16 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				66F765DD1BB86551005E484A /* OAStackView.framework.dSYM in CopyFiles */,
-				66D27C081BB9C86500917917 /* BRYXGradientView.framework.dSYM in CopyFiles */,
-				6605095A1C0ABB2C00012C7F /* SwiftDate.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		660109B01D8F471600C7F208 /* BRYXGradientView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXGradientView.framework; path = Carthage/Build/iOS/BRYXGradientView.framework; sourceTree = "<group>"; };
+		660109B11D8F471600C7F208 /* OAStackView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAStackView.framework; path = Carthage/Build/iOS/OAStackView.framework; sourceTree = "<group>"; };
+		660109B21D8F471600C7F208 /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
 		660509531C0AA3B100012C7F /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		660509561C0ABB0B00012C7F /* SwiftDate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftDate.framework; path = Carthage/Build/iOS/SwiftDate.framework; sourceTree = "<group>"; };
-		660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SwiftDate.framework.dSYM; path = Carthage/Build/iOS/SwiftDate.framework.dSYM; sourceTree = "<group>"; };
 		6605095B1C0B906100012C7F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		6605095C1C0B906100012C7F /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		660509631C0BA17700012C7F /* Step.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
@@ -100,8 +95,6 @@
 		66A4EADE1BB87E210085A07A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		66B9CBB21BEEC00A00A16E6D /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		66CC91511CFA4E8A007F8BE8 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		66D27C041BB9C84F00917917 /* BRYXGradientView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BRYXGradientView.framework; path = Carthage/Build/iOS/BRYXGradientView.framework; sourceTree = "<group>"; };
-		66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = BRYXGradientView.framework.dSYM; path = Carthage/Build/iOS/BRYXGradientView.framework.dSYM; sourceTree = "<group>"; };
 		66E759AE1CF917E700031D6A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		66E759AF1CF9187200031D6A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		66E759B01CF9187700031D6A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -123,8 +116,6 @@
 		66E759C01CF919FA00031D6A /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		66F765D11BB85092005E484A /* DayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayView.xib; sourceTree = "<group>"; };
 		66F765D31BB85F34005E484A /* DayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
-		66F765D51BB864AD005E484A /* OAStackView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAStackView.framework; path = Carthage/Build/iOS/OAStackView.framework; sourceTree = "<group>"; };
-		66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = OAStackView.framework.dSYM; path = Carthage/Build/iOS/OAStackView.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,12 +123,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				660109B31D8F471600C7F208 /* BRYXGradientView.framework in Frameworks */,
+				660109B41D8F471600C7F208 /* OAStackView.framework in Frameworks */,
+				660109B51D8F471600C7F208 /* SwiftDate.framework in Frameworks */,
 				662FF0121D77CC120001D88D /* GoogleMobileAds.framework in Frameworks */,
 				6605095E1C0B906100012C7F /* Fabric.framework in Frameworks */,
-				66D27C051BB9C84F00917917 /* BRYXGradientView.framework in Frameworks */,
-				660509571C0ABB0B00012C7F /* SwiftDate.framework in Frameworks */,
 				66A4EADF1BB87E210085A07A /* HealthKit.framework in Frameworks */,
-				66F765D61BB864AD005E484A /* OAStackView.framework in Frameworks */,
 				6605095D1C0B906100012C7F /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,15 +195,12 @@
 		66F765D71BB864BC005E484A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				660109B01D8F471600C7F208 /* BRYXGradientView.framework */,
+				660109B11D8F471600C7F208 /* OAStackView.framework */,
+				660109B21D8F471600C7F208 /* SwiftDate.framework */,
 				6605095B1C0B906100012C7F /* Crashlytics.framework */,
 				6605095C1C0B906100012C7F /* Fabric.framework */,
 				66A4EADE1BB87E210085A07A /* HealthKit.framework */,
-				66D27C041BB9C84F00917917 /* BRYXGradientView.framework */,
-				66F765D51BB864AD005E484A /* OAStackView.framework */,
-				660509561C0ABB0B00012C7F /* SwiftDate.framework */,
-				66D27C061BB9C85700917917 /* BRYXGradientView.framework.dSYM */,
-				660509581C0ABB1A00012C7F /* SwiftDate.framework.dSYM */,
-				66F765DC1BB86551005E484A /* OAStackView.framework.dSYM */,
 				662FF0111D77CC120001D88D /* GoogleMobileAds.framework */,
 			);
 			name = Frameworks;
