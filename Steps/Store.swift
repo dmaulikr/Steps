@@ -57,7 +57,7 @@ class Store: NSObject {
         stopActiveQueries()
         stepsDict = [Date : Step]()
         
-        let today = Date.today()
+        let today = Date().startOf(component: .day)
         var dates = (0..<numberOfDays).map{ today.add(days: -1 * $0) }
         
         for index in 0..<numberOfDays {
