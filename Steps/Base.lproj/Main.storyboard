@@ -321,15 +321,24 @@
                                     <constraint firstItem="cpf-Ie-W6G" firstAttribute="top" secondItem="iRn-EH-RVs" secondAttribute="top" constant="16" id="xFK-Bk-2Lm"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxI-OW-IWT" customClass="GADBannerView">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="nB9-JP-1p4"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yxI-OW-IWT" firstAttribute="top" secondItem="iRn-EH-RVs" secondAttribute="bottom" id="5DH-Mt-OPl"/>
+                            <constraint firstItem="WZM-4P-Otz" firstAttribute="top" secondItem="yxI-OW-IWT" secondAttribute="bottom" id="7Xi-4L-H8V"/>
                             <constraint firstItem="iRn-EH-RVs" firstAttribute="leading" secondItem="LGM-NR-zF6" secondAttribute="leading" id="FDk-Z7-RTH"/>
+                            <constraint firstItem="yxI-OW-IWT" firstAttribute="leading" secondItem="LGM-NR-zF6" secondAttribute="leading" id="G6u-Nf-Lm9"/>
                             <constraint firstItem="gwy-bZ-fCR" firstAttribute="top" secondItem="1vZ-lM-SKY" secondAttribute="bottom" id="HmA-1M-672"/>
                             <constraint firstAttribute="trailing" secondItem="gwy-bZ-fCR" secondAttribute="trailing" id="SiM-Hh-Uan"/>
-                            <constraint firstItem="WZM-4P-Otz" firstAttribute="top" secondItem="iRn-EH-RVs" secondAttribute="bottom" id="SyI-aE-duw"/>
                             <constraint firstItem="iRn-EH-RVs" firstAttribute="top" secondItem="gwy-bZ-fCR" secondAttribute="bottom" id="Vli-Ew-eqX"/>
                             <constraint firstItem="gwy-bZ-fCR" firstAttribute="leading" secondItem="LGM-NR-zF6" secondAttribute="leading" id="XOF-RM-Nrm"/>
+                            <constraint firstAttribute="trailing" secondItem="yxI-OW-IWT" secondAttribute="trailing" id="jz8-xV-Bws"/>
                             <constraint firstAttribute="trailing" secondItem="iRn-EH-RVs" secondAttribute="trailing" id="xhG-20-aGX"/>
                         </constraints>
                     </view>
@@ -341,6 +350,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="adView" destination="yxI-OW-IWT" id="5XV-a6-WkW"/>
                         <outlet property="footerView" destination="iRn-EH-RVs" id="bqr-72-XUu"/>
                         <outlet property="helpButton" destination="cpf-Ie-W6G" id="VNe-cN-bzo"/>
                         <outlet property="tableView" destination="gwy-bZ-fCR" id="DTK-CZ-M1O"/>

@@ -10,12 +10,14 @@ import UIKit
 import BRYXGradientView
 import MessageUI
 import Crashlytics
+import GoogleMobileAds
 
-class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate {
+class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, UINavigationControllerDelegate, GADBannerViewDelegate, GADAdSizeDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var footerLabel: UILabel!
+    @IBOutlet weak var adView: GADBannerView!
     
     @IBOutlet weak var helpButton: UIButton!
     let unitSwitch = UISwitch()
@@ -35,6 +37,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         helpButton.titleLabel?.lineBreakMode = .byWordWrapping
         helpButton.titleLabel?.textAlignment = .center
         if !MFMailComposeViewController.canSendMail() {  helpButton.isEnabled = false }
+        
+        adView.adSize = kGADAdSizeSmartBannerPortrait
+        adView.delegate = self
+        adView.adSizeDelegate = self
+        adView.rootViewController = self
+        
+        let adRefreshRate: AdRefreshRate = arc4random() % 2 == 0 ? .Long : .Short
+        adView.adUnitID = adRefreshRate.adUnitID
+        Answers.logCustomEvent(withName: "AdMob Refresh Rate", customAttributes: ["Rate" : adRefreshRate.rawValue])
+        
+        let request = GADRequest()
+        request.testDevices = [kGADSimulatorID /*, "224ddf7740ce4fb20d147d9a7d6d52c9"*/]
+        adView.load(request)
         
         Answers.logCustomEvent(withName: "Settings Loaded", customAttributes: nil)
         Answers.logCustomEvent(withName: "Can Send Mail", customAttributes: ["canSendMail" : helpButton.isEnabled])
@@ -85,9 +100,36 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         mailVC.delegate = self
         mailVC.setToRecipients(["adam@adambinsz.com"])
         mailVC.setSubject("Steps Help")
-        mailVC.setMessageBody("I'm having trouble with Steps:\n", isHTML: false)
+        mailVC.setMessageBody("I'm having trouble with Steps:\n\n\n", isHTML: false)
         
         self.present(mailVC, animated: true, completion: nil)
+    }
+    
+    // MARK: - GADBannerView delegate methods
+    func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
+        //        print(#function)
+        Answers.logCustomEvent(withName: "AdMob Ad Loaded", customAttributes: nil)
+    }
+    
+    func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
+        //        print(#function)
+        //        print(error)
+        Answers.logErrorWithName("AdMob Ad Error", error: error)
+    }
+    
+    func adViewWillPresentScreen(_ bannerView: GADBannerView!) {
+        //        print(#function)
+        Answers.logCustomEvent(withName: "AdMob Presenting Screen", customAttributes: nil)
+    }
+    
+    
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView!) {
+        //        print(#function)
+        Answers.logCustomEvent(withName: "AdMob Leaving Application", customAttributes: nil)
+    }
+    
+    func adView(_ bannerView: GADBannerView, willChangeAdSizeTo size: GADAdSize) {
+        Answers.logCustomEvent(withName: "AdMob Ad Size Change", customAttributes: ["width": size.size.width, "height": size.size.height])
     }
 }
 
