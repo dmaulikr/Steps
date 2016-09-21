@@ -51,7 +51,6 @@ class Store: NSObject {
     }
     
     func fetchSteps() {
-        print(#function)
         guard numberOfDays > 0 else { return }
         
         stopActiveQueries()

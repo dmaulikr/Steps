@@ -194,11 +194,10 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
             layoutChart(stepCounts.count)
         }
         
-        print("Updating bars")
         for index in 0..<stepCounts.count {
             updateBarAtIndex(index, animated: animated)
         }
-        print("Done updating bars")
+        
         updatingChart = false
     }
     
@@ -238,15 +237,6 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: [], animations: {
             let scale = self.store.maxStepCount > 0 ? CGFloat(stepCount.count ??  0) / CGFloat(self.store.maxStepCount) : 0
             dayView.barScale = max(scale, 0.015)
-            
-            if Float(scale - 0.0) <= FLT_EPSILON {
-                print(self.store.maxStepCount)
-            }
-            
-//            print(scale)
-//            print(dayView.countLabel.text)
-//            print(stepCount.count)
-//            print()
         }, completion: nil)
     }
     
