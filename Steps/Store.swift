@@ -25,15 +25,14 @@ class Store: NSObject {
     }
     
     fileprivate let numberOfDays: Int
-    fileprivate var stepsDict: [Date : Step]?
-    var steps: [Step]? {
-        get {
-            guard let stepsDict = stepsDict else { return nil }
-            return [Step](stepsDict.values).sorted{ $0.date.timeIntervalSince($1.date as Date) > 0 }
+    fileprivate var stepsDict = [Date: Step]() {
+        didSet {
+            self.steps = [Step](stepsDict.values).sorted{ $0.date.timeIntervalSince($1.date as Date) > 0 }
         }
     }
+    private(set) var steps: [Step]?
     var maxStepCount: Int {
-        get { return stepsDict?.values.map{ $0.count ?? 0 }.max() ?? 0 }
+        get { return stepsDict.values.map{ $0.count ?? 0 }.max() ?? 0 }
     }
     fileprivate var activeQueries = [HKQuery]()
     fileprivate var observers = [WeakContainer<StoreObserver>]()
@@ -52,19 +51,21 @@ class Store: NSObject {
     }
     
     func fetchSteps() {
+        print(#function)
         guard numberOfDays > 0 else { return }
         
         stopActiveQueries()
-        stepsDict = [Date : Step]()
         
         let today = Date().startOf(component: .day)
-        var dates = (0..<numberOfDays).map{ today.add(days: -1 * $0) }
+        var dates = [Date]()
         
+        var newDict = [Date: Step]()
         for index in 0..<numberOfDays {
             let date = today.add(days: -index)
             dates.append(date)
-            stepsDict?[date] = Step(date: date)
+            newDict[date] = stepsDict[date] ?? Step(date: date)
         }
+        stepsDict = newDict
         
         let stepsQuery = self.stepsQuery(dates)
         Store.healthStore.execute(stepsQuery)
@@ -91,13 +92,13 @@ class Store: NSObject {
             }
             
             for date in dates {
-                if self.stepsDict?[date] == nil {
-                    self.stepsDict?[date] = Step(date: date)
+                if self.stepsDict[date] == nil {
+                    self.stepsDict[date] = Step(date: date)
                 }
                 
                 guard let sum = statisticsCollection?.statistics(for: date)?.sumQuantity()?.doubleValue(for: HKUnit.count()) else { continue }
                 let roundedSum = Int(floor(sum))
-                self.stepsDict?[date]?.count = roundedSum
+                self.stepsDict[date]?.count = roundedSum
             }
         }
         
@@ -120,12 +121,12 @@ class Store: NSObject {
             }
             
             for date in dates {
-                if self.stepsDict?[date] == nil {
-                    self.stepsDict?[date] = Step(date: date)
+                if self.stepsDict[date] == nil {
+                    self.stepsDict[date] = Step(date: date)
                 }
                 
                 guard let sumQuantity = statisticsCollection?.statistics(for: date)?.sumQuantity() else { continue }
-                self.stepsDict?[date]?.distance = sumQuantity
+                self.stepsDict[date]?.distance = sumQuantity
             }
         }
         
