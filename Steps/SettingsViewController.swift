@@ -97,12 +97,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         guard MFMailComposeViewController.canSendMail() else { return }
         
         let mailVC = MFMailComposeViewController()
-        mailVC.delegate = self
+        mailVC.mailComposeDelegate = self
         mailVC.setToRecipients(["adam@adambinsz.com"])
         mailVC.setSubject("Steps Help")
         mailVC.setMessageBody("I'm having trouble with Steps:\n\n\n", isHTML: false)
         
         self.present(mailVC, animated: true, completion: nil)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
+        
     }
     
     // MARK: - GADBannerView delegate methods
