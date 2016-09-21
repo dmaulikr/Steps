@@ -122,7 +122,7 @@ class ViewController: UIViewController, StoreObserver, GADBannerViewDelegate, GA
         Answers.logCustomEvent(withName: "AdMob Refresh Rate", customAttributes: ["Rate" : adRefreshRate.rawValue])
         
         let request = GADRequest()
-        request.testDevices = [kGADSimulatorID /*, "224ddf7740ce4fb20d147d9a7d6d52c9"*/]
+        request.testDevices = [kGADSimulatorID, "98a094551a7e77990ccbfd3fcf409198"]
         adView.load(request)
         
         if let image = settingsButton.currentImage {
