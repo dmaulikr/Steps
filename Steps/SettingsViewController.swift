@@ -108,7 +108,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: - GADBannerView delegate methods
     func adViewDidReceiveAd(_ bannerView: GADBannerView!) {
         //        print(#function)
-        Answers.logCustomEvent(withName: "AdMob Ad Loaded", customAttributes: nil)
+        Answers.logCustomEvent(withName: "AdMob Settings Ad Loaded", customAttributes: nil)
     }
     
     func adView(_ bannerView: GADBannerView!, didFailToReceiveAdWithError error: GADRequestError!) {
