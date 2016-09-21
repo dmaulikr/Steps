@@ -106,8 +106,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        if let error = error {
+            Answers.logErrorWithName("Email Error", error: error as NSError)
+        }
         dismiss(animated: true, completion: nil)
-        
     }
     
     // MARK: - GADBannerView delegate methods
